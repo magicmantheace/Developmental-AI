@@ -21,6 +21,7 @@ This repository owns **learning and simulation**, not the human's identity or th
 | 2028 Q3 | D8: Synveil integration | Bounded event/actuation interface, safe fallback when AI subsystem stops | Not started |
 | 2028 Q4 | D9: long-run reliability | 30-day test with planned restarts, restoration, measured learning and failure records | Not started |
 | 2029-02-09 | D10: integrated candidate | Reproduce published benchmarks; protected AthenZ twin; documented operating limits | Not started |
+| Post-core (Version 2B) | V2B: persistent virtual home for AthenZ | Headless persistent simulation, experience provenance, bounded goals, reproducible restore/replay and optional 2D/3D viewer | Planned; not a D10 prerequisite |
 
 ## Immediate next work
 
@@ -213,3 +214,29 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [ ] **Still blocked:** reliable uncertainty calibration on independent
       episodes and out-of-family regimes; better latent predictive models;
       higher coverage without increasing wrong decisions.
+
+
+## Version 2B — Persistent Virtual Home for AthenZ (planned)
+
+**Position in the program:** a distinct post-core environment/embodiment milestone, after durable cognition, memory, learning and approved goals are usable. V2B is **not a prerequisite** for the February 9, 2029 D10 integrated candidate. Do not divert the current reliability/generalization work to graphics. AthenZ must be usable without this world, and the world must run on Windows or ordinary Linux without requiring Synveil.
+
+**Vision:** provide the *single AthenZ intelligence* with a durable virtual place in which it can observe, move, manipulate bounded objects, practice skills, choose safe activities, develop routines, and remember verified outcomes. Developmental AI owns the deterministic simulation and learning/evaluation interfaces; **AthenZ** owns the agent's identity, preferences, long-term autobiographical memory, dialogue and goal authorization; **Synveil** may later host/supervise the system and mediate any privileged computer actions. No additional independent personality or rival intelligence is created by the virtual world.
+
+### Planned delivery slices
+
+- [ ] **V2B.0 — Headless room:** a small deterministic, local-first 2D/abstract room with an agent position, bounded action vocabulary, objects, inspectable state, simulation clock, resource caps, pause/resume, owner reset, versioned world saves, migrations and recovery. It runs with the graphics window closed; no autonomous shell, network or OS privileges.
+- [ ] **V2B.1 — Perception and interaction:** versioned observe/act/outcome APIs, object affordances, inventory/placement, movement and failures; a simulation-only event ledger with deterministic replay and independently verifiable action outcomes.
+- [ ] **V2B.2 — Experiences and habits:** AthenZ may import only *verified simulated events* into its **agent-origin** autobiographical record. Human-origin biography remains separate and consent-gated. Add recurring bounded activities, skill practice, preference hypotheses and evidence-backed reflections, without hallucinating activities that did not run.
+- [ ] **V2B.3 — Safe agency and personal expression:** let AthenZ propose and execute only permitted, reversible in-world goals (e.g. organize a desk, choose reading material, arrange furniture), with budgets, allowlists, interruption, audit trail and rollback. Test whether preferences/behaviors persist across sessions instead of merely following fixed scripts.
+- [ ] **V2B.4 — Expandable home and viewer:** expose a read-only or mediated interactive 2D interface first; later optionally render the same authoritative simulation in 3D (e.g. Godot). Room/workshop/library/garden extensions, assets and a virtual avatar are presentation and simulation components, **not** a replacement for the agent's learning core.
+- [ ] **V2B.5 — AthenZ/Synveil integration:** integrate through versioned, narrowly scoped interfaces. AthenZ remains the only reasoning/identity agent. Synveil provides optional lifecycle supervision and resource isolation; host boots and operates with the virtual world and AI disabled.
+
+### Release acceptance gates
+
+1. **Persistence:** world, object state and agent location survive process restarts and backup/restore; reproducible action replay yields the same state under the same version and seed. State is authoritative in the headless simulator, never in the graphics client.
+2. **Real experience, not roleplay:** every autobiographical claim of having done something in the room is traceable to a recorded simulator action and observed outcome. Explicitly distinguish a planned, attempted, completed or imagined action; never relabel synthetic events as the consenting human's life.
+3. **Measured learning and agency:** show improvements on held-out in-world tasks vs no-memory, fixed-script and oracle/reference baselines; separately report failed goals, novelty, retained skills and consistency of choices across restarts. No claims of consciousness or human-equivalent mind.
+4. **Safety and ownership:** all actions are sandboxed; no unapproved filesystem/network/system effects, no human-private data in Git or shared world assets, and immediate pause/stop/reset/revoke controls. Resource/time budgets, local data export/deletion and tested rollback must function.
+5. **Cross-project independence:** the engine works headlessly without Synveil; AthenZ works without the world; disabling either subsystem cannot block the host operating system. Future physical-device or OS control must pass Synveil's separate deterministic policy and AthenZ's consent requirements.
+
+**Do not start implementation as part of this roadmap change.** Begin V2B only when its prerequisite core memory/agency and interface contracts have explicit verified gates. A persistent virtual body is an engineering environment for learning and continuity, not proof of subjective experience.
