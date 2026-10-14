@@ -7,11 +7,16 @@ from pathlib import Path
 from developmental_ai.curriculum import CurriculumBrain
 from developmental_ai.delayed_choice import DelayBrain
 from developmental_ai.occluded_navigation import OccludedBrain
+from developmental_ai.uncertain_navigation import RingBrain
 from developmental_ai.event_ledger import export_trace, verify_ledger, _digest
 
 
 class EventLedgerTests(unittest.TestCase):
     def make_trace(self, model: str) -> dict:
+        if model == "uncertain":
+            with tempfile.TemporaryDirectory() as folder:
+                with RingBrain(Path(folder) / "ring.db", 11) as brain:
+                    return brain.trace(1, policy="oracle")
         if model == "occluded":
             with tempfile.TemporaryDirectory() as folder:
                 with OccludedBrain(Path(folder) / "brain.db", 11) as brain:
@@ -25,12 +30,12 @@ class EventLedgerTests(unittest.TestCase):
                 return brain.trace("collect", 1, policy="oracle")
 
     def test_export_and_replay_both_simulations(self):
-        for model in ("delayed", "curriculum", "occluded"):
+        for model in ("delayed", "curriculum", "occluded", "uncertain"):
             with self.subTest(model=model):
                 trace = self.make_trace(model)
                 ledger = export_trace(trace)
                 result = verify_ledger(ledger, trace)
-                steps = trace["outcome"]["events"] if model == "occluded" else trace["events"]
+                steps = trace["outcome"]["events"] if model in ("occluded", "uncertain") else trace["events"]
                 self.assertEqual(len(ledger["events"]), len(steps) * 3 + 1)
                 self.assertTrue(result["verified"])
                 self.assertTrue(result["trace_bound"])

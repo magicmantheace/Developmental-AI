@@ -41,6 +41,8 @@ def _validate_trace(trace: dict) -> None:
         from .curriculum import verify_trace
     elif trace.get("schema") == "developmental-ai.occluded-trace/v1":
         from .occluded_navigation import verify_trace
+    elif trace.get("schema") == "developmental-ai.uncertain-trace/v1":
+        from .uncertain_navigation import verify_trace
     else:
         raise ValueError("unsupported trace version")
     verify_trace(trace)
@@ -53,7 +55,8 @@ def export_trace(trace: dict, subject_id: str = "local-agent") -> dict:
     _validate_trace(trace)
     trace_id = trace["sha256"]
     spatial = trace["schema"] == "developmental-ai.occluded-trace/v1"
-    steps = trace["outcome"]["events"] if spatial else trace["events"]
+    uncertain = trace["schema"] == "developmental-ai.uncertain-trace/v1"
+    steps = trace["outcome"]["events"] if (spatial or uncertain) else trace["events"]
     if len(steps) * 3 + 1 > MAX_EVENTS:
         raise ValueError("trace exceeds maximum event count")
     events: list[dict] = []
@@ -73,7 +76,12 @@ def export_trace(trace: dict, subject_id: str = "local-agent") -> dict:
         events.append({**body, "sha256": previous})
 
     for step in steps:
-        if spatial:
+        if uncertain:
+            append("observation", {"state": step["observation"], "memory": step["state"]})
+            append("action_proposed", {"action": step["action"]})
+            append("outcome", {"memory": step["next_state"], "reward": step["reward"],
+                               "event": step["event"], "done": step["done"]})
+        elif spatial:
             append("observation", {"state": step["observation"], "memory": step["memory_before"]})
             append("action_proposed", {"action": step["action"]})
             append("outcome", {"state": step["observation_after"], "memory": step["memory_after"],
@@ -83,7 +91,7 @@ def export_trace(trace: dict, subject_id: str = "local-agent") -> dict:
             append("action_proposed", {"action": step["action"]})
             append("outcome", {"state": step["after"], "reward": step["reward"],
                                "event": step["event"], "done": step["done"]})
-    final = {k: v for k, v in trace["outcome"].items() if k != "events"} if spatial else trace["outcome"]
+    final = {k: v for k, v in trace["outcome"].items() if k != "events"} if (spatial or uncertain) else trace["outcome"]
     append("episode_complete", {"outcome": final})
     ledger = {"schema": LEDGER_SCHEMA, "source_kind": "simulation",
               "scope": "simulation-only", "subject_id": subject_id,

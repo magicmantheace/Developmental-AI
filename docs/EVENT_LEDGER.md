@@ -34,3 +34,7 @@ complete event list again. The same event count, payload and size limits apply.
 The exporter first verifies every simulated transition, then verifies the event
 chain against the original trace on request. It still does **not** authenticate
 policy origin, user identity, or access rights.
+
+## Experimental `uncertain-ring/v1` source
+
+The exporter now accepts independently replayable `developmental-ai.uncertain-trace/v1` traces, with observation payloads showing noisy odometry/landmark signals, `memory` carrying a compressed estimator state and `outcome` carrying the next estimator state. Neither the filter nor the learned policy becomes authoritative. Like other trace schemas, the only permitted scope remains `simulation-only`; checksum chains do not authenticate physical events or the source of an identity.
