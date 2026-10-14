@@ -122,3 +122,34 @@ update ablations. The oracle is deliberately 100% even before training. See
 
 This milestone also adds restart-equivalence, checkpoint compatibility,
 evaluation immutability, and independently replayable memory-write traces.
+
+
+## Hidden-target spatial memory (`occluded-navigation-v1`, experimental)
+
+A separate randomized-grid experiment reveals the target displacement **once**,
+then removes it from all later observations. The policy must navigate using a
+stored goal estimate updated from successful and blocked moves. Memory retention
+and odometry are **engineered mechanisms**; only the local navigation policy is
+learned. A separately trained `reactive` policy loses the clue after one action.
+
+```bash
+python -m benchmarks.occluded_navigation_benchmark --seeds 7 23 41 --train-episodes 3000 --test-episodes 200
+python -m developmental_ai.occluded_navigation train --seed 7 --mode memory --episodes 3000 --db private-nav.db
+python -m developmental_ai.occluded_navigation evaluate --seed 7 --mode memory --episodes 200 --db private-nav.db
+python -m developmental_ai.occluded_navigation trace --seed 7 --mode memory --policy oracle --db private-nav.db > nav-trace.json
+python -m developmental_ai.occluded_navigation verify --trace-file nav-trace.json
+python -m developmental_ai.event_ledger export --trace-file nav-trace.json > nav-events.json
+python -m developmental_ai.event_ledger verify --ledger-file nav-events.json --trace-file nav-trace.json
+```
+
+Across inspected development seeds 7/23/41, the learned memory policy succeeds
+on 71.5% of 200 held-out-layout episodes per seed on average, compared with
+17.3% for the untrained policy, 0% for a separately trained reactive policy,
+19.7% for random exploration, 93.3% for an engineered memory-enabled greedy
+heuristic, and 100% for a privileged full-map BFS oracle. This is **not** blind
+cross-distribution validation, learned memory design, or world-model planning.
+Exact per-seed figures and limitations are in
+[`docs/OCCLUDED_NAVIGATION.md`](docs/OCCLUDED_NAVIGATION.md) and
+[`benchmarks/occluded_navigation_results.json`](benchmarks/occluded_navigation_results.json).
+The simulation-only ledger can now export independently replayable traces from
+this third family too; no live AthenZ or Synveil integration is implied.

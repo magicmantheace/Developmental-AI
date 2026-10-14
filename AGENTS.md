@@ -18,3 +18,9 @@
     authorized user. Do not add network, shell or system-action execution to the
     simulation-only ledger exporter.
 11. Learned selective-memory claims require running `python -m benchmarks.selective_memory_benchmark`, comparing learned vs first/last/random and oracle, and explicitly disclosing the engineered context/source features and inspected development seeds.
+
+12. Changes to occluded navigation must rerun the multi-seed
+    `python -m benchmarks.occluded_navigation_benchmark`, preserve separate
+    train/test indices and compare against learned-reactive, random, greedy
+    and privileged full-map oracle baselines. Never call engineered dead
+    reckoning a learned memory mechanism.

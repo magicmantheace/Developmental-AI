@@ -78,3 +78,21 @@ Next: train a controller to *select* useful observations for memory rather than 
       cues, learned recurrent memory and transfer to occluded navigation.
 - [ ] D2 stable external service interface still open; D3 broad task transfer
       remains unproven, and all reported seeds are development seeds.
+
+
+## Occluded spatial-navigation milestone — 2026-10-13
+
+- [x] Added randomized-grid navigation where a goal offset is visible at reset
+      only, and future observations include just local blocked directions.
+- [x] Engineered movement-feedback dead reckoning and a distinct reactive
+      memory-loss ablation; train separate Q policies per mode.
+- [x] Three-seed evaluation with untrained, reactive, random, greedy and
+      privileged BFS oracle comparisons; all seeds remain development seeds.
+- [x] Restart-exact SQLite policy checkpoints, read-only evaluations,
+      environmental trace verification and read-only ledger export.
+- [ ] **Learned spatial-memory control remains open:** the agent does not learn
+      its odometry or what information to keep. It only learns actions from the
+      manually constructed memory state.
+- [ ] **D3 remains open:** test noisy action feedback, multiple competing
+      beacons, harder obstacle distributions, and completely held-out task
+      families before claiming transferable spatial reasoning.

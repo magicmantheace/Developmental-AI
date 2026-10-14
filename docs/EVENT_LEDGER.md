@@ -1,6 +1,6 @@
 # Simulation event ledger v1 — experimental export format
 
-`developmental_ai.event_ledger` exports strictly **simulation-only** events from verified `curriculum` or `delayed_choice` traces. It has no socket listener, privileged executor, persistent queue, network transport or identity store. It is a building block for future AthenZ/Synveil integration and is not a stable cross-project API.
+`developmental_ai.event_ledger` exports strictly **simulation-only** events from verified `curriculum`, `delayed_choice`, or `occluded_navigation` traces. It has no socket listener, privileged executor, persistent queue, network transport or identity store. It is a building block for future AthenZ/Synveil integration and is not a stable cross-project API.
 
 ## Data contract
 
@@ -21,3 +21,16 @@ Passing `--trace-file` to ledger verification **also independently replays the s
 ## Integration rule
 
 AthenZ may eventually display these events as **agent simulation history**, never as a consenting human's autobiographical memory. Synveil may eventually read them as simulation telemetry, but neither a recorded `action_proposed` nor a text field authorizes a real-world action. Any future real action requires a separate deterministic policy and explicitly scoped owner permission. A versioned authenticated transport, replay-safe receipts, retention/erasure design, and privacy review are required before exposing this as a production IPC interface.
+
+
+## Occluded navigation trace normalization
+
+For `developmental-ai.occluded-trace/v1` traces, the exporter reads the
+`outcome.events` list. Observation payloads contain both the visible wall/cue
+observation and the internally estimated working-memory state; outcome payloads
+contain the following observation, memory estimate, reward and event. The final
+`episode_complete` payload contains only the summary and never embeds the
+complete event list again. The same event count, payload and size limits apply.
+The exporter first verifies every simulated transition, then verifies the event
+chain against the original trace on request. It still does **not** authenticate
+policy origin, user identity, or access rights.
