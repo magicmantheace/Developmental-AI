@@ -262,3 +262,28 @@ See [`docs/STEP_DYNAMICS.md`](docs/STEP_DYNAMICS.md) and
 python -m unittest discover -s tests -v
 python -m benchmarks.step_dynamics_benchmark --seeds 17 23 41
 ```
+
+
+## Offline-calibrated stepwise regime detection (`calibrated-step/v1`, experimental)
+
+A **separate** offline calibration step derives a detector margin from distinct,
+regime-labelled calibration histories (`train` indices 5000+). At runtime the
+step-by-step detector still uses ordinary action/odometry/landmark observations
+**without** labels. The old `margin=0.12` detector remains unchanged as a
+baseline. Calibration artifacts bind a model-bank fingerprint and have a simple
+integrity digest, not authenticated provenance or trustworthy confidence values.
+
+```sh
+python -m benchmarks.calibrated_step_benchmark --seeds 17 23 41
+python -m benchmarks.calibrated_step_benchmark --seeds 1009 1013 1031
+```
+
+In the initial three development seeds, changed-world correct-model step
+selection rose **26.4% → 47.9%**; in three additional inspected audit seeds,
+**61.1% → 65.3%**. One initial seed regressed, and the three-seed changed-world
+wrong-model rate remains **52.1%**. This is a bounded improvement, **not safe or
+reliable autonomous adaptation**. The existing step detector and candidate
+promotion pathway were not modified in this experiment. Details and full
+per-seed errors: [`docs/CALIBRATED_DETECTION.md`](docs/CALIBRATED_DETECTION.md),
+[`benchmarks/calibrated_step_results.json`](benchmarks/calibrated_step_results.json)
+and [`benchmarks/calibrated_step_audit_results.json`](benchmarks/calibrated_step_audit_results.json).

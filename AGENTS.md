@@ -47,3 +47,11 @@
     authenticated consent or stage candidate training as automatic promotion.
     Run `python -m benchmarks.step_dynamics_benchmark` and the original
     `python -m benchmarks.transfer_benchmark` unchanged.
+
+
+16. Offline-calibrated step detection must never consume `test` namespace
+    histories during calibration. Use `train` indices `5000+`, disjoint from
+    model-fit `train` indices `0..N-1`. Keep the original `margin=0.12`
+    detector unchanged, publish per-seed correct/wrong/abstained selection on
+    development and additional audit seeds, and state that offline labels
+    calibrate a heuristic threshold, **not** confidence probabilities.

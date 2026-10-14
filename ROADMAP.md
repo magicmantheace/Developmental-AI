@@ -160,3 +160,14 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [ ] New-environment model selection and training-data quarantine still need
       leakage-resistant independent audit, more diverse regimes and improved
       predictive quality before any automatic-learning gate can be considered.
+
+
+## 2026-10-14 — Offline step-detector calibration (experimental)
+
+- [x] Frozen `step-dynamics/v1` baseline retained without changing prior results.
+- [x] Separate model-fit, offline calibration, and evaluation episode ranges.
+- [x] Fail closed when saved regime models cannot be distinguished using calibration evidence; reject duplicate evidence and bank mismatches.
+- [x] Add model-bound, checksum-verified calibration artifacts and deterministic tests.
+- [x] Preserve all three development and three additional audit seeds, including a regression and wrong-model fractions.
+- [ ] **Reliability gate remains open:** 52.1% wrong-model step selection on changed-world development seeds after calibration. The anomaly floor is not statistically calibrated.
+- [ ] Need within-trajectory regime changes, independent blind out-of-family tests, calibrated abstention and held-out candidate review before autonomous adaptation.
