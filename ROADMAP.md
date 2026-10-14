@@ -110,3 +110,25 @@ Next: train a controller to *select* useful observations for memory rather than 
 - [ ] D2 stable service adapter and D3 broad blind generalization are still open.
 
 Next: calibration from *unlabeled* movement/landmark sequences using latent-state inference, automatic model bank selection from observation sequences, and completely frozen blind tests spanning changed geometry/landmark reliability.
+
+
+## 2026-10-14 — Learning from unlabeled sensor trajectories
+
+- [x] Introduce a second dynamics learner using only initial beacon, movement
+      command, odometry and intermittent landmark observations (no ground-truth
+      actual movement or post-reset position during fitting).
+- [x] Infer hidden positions by deterministic categorical forward-backward EM
+      with observable likelihood metrics and frozen deterministic seeds.
+- [x] Preserve distinct immutable model snapshots and select the best fitting
+      known model automatically from fresh ordinary probes (no regime labels).
+- [x] Compare predicted observations and navigation on each inspected seed to
+      wrong-model and privileged true-probability oracle baselines.
+- [x] Repeat frozen development protocol once on independent post-development
+      audit seeds 101/303/707; record the weaker high-noise outcome unchanged.
+- [x] Verify versioned storage, tampering rejection, deterministic resume and
+      read-only model selection. Previous supervised calibration remains intact.
+- [ ] The selector does not detect unknown regimes or run a changepoint detector
+      on a single continuous lived experience; periodic probes are externally
+      scheduled. Learning still assumes a known small ring topology.
+- [ ] D2 service adapter, broad D3 transfer and genuine continual adaptation
+      remain open. Results are development evidence, not humanlike cognition.

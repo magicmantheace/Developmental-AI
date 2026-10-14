@@ -185,3 +185,34 @@ python -m developmental_ai.adaptive_dynamics evaluate-snapshot --db calibration.
 See [model, evaluation protocol and per-seed limitations](docs/ADAPTIVE_DYNAMICS.md),
 [`benchmarks/adaptive_dynamics_results.json`](benchmarks/adaptive_dynamics_results.json),
 and regression tests. These seeds were inspected during development, not blind.
+
+
+## Self-supervised dynamics and automatic model retrieval (`online-dynamics/v1`, experimental)
+
+`developmental_ai.online_dynamics` fits categorical motion, odometry, and
+landmark probabilities from ordinary action/sensor sequences using latent-state
+forward-backward inference. **Unlike the earlier privileged calibration
+experiment, fitting sees no actual post-action position or displacement.**
+An ordinary reset beacon provides the initial position, and the ring topology
+and sensor vocabulary remain hand-specified. The stored model bank can select
+which previously trained model best explains new sequences **without being given
+a regime label**.
+
+```sh
+python -m benchmarks.online_dynamics_benchmark --seeds 17 23 41 --train-episodes 350 --train-steps 12 --iterations 10 --probe-episodes 50 --navigation-episodes 100
+python -m developmental_ai.online_dynamics train --db model-bank.db --name original --noise standard --layout fixed --episodes 350
+python -m developmental_ai.online_dynamics train --db model-bank.db --name changed --noise high --layout shifted --episodes 350
+python -m developmental_ai.online_dynamics select --db model-bank.db --noise high --layout shifted --episodes 50
+```
+
+The CLI `noise` and `layout` flags configure the **simulator only**, not the
+learner. Two synthetic regimes and three inspected development seeds are
+reported in [`benchmarks/online_dynamics_results.json`](benchmarks/online_dynamics_results.json).
+A separate post-development audit on seeds 101/303/707 is recorded in
+[`benchmarks/online_dynamics_audit_results.json`](benchmarks/online_dynamics_audit_results.json).
+The model bank selects the correct regime in all tested comparisons, but
+shifted/high-noise navigation averages **33.3% in the audit**, compared with
+**58.0% for the privileged physics oracle**. The gap remains unsolved.
+See [`docs/ONLINE_DYNAMICS.md`](docs/ONLINE_DYNAMICS.md) for evaluation boundaries,
+regression checks and known limitations. This is batch model fitting with
+probe-based retrieval, **not** live continual learning or discovered physics.
