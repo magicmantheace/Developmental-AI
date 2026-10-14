@@ -54,3 +54,28 @@ Run commands from the repository root. `train` persists state under the specifie
 - [`AGENTS.md`](AGENTS.md): contribution and verification rules.
 
 Project principles: locally owned data; observable, falsifiable learning claims; no privileged agent executor; source-of-truth in Git for code only; restart-safe checkpoints; train/test separation; and explicit versioning of any future learned-model promotion.
+
+## Multi-task transfer and replay (experimental `curriculum-v1`)
+
+The new experiment shares one local observation and tabular Q policy across
+three task rules: `reach`, `collect`, and `courier`. In the courier task the
+simulator explicitly changes the direction-to-target cue after pickup. This
+is limited transfer, not independent planning.
+
+```sh
+python -m developmental_ai.curriculum train --db curriculum_brain.db --seed 13 --episodes 3500 --tasks collect
+python -m developmental_ai.curriculum evaluate --db curriculum_brain.db --seed 13 --task courier --episodes 150
+python -m benchmarks.curriculum_benchmark --seeds 13 29 47 --train-episodes 3500 --test-episodes 150
+python -m developmental_ai.curriculum trace --task courier --policy oracle --index 0 > simulated_trace.json
+python -m developmental_ai.curriculum verify --trace-file simulated_trace.json
+```
+
+Seed-bound, versioned SQLite checkpoints refuse resumes with different task
+curricula; each completed training batch persists atomically. Deterministic
+transition replay checks simulations against seeded procedural layouts. The
+checksum is not an execution attestation or authority to act externally.
+
+See [multi-task design](docs/CURRICULUM.md) and [full development results](benchmarks/curriculum_results.json),
+including random, greedy, and shortest-path oracle baselines. The learned
+policy **performs worse than the hand-written greedy baseline**. All seeds
+were inspected during development, so independent blind validation remains.

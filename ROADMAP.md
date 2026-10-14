@@ -37,3 +37,14 @@ This repository owns **learning and simulation**, not the human's identity or th
 - No unrestricted shell, network, or desktop control by the learning policy.
 - No human names, messages, voice, biometrics, consent records or private trained models committed to this repository.
 - Test/restore checkpoint compatibility before any persistent format changes.
+
+## Multi-task milestone — 2026-10-13
+
+- [x] Three task rules share one partial-observation learned policy.
+- [x] Seed-separated task generation; versioned, task-bound durable checkpoints.
+- [x] Simulation-only decision traces, deterministic transition replay, digest.
+- [x] Random, greedy, and full-map oracle references; restart-equivalent tests.
+- [ ] D2 service/event interface remains unimplemented.
+- [ ] D3 remains open: the learner relies on target cues and is weaker than
+      the greedy baseline; next tests must address cue removal, novel objective
+      families and independent blind benchmarking.
