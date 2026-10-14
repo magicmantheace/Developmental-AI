@@ -143,3 +143,20 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [ ] Current detection is per twelve-step episode, not per observation or during navigation; hand-tuned thresholds and manually pretrained models remain.
 - [ ] Novel regime creation and candidate approval, calibrated novelty detection, sample-efficient model fitting, and closed-loop integration are open.
 - [ ] The formal D2 external service interface, D3 broad generalization and any claim of human-like memory/agency remain open.
+
+## 2026-10-14 — Per-observation inference and quarantined new-model proposals
+
+- [x] Per-observation latent-state likelihood updates, bounded score windows,
+      explicit initial beacons, restart-exact state and durable event history.
+- [x] One-step observational likelihood regression against full forward/backward.
+- [x] Preserved immutable model catalogue; quarantined training histories and
+      candidate checkpoint with explicit digest-matched review requirement.
+- [x] Invalid, privileged or tampered observations rejected; snapshot/bank
+      fingerprint and schema compatibility checked on restart.
+- [x] Published all three inspected-seed outcomes, including **failed changed
+      regime detection on two seeds** and weak/worse held-out candidate fits.
+- [ ] Not a reliable novelty detector, calibrated selector, real authenticated
+      approval, per-step changing simulator, or automatic adaptation system.
+- [ ] New-environment model selection and training-data quarantine still need
+      leakage-resistant independent audit, more diverse regimes and improved
+      predictive quality before any automatic-learning gate can be considered.

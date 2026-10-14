@@ -39,3 +39,11 @@
     The monitor scores unlabelled *per-episode* observation streams against
     manually pretrained models; this is not self-sufficient discovery of new
     dynamics, within-episode control or a calibrated anomaly detector.
+
+16. `step_dynamics.py` experiments must compare each incremental log-likelihood
+    to the full latent forward likelihood, test exact mid-episode restarts,
+    reject unknown labels in sensor records, and disclose changed-regime
+    detection failures. Never describe the simple digest approval token as
+    authenticated consent or stage candidate training as automatic promotion.
+    Run `python -m benchmarks.step_dynamics_benchmark` and the original
+    `python -m benchmarks.transfer_benchmark` unchanged.

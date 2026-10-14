@@ -240,3 +240,25 @@ has no AthenZ/Synveil service integration or authority to execute real actions.
 See [full results, low-budget failures and caveats](docs/CONTINUOUS_DYNAMICS.md),
 [`benchmarks/continuous_dynamics_results.json`](benchmarks/continuous_dynamics_results.json)
 and [`benchmarks/continuous_dynamics_audit_results.json`](benchmarks/continuous_dynamics_audit_results.json).
+
+## Per-observation detection and candidate quarantine (`step-dynamics/v1`, experimental)
+
+`developmental_ai.step_dynamics` adds a restart-safe per-sensor-step Bayesian
+forward filter and a **review-only candidate model store**. It estimates
+observation likelihoods from ordinary action/odometry/landmark records,
+can identify previously saved dynamics, and can fit a *separate* candidate
+from unfamiliar observation histories. Candidates **cannot change the bank
+without an explicit digest-matched approval call**, and the monitor is then
+invalidated until a new reviewed session is opened.
+
+This is **not** reliable change detection or automated new-environment
+learning yet. In the three-seed development benchmark, per-step changed-regime
+recognition fails entirely on seeds 23 and 41; two of three quarantined
+candidates have worse held-out predictive loss than the best existing model.
+See [`docs/STEP_DYNAMICS.md`](docs/STEP_DYNAMICS.md) and
+[`benchmarks/step_dynamics_results.json`](benchmarks/step_dynamics_results.json).
+
+```bash
+python -m unittest discover -s tests -v
+python -m benchmarks.step_dynamics_benchmark --seeds 17 23 41
+```
