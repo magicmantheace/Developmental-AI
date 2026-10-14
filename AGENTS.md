@@ -32,3 +32,10 @@
     model selection, likelihood, wrong-model and privileged-oracle baselines.
     Do not mislabel initial-position-beacon/known-topology latent-state EM as
     unsupervised discovery of general physics or automatic continuous learning.
+
+15. For `continuous_dynamics.py` changes, run both the three-seed main benchmark
+    and additional-seed audit with the **same full model-training budget**.
+    Retain the published small-budget failure rather than tuning it away.
+    The monitor scores unlabelled *per-episode* observation streams against
+    manually pretrained models; this is not self-sufficient discovery of new
+    dynamics, within-episode control or a calibrated anomaly detector.

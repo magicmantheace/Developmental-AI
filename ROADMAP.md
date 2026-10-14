@@ -132,3 +132,14 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
       scheduled. Learning still assumes a known small ring topology.
 - [ ] D2 service adapter, broad D3 transfer and genuine continual adaptation
       remain open. Results are development evidence, not humanlike cognition.
+
+## 2026-10-14 — Observation-driven regime change detection
+
+- [x] Immutable model-bank fingerprint and schema-bound restart-safe model selector.
+- [x] Rolling per-episode observation-likelihood window and repeated-evidence switch gate, with no regime labels supplied to the selector.
+- [x] Retrieval of prior model after environment reverts; bounded hash-linked simulation event history and explicit unknown/uncertain statuses.
+- [x] All three original development seeds and three extra checked seeds select original → changed → original when pretrained with the full model-training budget.
+- [x] Capture weaker-training failure as a negative result (2/3 seeds fail to switch after the regime change).
+- [ ] Current detection is per twelve-step episode, not per observation or during navigation; hand-tuned thresholds and manually pretrained models remain.
+- [ ] Novel regime creation and candidate approval, calibrated novelty detection, sample-efficient model fitting, and closed-loop integration are open.
+- [ ] The formal D2 external service interface, D3 broad generalization and any claim of human-like memory/agency remain open.

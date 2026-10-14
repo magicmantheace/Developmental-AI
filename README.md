@@ -216,3 +216,27 @@ shifted/high-noise navigation averages **33.3% in the audit**, compared with
 See [`docs/ONLINE_DYNAMICS.md`](docs/ONLINE_DYNAMICS.md) for evaluation boundaries,
 regression checks and known limitations. This is batch model fitting with
 probe-based retrieval, **not** live continual learning or discovered physics.
+
+## Continuous model selection from changing observation streams (`continuous-dynamics/v1`)
+
+The new `StreamMonitor` chooses among **previously trained** latent-state dynamics
+models as the simulation changes, using only short histories of ordinary movement
+commands, odometry and intermittent landmark observations. It requires repeated
+likelihood evidence, preserves earlier models, and stores restart-safe, hash-linked
+simulation event records. `unknown`/`uncertain` are not permissions to act.
+
+```sh
+python -m benchmarks.continuous_dynamics_benchmark --seeds 17 23 41
+python -m benchmarks.continuous_dynamics_benchmark --seeds 1009 1013 1031
+python -m unittest discover -s tests -v
+```
+
+Three development seeds identified the changed environment within four
+12-step observation episodes and retrieved the original environment model within
+three or four episodes of its return. Three additional inspected seeds succeeded
+with the full model-training budget, but **two of those three failed at a lower
+training budget**. The monitor learns no new model itself, runs per episode, and
+has no AthenZ/Synveil service integration or authority to execute real actions.
+See [full results, low-budget failures and caveats](docs/CONTINUOUS_DYNAMICS.md),
+[`benchmarks/continuous_dynamics_results.json`](benchmarks/continuous_dynamics_results.json)
+and [`benchmarks/continuous_dynamics_audit_results.json`](benchmarks/continuous_dynamics_audit_results.json).
