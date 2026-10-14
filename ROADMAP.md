@@ -277,3 +277,27 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [x] Reproduce development (17/23/41) and previously inspected audit (1009/1013/1031) seeds with **matched** training and navigation budgets; record improvement in all 12 held-out predictive comparisons and the mixed, sometimes worse navigation outcomes.
 - [x] Original transfer benchmark remains unchanged (76.0%, 69.0%, 66.7% test success for 17/23/41).
 - [ ] **Not approved for promotion/default control:** out-of-family blind evaluation, reliable navigation gains, inference efficiency and world-model generalization remain open. This work does not implement V2A or V2B.
+
+## 2026-10-14 — Joint localization and model uncertainty (experimental)
+
+- [x] Add model-averaged Bayesian inference of **both** current position and
+      candidate previously trained dynamics regime from ordinary sensor streams.
+- [x] Preserve an optional disjoint-probe heuristic model prior, without
+      regime labels, privileged simulator truth, automatic model promotion,
+      or a new default navigation policy.
+- [x] Test normalized forward evidence vs exact forward/backward likelihood,
+      posterior conditioning, input boundaries, bank fingerprints and exact
+      local SQLite restarts.
+- [x] Benchmark each inspected seed against wrong/correct saved models and
+      a true-physics oracle, including truth-only position-calibration metrics.
+- [ ] Demonstrate robust cross-regime and out-of-family navigation gains,
+      credibly calibrated uncertainty, efficient continual adaptation, and
+      independent validation before default promotion. D2/D3 remain open.
+- [ ] V2A affective cognition and V2B virtual-room work are not implemented
+      in this experiment; existing sequencing remains unchanged.
+
+- [x] Six-seed results show mixture resilience relative to a known-wrong
+      model in several conditions, but consistent deficits against correctly
+      selected learned models and the true-physics oracle. 80% spatial credible
+      sets are miscalibrated; most changed-regime probes abstain at 90%.
+      Preserve this negative result rather than changing rollout thresholds.

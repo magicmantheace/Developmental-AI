@@ -358,3 +358,29 @@ python -m benchmarks.robust_world_model_benchmark --seeds 1009 1013 1031 --train
 ```
 
 See [protocol and limitations](docs/ROBUST_WORLD_MODEL.md), [development results](benchmarks/robust_world_model_results.json), and [audit results](benchmarks/robust_world_model_audit_results.json). V2A affective cognition and V2B virtual-home plans remain future milestones; none are implemented here.
+
+## Optional joint spatial/world-model inference (`mixture-navigation/v1`)
+
+A bounded Bayesian filter now maintains a *joint* distribution over position and
+which previously saved observation-only world model applies. It does not
+receive hidden positions or the current environment label. An optional
+observation-only pre-navigation probe biases the starting model probabilities;
+fixed wrong/correct saved-model and true-physics references remain benchmarks.
+Versioned mid-episode snapshots survive SQLite restart and refuse incompatible
+model banks. This is an **experimental alternative**, not the default controller
+or evidence of general spatial reasoning, independent physics discovery or new
+autonomy. Read [method, protocol and limitations](docs/MIXTURE_NAVIGATION.md)
+and [development](benchmarks/mixture_navigation_results.json) /
+[audit](benchmarks/mixture_navigation_audit_results.json) per-seed data.
+
+```sh
+python -m benchmarks.mixture_navigation_benchmark --seeds 17 23 41 --fit 90 --iterations 6 --probe 40 --navigation 60
+python -m unittest discover -s tests -v
+```
+
+The six-seed benchmark shows some robustness to a *wrong* saved model, but
+no consistent improvement over a correctly selected learned model; changed
+world navigation remains as low as 12–21% with mixture variants, compared
+with 52–56% for the true-physics oracle. A 90% internal regime-choice
+threshold abstained on most changed-world probe episodes. Therefore the
+mixture is not promoted to default.
