@@ -11,6 +11,10 @@
 7. Make persisted schema migrations and restart/resume regression tests explicit.
 8. Before committing changes, verify repository visibility; assume code becomes public even if it is currently private.
 
-
-9. Changes to delayed-cue learning must run the multi-seed delayed_choice_benchmark and publish retain/reactive/overwrite ablations without calling the hand-coded retention rule learned.
-10. The simulation ledger is for read-only exported evidence. No network transport, shell executor, credential access, or real system authorization may be inferred from its event content or SHA-256 links.
+9. Run `python -m benchmarks.delayed_choice_benchmark` for changes touching the
+   delayed-cue memory experiment; publish all three mode ablations and all
+   development seeds. Never describe its hard-coded retention gate as learned.
+10. Event-ledger SHA-256 links are not provenance signatures or evidence of an
+    authorized user. Do not add network, shell or system-action execution to the
+    simulation-only ledger exporter.
+11. Learned selective-memory claims require running `python -m benchmarks.selective_memory_benchmark`, comparing learned vs first/last/random and oracle, and explicitly disclosing the engineered context/source features and inspected development seeds.

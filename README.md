@@ -80,12 +80,9 @@ including random, greedy, and shortest-path oracle baselines. The learned
 policy **performs worse than the hand-written greedy baseline**. All seeds
 were inspected during development, so independent blind validation remains.
 
-
 ## Delayed-cue memory and bounded simulation event export (experimental)
 
-The new delayed-choice task presents an arbitrary cue, then hides it during 2–6 training distractors or 10–20 test distractors. At the final decision the learner selects one of four buttons. In retain mode a **hand-coded working-memory gate** stores the original cue; reactive and overwrite ablations do not preserve it. The response association is learned, but the retention rule is not.
-
-Reproduce the recorded development-seed benchmark:
+`developmental_ai.delayed_choice` adds a **different toy task family**: at the beginning of an episode an arbitrary cue appears, then disappears for several steps while distracting signals appear. The learner must make one of four choices after the delay. The successful `retain` mode uses an explicitly programmed memory gate; a memoryless ablation cannot access the original cue at decision time. It learns a cue-to-action association, **not its own memory architecture**.
 
 ```sh
 python -m benchmarks.delayed_choice_benchmark --seeds 11 31 73 --train-episodes 800 --test-episodes 400
@@ -96,6 +93,32 @@ python -m developmental_ai.event_ledger export --trace-file delay_trace.json > e
 python -m developmental_ai.event_ledger verify --ledger-file events.json --trace-file delay_trace.json
 ```
 
-Across development seeds 11/31/73, the retained-cue policy reaches **100%** success on unseen long-delay sequences; the reactive baseline averages **22.08%**, near 25% chance. This is a deliberately small lookup task, **not** evidence of learned working-memory control, natural-language reasoning, personality, or independent agency. See [protocol and limitations](docs/DELAYED_CHOICE.md) and [raw benchmark results](benchmarks/delayed_choice_results.json).
+Across development seeds 11/31/73, the retained-cue policy achieves **100%** on an unseen 10–20-distraction test; reactive policies average **22.08%**, close to the 25% chance level. This establishes memory dependence **only on this intentionally simple task**. See [protocol, all ablations, and explicit caveats](docs/DELAYED_CHOICE.md), and [exact machine-readable results](benchmarks/delayed_choice_results.json).
 
-The new simulation-only [event ledger](docs/EVENT_LEDGER.md) converts deterministic curriculum and delayed-choice traces into bounded hash-linked events for **future** AthenZ/Synveil adapters. It does not transmit data to those projects, authenticate event authors, or authorize any real action. Original transfer/curriculum baselines remain unchanged.
+The event-ledger exporter also turns reproducible simulation traces (from `curriculum` or `delayed_choice`) into a bounded, chained, versioned stream that future AthenZ/Synveil adapters can consume. It currently **does not send events to either project**, authenticate their origin, or authorize execution. See [event-ledger contract](docs/EVENT_LEDGER.md). These experiments are in addition to the original transfer and curriculum baselines; they do not supersede historical scores.
+
+## Learned selective memory (`selective-memory-v1`, experimental)
+
+An additional one-slot memory experiment no longer labels the relevant signal
+as a `cue`. It presents shuffled informative and distractor channel signals;
+the agent uses outcome feedback to learn which channel to retain for a given
+context and learns an arbitrary four-button association. Explicit first/last/
+random-memory ablations and a simulator oracle provide reference baselines.
+**The context/channel features are engineered and relevance is stationary; this
+is a small learned memory gate, not general memory, independent reasoning, or
+an evolving personal twin.**
+
+```bash
+python -m developmental_ai.selective_memory train --db selection.db --episodes 6000
+python -m developmental_ai.selective_memory evaluate --db selection.db --episodes 400 --band long
+python -m benchmarks.selective_memory_benchmark --seeds 11 31 73 --train-episodes 6000 --test-episodes 400
+```
+
+All three inspected development seeds reached 100% test/long accuracy after
+6,000 episodes, compared with 27–33% for the first, last, and random memory
+update ablations. The oracle is deliberately 100% even before training. See
+[`docs/SELECTIVE_MEMORY.md`](docs/SELECTIVE_MEMORY.md) and the complete
+[`benchmarks/selective_memory_results.json`](benchmarks/selective_memory_results.json).
+
+This milestone also adds restart-equivalence, checkpoint compatibility,
+evaluation immutability, and independently replayable memory-write traces.

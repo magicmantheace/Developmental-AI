@@ -49,15 +49,32 @@ This repository owns **learning and simulation**, not the human's identity or th
       the greedy baseline; next tests must address cue removal, novel objective
       families and independent blind benchmarking.
 
+## 2026-10-13 — Delay-dependent memory experiment and event export
 
-## 2026-10-13 — Delayed working-memory and event export increment
+- [x] Implement a separate delayed-cue, four-choice experimental task with distractor tokens and train-only short delays.
+- [x] Quantify retained-cue, reactive and last-token-overwrite ablations across seeds, plus longer held-out delay distributions.
+- [x] Versioned, mode/seed-bound SQLite memory-policy checkpoints with deterministic resume and evaluation immutability tests.
+- [x] Deterministic replay of decision traces and recomputed-hash tampering checks.
+- [x] Experimental strict, bounded event ledger output from both simulation families with hash chaining and source-trace binding.
+- [ ] **Learned memory control is not implemented.** `retain` hard-codes which initial cue to keep; the association mapping alone is learned.
+- [ ] **D2 remains open:** no implemented external AthenZ/Synveil service adapter, authenticated IPC or production stability guarantee.
+- [ ] **D3 remains open:** no demonstrated generalization to new open-ended tasks or changing observation semantics. Test seeds were inspected during development.
 
-- [x] Add a distinct four-choice delayed-cue environment with distractors and hidden final decision cue.
-- [x] Demonstrate memory dependence with retained-cue, reactive, and overwrite modes across three public development seeds, testing longer delays than training.
-- [x] Add seed-, schema-, and mode-bound SQLite training state, deterministic restarts, immutable evaluation and replay integrity tests.
-- [x] Add bounded, versioned, hash-linked simulation event ledger export and replay checks for both curriculum and delayed-choice traces.
-- [ ] **Learned memory selection remains open:** retained-cue mode is programmed to keep the relevant initial signal; only response associations are learned.
-- [ ] **D2 remains open:** no authenticated transport, external service process, production interface, or real AthenZ/Synveil adapter.
-- [ ] **D3 remains open:** no broad unseen-task-family generalization or learned planning; this experiment is intentionally simple and its reported seeds were inspected during development.
+Next: train a controller to *select* useful observations for memory rather than taking the preselected cue, then test it under unseen distractor processes; tackle navigation without supplied target-direction cues. Maintain reproducible, independent blind evaluation after architecture freeze.
 
-Next experiments: recurrent/learned memory selection with unfamiliar distractor processes, and target navigation without externally supplied target-direction cues. Freeze independent evaluation before tuning.
+## Learned selective-memory milestone — 2026-10-13
+
+- [x] Added a learnable `write`/`keep` policy conditioned on current context
+      and source of the observed signal, with no explicitly labeled cue phase.
+- [x] One-slot memory, distractors, hidden response association and terminal
+      success feedback; no privileged environment access.
+- [x] Disjoint train/test namespaces, short/long delay ablations, saved
+      per-seed results and hand-coded simulator oracle comparison.
+- [x] Seed/mode/schema-bound SQLite checkpoints; exact continuation and
+      read-only evaluation regression tests.
+- [x] Trace replay validation of in-simulator observations and memory writes;
+      trace hashes alone are not attestations.
+- [ ] Source-reliability distribution shift, multiple competing same-channel
+      cues, learned recurrent memory and transfer to occluded navigation.
+- [ ] D2 stable external service interface still open; D3 broad task transfer
+      remains unproven, and all reported seeds are development seeds.
