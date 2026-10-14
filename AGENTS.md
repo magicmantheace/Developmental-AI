@@ -64,3 +64,9 @@
     `python -m benchmarks.candidate_review_benchmark` and separate unchanged
     transfer benchmark. Do not treat predictive likelihood gain as safety,
     navigation improvement or signed owner authorization. Keep all failures.
+
+17. `streak_selection.py` is experimental and must not replace
+    `decision_abstention.py` or authorize any real actions. Reproduce both
+    the 17/23/41 benchmark and 1009/1013/1031 audit at the same training
+    budget. Report correct/wrong/abstained for every seed, including
+    regressions; 2% empirical step error is not a safety/confidence bound.

@@ -199,3 +199,17 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
       authenticated user consent remain open; positive held-out likelihood is
       not a guarantee about navigation or deployment safety.
 - [ ] D2 external service and D3 broad generalization remain incomplete.
+
+## 2026-10-14 — Consecutive-evidence selection study
+
+- [x] Implement an independent, simulation-only 3-step evidence gate with
+      versioned calibration, model-bank fingerprint, fail-closed checks, and
+      restart-equivalent replay state.
+- [x] Freeze fit/calibration/evaluation namespaces; retain the previous
+      conservative gate as the default and report all seeds, wrong answers,
+      and abstentions.
+- [x] Six-seed comparison: mixed outcome and no consistent safety/coverage gain.
+      Do **not** replace the conservative selector with this experiment.
+- [ ] **Still blocked:** reliable uncertainty calibration on independent
+      episodes and out-of-family regimes; better latent predictive models;
+      higher coverage without increasing wrong decisions.

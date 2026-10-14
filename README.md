@@ -322,3 +322,25 @@ in [`docs/CANDIDATE_REVIEW.md`](docs/CANDIDATE_REVIEW.md) and
 [`benchmarks/candidate_review_results.json`](benchmarks/candidate_review_results.json).
 Predictive gain here is **not** a navigation success guarantee; stepwise
 change-detection coverage remains low and no live AthenZ/Synveil integration exists.
+
+## Optional consecutive-evidence selector (experimental)
+
+`developmental_ai.streak_selection` adds a three-observation leader-consensus
+selector, calibrated offline against separate training-namespace examples and
+checkpointable across restarts. **It is not the default**: across development
+seeds 17/23/41, correct/wrong/abstained outcomes were **346/3/947** versus
+**358/3/935** for the existing conservative gate; across extra audit seeds
+1009/1013/1031 they were **527/22/747** versus **498/21/777**. This mixed
+result **does not justify replacing the conservative rule** or granting any
+new autonomy. The learned dynamics models themselves need to improve.
+
+```sh
+python -m benchmarks.streak_selection_benchmark --seeds 17 23 41
+python -m benchmarks.streak_selection_benchmark --seeds 1009 1013 1031
+```
+
+See [`docs/STREAK_SELECTION.md`](docs/STREAK_SELECTION.md) and
+[`benchmarks/streak_selection_results.json`](benchmarks/streak_selection_results.json)
+for per-seed, per-method details. The 2% calibration error parameter is an
+empirical threshold on correlated simulated training steps, not a statistical
+safety claim. Tests are local; GitHub Actions are not required.
