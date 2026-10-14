@@ -171,3 +171,31 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [x] Preserve all three development and three additional audit seeds, including a regression and wrong-model fractions.
 - [ ] **Reliability gate remains open:** 52.1% wrong-model step selection on changed-world development seeds after calibration. The anomaly floor is not statistically calibrated.
 - [ ] Need within-trajectory regime changes, independent blind out-of-family tests, calibrated abstention and held-out candidate review before autonomous adaptation.
+
+## 2026-10-14 — Selective abstention for uncertain stepwise model selection
+
+- [x] Added a read-only, fail-closed `decision-abstention/v1` gate that rejects stale/mismatched current model selections, unknown status and low evidence separation.
+- [x] Added an offline *train-only* empirical error-vs-coverage cutoff; its immutable receipt is SHA-256-bound to the model bank and it is explicitly **not** a calibrated error guarantee or signed approval.
+- [x] Published six seed-wise, disjoint evaluation runs, preserving frozen baseline counts as well as the wrong/correct/abstained counts for the gate; retained audit seed 1031's 17 wrong selections.
+- [x] Re-ran the original transfer benchmark without changing any prior evaluation protocol or historical result.
+- [ ] **Coverage is insufficient:** 60–72% of tested steps abstain. Independent risk calibration, alternative confidence estimators, stronger underlying models, and changed-distribution tests remain required.
+- [ ] **Candidate acceptance is not solved:** independent, frozen holdout review must gate promotion of newly fitted models before autonomous experiments are considered.
+- [ ] No network service, agent autonomy escalation, privileged action execution, or human-record import is included.
+
+
+## 2026-10-14 — Independent candidate acceptance gate
+
+- [x] Require quarantined candidates to pass an immutable review on observation
+      histories not reused in model fitting. Evaluate against every existing
+      model and require a positive margin over the strongest competitor.
+- [x] Bind review, held-out evidence, model and bank with restart-verified
+      checksums; invalidate a review on catalog changes, corrupt records, or
+      training/holdout overlap. Update legacy candidate promotion to **reject**
+      the model digest alone and require a passing review receipt separately.
+- [x] Reproduce six inspected-seed comparison with an additional independent
+      predictive test partition not supplied to review; record both accepted
+      and rejected candidates, without an automatic promotion.
+- [ ] Model selection coverage, absolute novelty detection, data lineage and
+      authenticated user consent remain open; positive held-out likelihood is
+      not a guarantee about navigation or deployment safety.
+- [ ] D2 external service and D3 broad generalization remain incomplete.

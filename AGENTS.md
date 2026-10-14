@@ -55,3 +55,12 @@
     detector unchanged, publish per-seed correct/wrong/abstained selection on
     development and additional audit seeds, and state that offline labels
     calibrate a heuristic threshold, **not** confidence probabilities.
+
+17. `decision_abstention.py` introduces *read-only selective abstention*, not new model accuracy or a confidence probability. Preserve the frozen StepDetector baseline, use offline `train`-namespace calibration disjoint from model-fit and `test` evaluation, and report every seed's correct/wrong/abstain counts **and** coverage. Historical audit seeds have been inspected and cannot become a new blind holdout. Do not give an abstention profile permission to install or promote a model.
+
+18. Candidate promotion now requires `CandidateStore.review` with distinct held-
+    out observation histories, followed by explicit approval of the **review**
+    digest. Never use the old model digest as approval. Run the six-seed
+    `python -m benchmarks.candidate_review_benchmark` and separate unchanged
+    transfer benchmark. Do not treat predictive likelihood gain as safety,
+    navigation improvement or signed owner authorization. Keep all failures.

@@ -126,16 +126,27 @@ class StepDynamicsTests(unittest.TestCase):
                 review=stage.propose(min_histories=12,iterations=4)
                 self.assertEqual(review['status'],'awaiting-human-review')
                 self.assertEqual(bank.conn.execute('SELECT COUNT(*) FROM online_models').fetchone()[0],2)
-                with self.assertRaises(PermissionError):stage.promote(bank,'reviewed')
-                with self.assertRaises(PermissionError):stage.promote(bank,'reviewed',approval_digest='wrong')
+                with self.assertRaises(ValueError):stage.promote(bank,'reviewed')
+                with self.assertRaises(ValueError):stage.promote(bank,'reviewed',approval_digest='wrong')
                 self.assertEqual(bank.conn.execute('SELECT COUNT(*) FROM online_models').fetchone()[0],2)
                 with self.assertRaises(ValueError):stage.propose()
                 with self.assertRaises(ValueError):stage.add(self.histories(1,'high','fixed',9000)[0],catalogue=fingerprint)
         with ModelBank(self.bank_path,self.seed) as bank, CandidateStore(self.review_path,self.seed,fingerprint) as stage:
-            result=stage.promote(bank,'reviewed',approval_digest=review['model_digest'])
-            self.assertEqual(result,review['model_digest'])
-            self.assertEqual(bank.conn.execute('SELECT COUNT(*) FROM online_models').fetchone()[0],3)
-            with self.assertRaises(ValueError):stage.promote(bank,'again',approval_digest=review['model_digest'])
+            # Model checksum alone no longer authorizes installation. A separate
+            # review over non-overlapping observations is now mandatory.
+            with self.assertRaises(ValueError):
+                stage.promote(bank,'reviewed',approval_digest=review['model_digest'])
+            ticket=stage.review(bank,self.histories(30,'high','fixed',11000),min_holdout=24)
+            self.assertEqual(ticket,stage.get_review(bank))
+            if ticket['passed']:
+                with self.assertRaises(PermissionError):
+                    stage.promote(bank,'reviewed',approval_digest=review['model_digest'])
+                result=stage.promote(bank,'reviewed',approval_digest=ticket['review_digest'])
+                self.assertEqual(result,review['model_digest'])
+            else:
+                with self.assertRaises(PermissionError):
+                    stage.promote(bank,'reviewed',approval_digest=ticket['review_digest'])
+                self.assertEqual(bank.conn.execute('SELECT COUNT(*) FROM online_models').fetchone()[0],2)
 
     def test_cannot_stage_privileged_truth_or_mutate_candidate(self):
         with ModelBank(self.bank_path,self.seed) as bank:

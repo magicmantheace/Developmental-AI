@@ -248,7 +248,8 @@ forward filter and a **review-only candidate model store**. It estimates
 observation likelihoods from ordinary action/odometry/landmark records,
 can identify previously saved dynamics, and can fit a *separate* candidate
 from unfamiliar observation histories. Candidates **cannot change the bank
-without an explicit digest-matched approval call**, and the monitor is then
+without a separately passed immutable held-out predictive review AND an explicit
+review-digest-matched approval call**, and the monitor is then
 invalidated until a new reviewed session is opened.
 
 This is **not** reliable change detection or automated new-environment
@@ -287,3 +288,37 @@ promotion pathway were not modified in this experiment. Details and full
 per-seed errors: [`docs/CALIBRATED_DETECTION.md`](docs/CALIBRATED_DETECTION.md),
 [`benchmarks/calibrated_step_results.json`](benchmarks/calibrated_step_results.json)
 and [`benchmarks/calibrated_step_audit_results.json`](benchmarks/calibrated_step_audit_results.json).
+
+## Conservative abstention gate (`decision-abstention/v1`)
+
+A separate post-selection safety filter now **withholds a regime decision** when the `StepDetector`'s selected model is inconsistent with its current model-likelihood evidence. Offline, labelled `train` histories (disjoint from model fitting) select a heuristic minimum likelihood gap, while `test` histories are reserved for evaluation. This is **not** a learned new environment or a statistical confidence guarantee, and the default `StepDetector` behaviour is unchanged.
+
+```sh
+python -m benchmarks.abstention_benchmark --seeds 17 23 41 --out benchmarks/abstention_results.json
+python -m benchmarks.abstention_benchmark --seeds 1009 1013 1031 --out benchmarks/abstention_audit_results.json
+```
+
+Across 1,296 step decisions in each group, wrong selections fell from 336 to **3** on development seeds and 214 to **21** on audit seeds. However, abstentions increased from 56 to **935** and from 66 to **777** respectively: most observations do not receive an answer. See [protocol, exact results and limitations](docs/DECISION_ABSTENTION.md). No model has been automatically changed or promoted; there is no live AthenZ/Synveil integration.
+
+
+## Independent predictive candidate review (`candidate-review/v1`)
+
+`CandidateStore.review(...)` freezes distinct held-out observations and tests a
+proposed model against the **best** existing bank model on the *same* data.
+Promotion now requires **both** a positive review and a separate explicit
+review-digest approval. This is a code-level gate, **not signed human consent**.
+No models are promoted automatically, including those passing evaluation.
+
+```sh
+python -m benchmarks.candidate_review_benchmark --seeds 17 23 41 1009 1013 1031
+python -m unittest discover -s tests -v
+```
+
+In six inspected seeds, a candidate addressing a genuinely missing simulator
+regime passed held-out review and a separate, untouched predictive test on all
+six; a marginal candidate failed review and separate test on all six. Exact
+per-seed results, data-split limitations, and explicit regression notes appear
+in [`docs/CANDIDATE_REVIEW.md`](docs/CANDIDATE_REVIEW.md) and
+[`benchmarks/candidate_review_results.json`](benchmarks/candidate_review_results.json).
+Predictive gain here is **not** a navigation success guarantee; stepwise
+change-detection coverage remains low and no live AthenZ/Synveil integration exists.

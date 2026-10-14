@@ -263,6 +263,10 @@ class CandidateStore:
             self.conn.execute("CREATE TABLE IF NOT EXISTS candidate_meta(id INTEGER PRIMARY KEY CHECK(id=1), seed INTEGER, catalogue TEXT, schema TEXT)")
             self.conn.execute("CREATE TABLE IF NOT EXISTS candidate_history(hash TEXT PRIMARY KEY, body TEXT NOT NULL)")
             self.conn.execute("CREATE TABLE IF NOT EXISTS candidate_model(id INTEGER PRIMARY KEY CHECK(id=1), body TEXT NOT NULL, digest TEXT NOT NULL, samples INTEGER NOT NULL)")
+            # Review and its held-out inputs are immutable after insertion.
+            # CREATE TABLE is a safe additive migration for existing stores.
+            self.conn.execute("CREATE TABLE IF NOT EXISTS candidate_holdout(hash TEXT PRIMARY KEY, body TEXT NOT NULL)")
+            self.conn.execute("CREATE TABLE IF NOT EXISTS candidate_review(id INTEGER PRIMARY KEY CHECK(id=1), body TEXT NOT NULL, digest TEXT NOT NULL)")
             meta=self.conn.execute("SELECT seed,catalogue,schema FROM candidate_meta WHERE id=1").fetchone()
             if meta is None:
                 with self.conn:
@@ -271,6 +275,7 @@ class CandidateStore:
                 raise ValueError("candidate store tied to another model bank")
             self.histories()  # validate persisted provenance and payload digests
             self.get_candidate(optional=True)
+            self._validate_review_storage()
         except Exception:
             self.conn.close()
             raise
@@ -332,6 +337,103 @@ class CandidateStore:
         model.validate()
         return model,d
 
+    def _holdout(self):
+        rows=self.conn.execute("SELECT hash,body FROM candidate_holdout ORDER BY hash").fetchall()
+        if len(rows) > MAX_SAMPLES:
+            raise ValueError("too many review observations")
+        evidence=[]
+        for key,body in rows:
+            item=json.loads(body)
+            validate_history(item)
+            if digest(item) != key:
+                raise ValueError("tampered review evidence")
+            evidence.append(item)
+        return evidence
+
+    def _validate_review_storage(self):
+        evidence=self._holdout()
+        row=self.conn.execute("SELECT body,digest FROM candidate_review WHERE id=1").fetchone()
+        if row is None:
+            if evidence:
+                raise ValueError("orphaned candidate review evidence")
+            return None
+        body,checksum=row
+        record=json.loads(body)
+        if (type(record) is not dict or set(record) != {
+                "schema","seed","catalogue","candidate_digest","holdout_count",
+                "holdout_digest","min_gain","scores","best_existing",
+                "gain","passed"} or
+            record["schema"] != "candidate-review/v1" or
+            record["seed"] != self.seed or record["catalogue"] != self.catalogue or
+            type(record["holdout_count"]) is not int or record["holdout_count"] != len(evidence) or
+            not 12 <= len(evidence) <= MAX_SAMPLES or
+            record["holdout_digest"] != digest(evidence) or
+            digest(record) != checksum or
+            type(record["passed"]) is not bool):
+            raise ValueError("corrupt review record")
+        return record, checksum
+
+    def _evaluate_review(self, bank, evidence, min_gain):
+        if bank.seed != self.seed or catalogue(bank)[1] != self.catalogue:
+            raise ValueError("review requires unchanged source model bank")
+        if not _finite(min_gain) or not 0 <= min_gain <= 2.0:
+            raise ValueError("invalid predictive improvement requirement")
+        candidate, candidate_digest=self.get_candidate()
+        models,_=catalogue(bank)
+        baseline={name:score(model,evidence) for name,model in models.items()}
+        best=max(sorted(baseline),key=lambda name:baseline[name])
+        candidate_score=score(candidate,evidence)
+        # Review is on equal held-out histories, not privileged simulator truth.
+        # Decimal rounding here is deterministic across restarts and processes.
+        gain=round(candidate_score-baseline[best],8)
+        return {"schema":"candidate-review/v1","seed":self.seed,
+                "catalogue":self.catalogue,"candidate_digest":candidate_digest,
+                "holdout_count":len(evidence),"holdout_digest":digest(evidence),
+                "min_gain":float(min_gain),
+                "scores":{**{name:round(v,8) for name,v in sorted(baseline.items())},
+                          "candidate":round(candidate_score,8)},
+                "best_existing":best,"gain":gain,"passed":gain >= min_gain}
+
+    def review(self, bank, holdout_histories, *, min_gain=0.02, min_holdout=24):
+        """Freeze independent evaluation; review does not authorize promotion.
+
+        Caller owns namespace separation. We detect exact duplicate histories but
+        cannot cryptographically establish where externally supplied data came from.
+        """
+        if self._validate_review_storage() is not None:
+            raise ValueError("review is already frozen")
+        if (type(min_holdout) is not int or not 12 <= min_holdout <= MAX_SAMPLES or
+            type(holdout_histories) not in (list,tuple) or
+            not min_holdout <= len(holdout_histories) <= MAX_SAMPLES):
+            raise ValueError("insufficient held-out validation histories")
+        train_digests={digest(h) for h in self.histories()}
+        holdout_digests=set()
+        for history in holdout_histories:
+            validate_history(history)
+            key=digest(history)
+            if key in train_digests or key in holdout_digests:
+                raise ValueError("duplicate or training-overlapping review evidence")
+            holdout_digests.add(key)
+        # Store sorted evidence to make all digests stable regardless of caller order.
+        sorted_histories=sorted(holdout_histories,key=digest)
+        record=self._evaluate_review(bank,sorted_histories,min_gain)
+        with self.conn:
+            self.conn.executemany("INSERT INTO candidate_holdout VALUES(?,?)",
+                                  ((digest(h),canonical(h)) for h in sorted_histories))
+            self.conn.execute("INSERT INTO candidate_review VALUES(1,?,?)",
+                              (canonical(record),digest(record)))
+        return {**record,"review_digest":digest(record)}
+
+    def get_review(self, bank):
+        saved=self._validate_review_storage()
+        if saved is None:
+            raise ValueError("candidate has not passed an independent review")
+        record, checksum=saved
+        evidence=self._holdout()
+        if self._evaluate_review(bank,evidence,record["min_gain"]) != record:
+            raise ValueError("review evaluation no longer reproduces")
+        return {**record,"review_digest":checksum}
+
     def promote(self, bank: ModelBank, name, *, approval_digest=None):
         """Explicit local approval; never invoked by detector, learning, or CLI."""
         if bank.seed != self.seed:
@@ -343,8 +445,11 @@ class CandidateStore:
         frozen_samples=self.conn.execute("SELECT samples FROM candidate_model WHERE id=1").fetchone()[0]
         if frozen_samples != len(self.histories()):
             raise ValueError("candidate evidence changed during review")
-        if approval_digest != d:
-            raise PermissionError("explicit digest-matched review approval required")
+        report=self.get_review(bank)
+        if not report["passed"]:
+            raise PermissionError("candidate failed independent predictive review")
+        if approval_digest != report["review_digest"]:
+            raise PermissionError("explicit review-digest-matched approval required")
         ModelBank._check_name(name)
         return bank.save(name,model,len(self.histories()))
 
