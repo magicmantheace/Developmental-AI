@@ -10,3 +10,7 @@
 6. Keep AthenZ and Synveil as optional, versioned external integrations. No policy-derived root shell, automatic sharing, publishing, or unrestricted action execution.
 7. Make persisted schema migrations and restart/resume regression tests explicit.
 8. Before committing changes, verify repository visibility; assume code becomes public even if it is currently private.
+
+
+9. Changes to delayed-cue learning must run the multi-seed delayed_choice_benchmark and publish retain/reactive/overwrite ablations without calling the hand-coded retention rule learned.
+10. The simulation ledger is for read-only exported evidence. No network transport, shell executor, credential access, or real system authorization may be inferred from its event content or SHA-256 links.

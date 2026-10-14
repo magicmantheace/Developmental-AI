@@ -79,3 +79,23 @@ See [multi-task design](docs/CURRICULUM.md) and [full development results](bench
 including random, greedy, and shortest-path oracle baselines. The learned
 policy **performs worse than the hand-written greedy baseline**. All seeds
 were inspected during development, so independent blind validation remains.
+
+
+## Delayed-cue memory and bounded simulation event export (experimental)
+
+The new delayed-choice task presents an arbitrary cue, then hides it during 2–6 training distractors or 10–20 test distractors. At the final decision the learner selects one of four buttons. In retain mode a **hand-coded working-memory gate** stores the original cue; reactive and overwrite ablations do not preserve it. The response association is learned, but the retention rule is not.
+
+Reproduce the recorded development-seed benchmark:
+
+```sh
+python -m benchmarks.delayed_choice_benchmark --seeds 11 31 73 --train-episodes 800 --test-episodes 400
+python -m developmental_ai.delayed_choice train --mode retain --episodes 800 --db delayed_brain.db
+python -m developmental_ai.delayed_choice evaluate --mode retain --band long --episodes 400 --db delayed_brain.db
+python -m developmental_ai.delayed_choice trace --mode retain --index 3 --db delayed_brain.db > delay_trace.json
+python -m developmental_ai.event_ledger export --trace-file delay_trace.json > events.json
+python -m developmental_ai.event_ledger verify --ledger-file events.json --trace-file delay_trace.json
+```
+
+Across development seeds 11/31/73, the retained-cue policy reaches **100%** success on unseen long-delay sequences; the reactive baseline averages **22.08%**, near 25% chance. This is a deliberately small lookup task, **not** evidence of learned working-memory control, natural-language reasoning, personality, or independent agency. See [protocol and limitations](docs/DELAYED_CHOICE.md) and [raw benchmark results](benchmarks/delayed_choice_results.json).
+
+The new simulation-only [event ledger](docs/EVENT_LEDGER.md) converts deterministic curriculum and delayed-choice traces into bounded hash-linked events for **future** AthenZ/Synveil adapters. It does not transmit data to those projects, authenticate event authors, or authorize any real action. Original transfer/curriculum baselines remain unchanged.

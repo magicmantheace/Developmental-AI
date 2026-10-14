@@ -48,3 +48,16 @@ This repository owns **learning and simulation**, not the human's identity or th
 - [ ] D3 remains open: the learner relies on target cues and is weaker than
       the greedy baseline; next tests must address cue removal, novel objective
       families and independent blind benchmarking.
+
+
+## 2026-10-13 — Delayed working-memory and event export increment
+
+- [x] Add a distinct four-choice delayed-cue environment with distractors and hidden final decision cue.
+- [x] Demonstrate memory dependence with retained-cue, reactive, and overwrite modes across three public development seeds, testing longer delays than training.
+- [x] Add seed-, schema-, and mode-bound SQLite training state, deterministic restarts, immutable evaluation and replay integrity tests.
+- [x] Add bounded, versioned, hash-linked simulation event ledger export and replay checks for both curriculum and delayed-choice traces.
+- [ ] **Learned memory selection remains open:** retained-cue mode is programmed to keep the relevant initial signal; only response associations are learned.
+- [ ] **D2 remains open:** no authenticated transport, external service process, production interface, or real AthenZ/Synveil adapter.
+- [ ] **D3 remains open:** no broad unseen-task-family generalization or learned planning; this experiment is intentionally simple and its reported seeds were inspected during development.
+
+Next experiments: recurrent/learned memory selection with unfamiliar distractor processes, and target navigation without externally supplied target-direction cues. Freeze independent evaluation before tuning.

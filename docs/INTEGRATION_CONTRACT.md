@@ -50,3 +50,8 @@ The developmental learner produces **proposals**, not privileged tool commands. 
 - Simulation events are replayable and do not trigger real actions.
 - AthenZ can display agent experiences without merging them into the human record.
 - Faulting or stopping the learner does not prevent Synveil from booting or performing core desktop tasks.
+
+
+## Offline simulator event export (experimental, 2026-10-13)
+
+A separate simulation-only exporter now implements a bounded `developmental-ai.sim-ledger/v1` envelope with per-step `developmental-ai.event/v1` records from verified synthetic traces. It supports deterministic replay and optional trace binding, but is NOT an implementation of this document's full illustrative schema, does not include real UTC timestamps, and offers no service, authenticated IPC or integration with an actual AthenZ/Synveil runtime. See [EVENT_LEDGER.md](EVENT_LEDGER.md). Neither a recorded proposal nor a checksum grants authority over hardware or personal memory.
