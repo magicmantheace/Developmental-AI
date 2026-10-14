@@ -344,3 +344,17 @@ See [`docs/STREAK_SELECTION.md`](docs/STREAK_SELECTION.md) and
 for per-seed, per-method details. The 2% calibration error parameter is an
 empirical threshold on correlated simulated training steps, not a statistical
 safety claim. Tests are local; GitHub Actions are not required.
+
+
+## Validation-selected multi-start world-model experiment (experimental)
+
+`developmental_ai.robust_world_model` tests whether multiple latent-state EM starting guesses, selected on disjoint **train-namespace** validation histories, yield better observation prediction than the existing single-start learner. This is an **optional** experiment, not a new default or an authorized deployment policy. It uses only initial position beacons, commands, odometry and landmarks; it never sees subsequent true positions or simulator regime labels during fitting/selection.
+
+Across previously inspected development seeds 17/23/41 and audit seeds 1009/1013/1031, both tested regimes showed better held-out mean log-likelihood on **12/12 comparisons**. Navigation was mixed and sometimes **worse**, especially under high noise. Both models already selected the correct regime in all 12 full-episode probe tests, so no selection improvement has been demonstrated. This is development evidence, not an independently blind experiment.
+
+```sh
+python -m benchmarks.robust_world_model_benchmark --seeds 17 23 41 --train-episodes 90 --validation-episodes 30 --test-episodes 40 --iterations 6 --starts 3 --navigation-episodes 12
+python -m benchmarks.robust_world_model_benchmark --seeds 1009 1013 1031 --train-episodes 90 --validation-episodes 30 --test-episodes 40 --iterations 6 --starts 3 --navigation-episodes 12
+```
+
+See [protocol and limitations](docs/ROBUST_WORLD_MODEL.md), [development results](benchmarks/robust_world_model_results.json), and [audit results](benchmarks/robust_world_model_audit_results.json). V2A affective cognition and V2B virtual-home plans remain future milestones; none are implemented here.

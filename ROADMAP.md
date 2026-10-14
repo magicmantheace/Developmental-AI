@@ -267,3 +267,13 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 5. **Cross-project independence:** the engine works headlessly without Synveil; AthenZ works without the world; disabling either subsystem cannot block the host operating system. Future physical-device or OS control must pass Synveil's separate deterministic policy and AthenZ's consent requirements.
 
 **Do not start implementation as part of this roadmap change.** Begin V2B only when its prerequisite core memory/agency and interface contracts have explicit verified gates. V2A's foundations begin earlier but its later milestones deliberately continue during V2B. A persistent virtual body is an engineering environment for learning and continuity, not proof of subjective experience.
+
+
+## 2026-10-14 — Observation-only multi-start world model (experimental)
+
+- [x] Compare the unchanged single-initialization EM learner with an optional three-start learner that selects a model on disjoint train-only validation histories.
+- [x] Weak starting landmark hypotheses derive only from observed odometry/markers or deterministic seeded guesses, not privileged true positions or simulator labels.
+- [x] Enforce fit/validation evidence disjointness, determinism, restart-compatible model persistence and unchanged baseline predictions.
+- [x] Reproduce development (17/23/41) and previously inspected audit (1009/1013/1031) seeds with **matched** training and navigation budgets; record improvement in all 12 held-out predictive comparisons and the mixed, sometimes worse navigation outcomes.
+- [x] Original transfer benchmark remains unchanged (76.0%, 69.0%, 66.7% test success for 17/23/41).
+- [ ] **Not approved for promotion/default control:** out-of-family blind evaluation, reliable navigation gains, inference efficiency and world-model generalization remain open. This work does not implement V2A or V2B.

@@ -70,3 +70,5 @@
     the 17/23/41 benchmark and 1009/1013/1031 audit at the same training
     budget. Report correct/wrong/abstained for every seed, including
     regressions; 2% empirical step error is not a safety/confidence bound.
+
+19. For optional `robust_world_model.py` experiments, compare against the unchanged `online_dynamics.fit` on identical train histories and EM iterations; keep model selection in separate train-namespace validation histories and evaluation in test-only indices. Publish predictive scores *and* downstream navigation regressions on seeds 17/23/41 and 1009/1013/1031 with matching budgets. A predictive gain does not authorize deployment, candidate promotion or claims of independent blind generalization. Preserve baseline and V2A/V2B roadmap scope.
