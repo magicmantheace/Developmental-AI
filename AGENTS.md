@@ -24,3 +24,5 @@
     train/test indices and compare against learned-reactive, random, greedy
     and privileged full-map oracle baselines. Never call engineered dead
     reckoning a learned memory mechanism.
+
+13. For `adaptive_dynamics.py` changes, rerun the full three-seed adaptive benchmark and report old-regime regression as well as new-regime gains, oracle predictive loss and navigation scores. Calibrated physics uses explicit **privileged simulation labels**; do not portray it as an independently discovered latent world model. Named snapshots are retained knowledge, not automatic context switching.

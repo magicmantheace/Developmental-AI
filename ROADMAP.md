@@ -96,3 +96,17 @@ Next: train a controller to *select* useful observations for memory rather than 
 - [ ] **D3 remains open:** test noisy action feedback, multiple competing
       beacons, harder obstacle distributions, and completely held-out task
       families before claiming transferable spatial reasoning.
+
+
+## 2026-10-14 — Supervised world-model calibration and model snapshots
+
+- [x] Estimate unknown simulator movement/odometry/landmark likelihoods from instrumented samples, with train/test generation separated.
+- [x] Use a learned likelihood model in a bounded position-belief filter (control decisions remain heuristic).
+- [x] Simulate abrupt distribution shift in movement and landmark locations, publish every development seed, evaluate predictive log loss and navigation success against a true-physics oracle.
+- [x] Persist versioned model state, verify restart-equivalent training and evaluation immutability.
+- [x] Preserve immutable, explicitly named knowledge snapshots so prior regime performance can be recovered without retraining.
+- [ ] No learning from ordinary uninstrumented navigation observations yet: calibration sees simulator ground truth. No automatic regime selection or learned action controller in this experiment.
+- [ ] The continuously adapted model substantially forgets the old regime; snapshot retention is a **manual mitigation**, not solved continual learning.
+- [ ] D2 stable service adapter and D3 broad blind generalization are still open.
+
+Next: calibration from *unlabeled* movement/landmark sequences using latent-state inference, automatic model bank selection from observation sequences, and completely frozen blind tests spanning changed geometry/landmark reliability.

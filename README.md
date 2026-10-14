@@ -153,3 +153,35 @@ Exact per-seed figures and limitations are in
 [`benchmarks/occluded_navigation_results.json`](benchmarks/occluded_navigation_results.json).
 The simulation-only ledger can now export independently replayable traces from
 this third family too; no live AthenZ or Synveil integration is implied.
+
+
+## Environment dynamics adaptation (`adaptive-dynamics/v1`, experimental)
+
+A new calibration experiment **fits empirical movement, odometry and landmark
+probabilities** from supervised simulator instrumentation instead of assuming
+correct physics parameters. It adapts from standard motion/fixed landmarks to
+higher-noise motion/shifted landmarks, using a Bayesian belief filter with a
+hand-coded navigation heuristic. The privileged calibration instrument knows
+actual movements and positions; ordinary navigation does **not**. No neural
+world-model learning or uninstrumented self-discovery is claimed.
+
+Across inspected development seeds 17/23/41, a frozen standard-world model
+navigates the changed world successfully in 16.7% of held-out episodes versus
+53.4% after adaptation; a privileged probability oracle reaches about 57.8%.
+Prediction negative log likelihood improves from 3.433 to 2.268. But adaptation
+also harms original-world navigation (86.9% to 13.1%): **catastrophic forgetting**.
+Immutable named snapshots recover the original 86.9% performance when explicitly
+selected; choosing the appropriate snapshot automatically remains future work.
+
+```bash
+python -m benchmarks.adaptive_dynamics_benchmark --seeds 17 23 41 --calibration-samples 1800 --test-episodes 300
+python -m developmental_ai.adaptive_dynamics train --db calibration.db --samples 1800
+python -m developmental_ai.adaptive_dynamics snapshot --db calibration.db --name original
+python -m developmental_ai.adaptive_dynamics train --db calibration.db --samples 1800 --noise high --layout shifted
+python -m developmental_ai.adaptive_dynamics evaluate --db calibration.db --samples 300 --noise high --layout shifted
+python -m developmental_ai.adaptive_dynamics evaluate-snapshot --db calibration.db --name original --samples 300 --noise standard --layout fixed
+```
+
+See [model, evaluation protocol and per-seed limitations](docs/ADAPTIVE_DYNAMICS.md),
+[`benchmarks/adaptive_dynamics_results.json`](benchmarks/adaptive_dynamics_results.json),
+and regression tests. These seeds were inspected during development, not blind.
