@@ -403,3 +403,12 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [x] Run 172 local tests in 23 reconstructed test modules separately plus the original unchanged transfer benchmark.
 - [ ] No claim of general novelty: rotated-map detection just 49/144, no drift/intermittent fault testing, no blind out-of-family validation, no risk guarantee, no automatic promotion.
 - [ ] Preserve current v1/D2/D3 priorities and the previously agreed V2A-before/overlapping-V2B sequence.
+
+
+## 2026-10-15 — Alternative-map novelty detection (experimental)
+
+- [x] Add a bounded observation-only counterfactual landmark-offset monitor against the unchanged, frozen world-model bank, with a train-only max-prefix calibration receipt and integrity-checked replay restoration.
+- [x] Matched 17/23/41 development and previously inspected 1009/1013/1031 audit benchmarks across all five conditions: rotated-layout detection **49/144 → 92/144**, but normal false alarms **10/144 → 22/144**, and known-shift false alarms **12/144 → 23/144**.
+- [x] Preserve an exploratory **post-result** alpha=.04 threshold study: 67/144 rotated detections; normal/known-shift false alarms 13/144 and 14/144. This is **not** independently blind evidence.
+- [ ] **Not approved as a default or automatic pause:** false alarm and interruption risk too high; known 9/11 topology and half-separated two-landmark assumptions still limit transfer. Do not tune further on these evaluation streams. Require preregistered out-of-family trials with uninspected seeds, sensor semantics, and realistic closed-loop budgets.
+- [ ] Continue v1/D2/D3 work; the Version 2A emotional-development and Version 2B virtual-home sequence is unaffected.

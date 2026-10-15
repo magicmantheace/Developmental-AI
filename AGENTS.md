@@ -114,3 +114,18 @@
 23. `novelty_guard.py` is a diagnostic research experiment only, not a certified anomaly detector, permission provider or default policy. Reproduce `python -m benchmarks.novelty_guard_benchmark` on seeds 17/23/41 and inspected 1009/1013/1031 at matching fit/calibration/navigation budgets. Retain all five sensor conditions, especially normal false alarms, missed odometry/map faults and closed-loop task-success reductions. Calibration may read **only** disjoint train-namespace ordinary sensor histories, with all sensor/position/label truth restricted to benchmark scoring. Re-run the original transfer benchmark. No threshold tuning to test episodes, background model promotion, unrestricted external actions, or unreviewed autonomy expansion. Preserve V2A/V2B roadmap order.
 
 24. `channel_novelty.py` is optional, simulation-only and must not replace the default navigation policy. Re-run `python -m benchmarks.channel_novelty_benchmark` on seeds 17/23/41 and previously inspected 1009/1013/1031 with matched fit, calibration, reference and evaluation budgets. Calibrate solely on ordinary sensor histories from disjoint train indices; never leak environment truth. Report five per-condition alarm/false-alarm counts plus closed-loop task completion and pause regressions. Combined detector false-alarm rates are not guaranteed by either component's alpha. Checksums do not authenticate permission, and the guard must not authorize actions, automatic model promotion or autonomous deployment. Preserve V2A/V2B ordering.
+
+
+24. `layout_novelty.py` is an optional, observation-only **diagnostic**. Never
+    use its hypothetical offsets to authorize an action, automatically promote
+    a model, or claim arbitrary-map understanding. Preserve the frozen bank and
+    known two-half-separated-marker ring assumption. Validate checkpoint
+    replay and reject privileged fields. Calibrate the entire offset/prefix
+    search using disjoint training reference episodes, not test results. Re-run
+    matched budgets (48/16/12/64/24) on seeds 17/23/41 and previously inspected
+    audit 1009/1013/1031, all five fault/normal conditions, and unchanged
+    transfer. Report additional normal and known-change false alarms and
+    delays, not just increased rotated-map sensitivity. The alpha=.04 study
+    was explicitly chosen after alpha=.10 outcomes; it is post-hoc, not blind.
+    Neither a threshold nor an integrity hash is permission or a statistical
+    safety guarantee. Keep existing guard/controller defaults and V2A/V2B order.

@@ -488,3 +488,10 @@ On six previously inspected seeds with 144 episodes per condition, stuck-odometr
 On 144 closed-loop stuck-odometry episodes, the layered wrapper paused 115 sessions versus 36 previously, reducing completed tasks from 37 to 21. Normal-world guarded completion stayed 101/144 for both variants. This is an experimental diagnostic trade-off, not improved goal success.
 
 Reproduce with `python -m unittest tests.test_channel_novelty tests.test_novelty_guard -v` and `python -m benchmarks.channel_novelty_benchmark --seeds 17 23 41` (then with `--seeds 1009 1013 1031`). See [research results](docs/CHANNEL_NOVELTY.md). Versions 2A and 2B remain post-core roadmap milestones.
+
+
+## Experimental counterfactual layout-novelty diagnostic (`layout-novelty/v1`)
+
+An optional, simulation-only monitor scores whether **alternative landmark-map offsets** explain ordinary action/odometry/marker observations better than the existing frozen world-model bank. The complete offset-and-prefix search is calibrated against separate training-namespace normal and known-shift histories. **It is not the default; it does not pause, control actions or promote models.**
+
+On previously inspected seeds (144 rotated-layout trials), the existing two-layer guard detects 49; adding the alpha=.10 map diagnostic detects **92**, but normal false alarms rise **10→22/144** and known-shift false alarms **12→23/144**. The expressly **post-result exploratory** stricter alpha=.04 setting detects **67/144**, with normal alarms **13/144** and known-shift alarms **14/144**. No setting is approved for rollout. Full per-seed results and reproduction: [docs/LAYOUT_NOVELTY.md](docs/LAYOUT_NOVELTY.md), [development benchmark](benchmarks/layout_novelty_results.json), [audit benchmark](benchmarks/layout_novelty_audit_results.json), and the two strict variants. Versions 2A and 2B remain post-core milestones.
