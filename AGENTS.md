@@ -81,3 +81,12 @@
     budgets, compare uniform-vs-probed mixture with correct/wrong model and
     true-physics baselines, report Brier and credible-set coverage, and rerun
     the unchanged transfer benchmark. No automatic rollout on mixed results.
+
+
+21. Changes to `structured_landmarks.py` must retain the two-site ring prior
+    explicitly and use **only** initial-beacon/action/odometry/landmark histories
+    for inference; benchmark truth must not leak into training or navigation.
+    Run 17/23/41 and 1009/1013/1031 matched-budget predictive/navigation
+    comparisons, the offset-3 novelty test, and unchanged transfer benchmark.
+    Report original-regime regressions, not just high-noise improvements.
+    No automatic model-bank promotion or out-of-family generalization claims.
