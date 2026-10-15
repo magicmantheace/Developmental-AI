@@ -384,3 +384,16 @@ world navigation remains as low as 12–21% with mixture variants, compared
 with 52–56% for the true-physics oracle. A 90% internal regime-choice
 threshold abstained on most changed-world probe episodes. Therefore the
 mixture is not promoted to default.
+
+## Supervised spatial posterior calibration (experimental)
+
+The optional `spatial_calibration` experiment temperature-scales an existing learned position posterior to make its **reported uncertainty** more faithful to measured outcomes. Unlike observation-only world-model fitting, temperature fitting **requires simulator ground-truth positions** from a separate, privileged `train/5000+` calibration dataset. Runtime posterior display sees no such labels, and **no navigation action, model choice or permission is changed**.
+
+On six previously inspected seeds, held-out location log-loss improved in all six original-regime comparisons and in three of six noisy changed-regime comparisons; the other three high-noise cases remained unchanged. The changed regime still trails a physics oracle substantially. See [methods and limitations](docs/SPATIAL_CALIBRATION.md), [development results](benchmarks/spatial_calibration_results.json), and [additional inspected-seed results](benchmarks/spatial_calibration_audit_results.json).
+
+```sh
+python -m benchmarks.spatial_calibration_benchmark --seeds 17 23 41
+python -m benchmarks.spatial_calibration_benchmark --seeds 1009 1013 1031
+```
+
+V2A (affective cognition) and V2B (persistent virtual home) remain **planned, post-core** milestones.
