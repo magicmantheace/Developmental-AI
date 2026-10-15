@@ -341,3 +341,13 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [x] Improved unequal-spacing high-noise navigation from 31.1% to 41.1% (development) and 32.2% to 54.4% (previously inspected audit), with **regressions** when prior assumptions were correct or markers absent. The old structured model remains default.
 - [ ] **Still blocked:** ungrouped changing-regime trajectory learning, multiple identical or unknown marker symbols, uncalibrated map uncertainty, topology discovery, independent blind transfer, and reliable navigation without engineered geometry.
 - [ ] V1 D2-D10 gates remain open, and post-core V2A affect and V2B virtual home are unchanged.
+
+## 2026-10-15 — Offline learning from mixed, unlabelled experiences (experimental)
+
+- [x] A two-hypothesis observation-only latent-model proposal can be discovered from **mixed** sensor histories without requiring training histories be grouped by the simulator's regime label.
+- [x] Test deterministic sensor-derived initialization, per-episode evidence reassignment, separate training-namespace model acceptance, diagnostic contextual-probe selection, content-fingerprint fit/validation overlap rejection, versioned model records and integrity checks.
+- [x] Publish unchanged one-model baseline, unsupervised two-model proposal, regime-grouped reference and true-physics oracle, predictive likelihood and navigation on development seeds 17/23/41 and already-inspected audit seeds 1009/1013/1031.
+- [x] Report *high-noise gains and original-world regressions* without automatic model promotion. The original-only three-seed negative control rejects unnecessary second models.
+- [x] Retain the historical three-seed transfer result (76.0%, 69.0%, 66.7%), and preserve Versions 2A then 2B.
+- [ ] **D3 still open:** no independent blind out-of-family tests, unknown topology/marker semantics, unlabeled within-episode changes or credible statistical novelty control. This is offline fitting to small known-ring episodes, not autonomous lifelong learning.
+- [ ] **D2 remains open:** no stable external authenticated service adapter, real AthenZ identity integration or production authorization. Proposal fingerprints are not signatures, and proposals cannot promote themselves.

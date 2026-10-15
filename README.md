@@ -431,3 +431,17 @@ python -m benchmarks.structured_landmark_novelty_benchmark --seeds 17 23 41 --of
 `developmental_ai.flexible_landmarks` fits zero, one or two distinguishable landmark sites at independent ring positions using ordinary action, odometry and marker histories. It retains fixed 9/11-cell topology, a one-time initial beacon and engineered sensor symbols. The simulator harness still groups fitting histories by condition.
 
 Compared with the unchanged half-spacing model, **unfamiliar unequal-spacing high-noise** navigation improved from **31.1% to 41.1%** (development seeds 17/23/41) and **32.2% to 54.4%** (inspected audit seeds 1009/1013/1031). The flexible model **regressed** in existing half-spacing and one/no-landmark conditions; it is not promoted. Detailed per-seed maps, log likelihood and navigation baselines: [flexible map protocol and limitations](docs/FLEXIBLE_LANDMARKS.md), [development data](benchmarks/flexible_landmarks_results.json), [audit data](benchmarks/flexible_landmarks_audit_results.json). The seed groups have been inspected and are not blind. Run `python -m benchmarks.flexible_landmarks_benchmark` for reproduction.
+
+## Experimental discovery of models from mixed, unlabelled experiences
+
+`developmental_ai.mixed_experience` can fit a one-model baseline and an optional two-model proposal from the **same unsorted collection of ordinary (command, odometry, landmark) observations**. No simulator regime labels, post-reset hidden positions or rewards reach fitting. The proposal uses observation-only clustering and latent-state EM, separate train-namespace validation, and read-only model choice on fresh unlabelled contextual probes. It **cannot authorize promotion or external actions**, and remains experimental.
+
+With 72 mixed fit episodes, 24 separate training-namespace validation episodes, three EM iterations, two reassignments, and 24 navigation trials per seed/regime, changed high-noise navigation rose **15.3% → 48.6%** (development seeds 17/23/41) and **15.3% → 44.4%** (previously inspected audit seeds 1009/1013/1031), with slight original-world navigation regressions. All three original-only negative-control seeds rejected unnecessary model splitting. These are small, previously inspected synthetic evaluations, **not blind generalization**.
+
+```sh
+python -m benchmarks.mixed_experience_benchmark --seeds 17 23 41 --out benchmarks/mixed_experience_results.json
+python -m benchmarks.mixed_experience_benchmark --seeds 1009 1013 1031 --out benchmarks/mixed_experience_audit_results.json
+python -m benchmarks.mixed_experience_benchmark --seeds 17 23 41 --schedule original_only --out benchmarks/mixed_experience_control_results.json
+```
+
+See [protocol, full results and limitations](docs/MIXED_EXPERIENCE.md). Default policies and existing candidate-approval gates remain unchanged. V2A affect and V2B virtual-home milestones remain future work.
