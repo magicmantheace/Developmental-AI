@@ -97,9 +97,9 @@
 
 21. `switching_belief.py` is a bounded, **optional** per-sensor-step hypothesis-switching experiment. Preserve its stationary `hazard=0` reference and the existing navigation default. Hazard calibration must use observation-only train-namespace records, disjoint from learned model fitting and test evaluation; never supply simulator positions, regime labels or rewards to the filter or its calibration API. Rerun `python -m benchmarks.switching_belief_benchmark` on inspected development seeds 17/23/41 and audit seeds 1009/1013/1031 with the **same** fit/validation/calibration/test budgets. Report log-loss, Brier and abstention on both switching and stationary-control streams. A calibration checksum is not authenticated consent, not statistical confidence, and cannot approve model rollout. Restore/regression tests are required.
 
-22. \`closed_loop_adaptation.py\` is **experimental simulation-only** and must
+22. `closed_loop_adaptation.py` is **experimental simulation-only** and must
     not authorize external actions or silently promote candidates. Use only
-    frozen \`MixedProposal\` bank entries and a model-bound, train-only hazard
+    frozen `MixedProposal` bank entries and a model-bound, train-only hazard
     receipt. Reject privileged simulator fields, unrequested actions and
     tampered/replaced checkpoints; verify restored states by replaying bounded
     sensor histories. Reproduce development 17/23/41 and previously inspected

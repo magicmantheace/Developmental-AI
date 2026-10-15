@@ -454,7 +454,7 @@ In six previously inspected seeds, train-calibrated switching improved changing-
 
 ## Closed-loop navigation with live model uncertainty (experimental)
 
-The new \`developmental_ai.closed_loop_adaptation\` connects previously discovered
+The new `developmental_ai.closed_loop_adaptation` connects previously discovered
 mixed-environment model hypotheses with a model-bound train-calibrated switching
 hazard and real *in-simulator* left/right/collect navigation decisions. It
 records ordinary action/sensor evidence, rejects hidden regime/position fields,
@@ -468,9 +468,9 @@ high noise switching regressed in *both* cohorts. The old navigator remains
 default; results are not blind. See
 [closed-loop protocol and per-seed failures](docs/CLOSED_LOOP_ADAPTATION.md).
 
-\`\`\`sh
+```sh
 python -m unittest discover -s tests -p test_closed_loop_adaptation.py -v
 python -m benchmarks.closed_loop_adaptation_benchmark --seeds 17 23 41
 python -m benchmarks.closed_loop_adaptation_benchmark --seeds 1009 1013 1031
-\`\`\`
+```
 
