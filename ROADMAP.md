@@ -301,3 +301,11 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
       selected learned models and the true-physics oracle. 80% spatial credible
       sets are miscalibrated; most changed-regime probes abstain at 90%.
       Preserve this negative result rather than changing rollout thresholds.
+
+## 2026-10-14 — Supervised spatial posterior calibration (experimental)
+
+- [x] Calibrate reported **position uncertainty** on disjoint position-labelled `train/5000+` simulations, without revealing hidden positions to the underlying observation-only world-model learner or navigator.
+- [x] Bind read-only temperature profiles to learned model fingerprints and reject tampering, wrong models, duplicate calibration evidence and test-namespace training labels.
+- [x] Evaluate six previously inspected seeds against the uncalibrated filter and the known-physics oracle on distinct `test/40000+` histories, publishing NLL, Brier and credible-set diagnostics for both regimes.
+- [x] Retain the original navigation policy, model-bank approvals, and post-core V2A/V2B scope unchanged.
+- [ ] **Open:** sensor-shift adaptation without labelled true positions, robust unknown-regime localization, better high-noise world models, blind out-of-family evaluation and evidence of navigation improvements. No AthenZ/Synveil deployment integration is implied.
