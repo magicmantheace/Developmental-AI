@@ -351,3 +351,13 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [x] Retain the historical three-seed transfer result (76.0%, 69.0%, 66.7%), and preserve Versions 2A then 2B.
 - [ ] **D3 still open:** no independent blind out-of-family tests, unknown topology/marker semantics, unlabeled within-episode changes or credible statistical novelty control. This is offline fitting to small known-ring episodes, not autonomous lifelong learning.
 - [ ] **D2 remains open:** no stable external authenticated service adapter, real AthenZ identity integration or production authorization. Proposal fingerprints are not signatures, and proposals cannot promote themselves.
+
+## 2026-10-15 — Per-observation switching over mixed learned models (experimental)
+
+- [x] Introduce an independent, versioned joint posterior over previously fitted world-model hypotheses and ring position, with a bounded transition prior between hypotheses during an episode.
+- [x] Train-only sensor-log-likelihood selection of the switching hazard; forbid privileged regime/position fields in the calibration API, deduplicate evidence, and bind the calibration receipt to immutable model fingerprints.
+- [x] Verify zero-hazard equivalence with stationary model evidence, exact SQLite mid-stream restoration, strict sensor input checks and model-bank tamper rejection.
+- [x] Report all six previously inspected seed results for an original → changed → original 36-observation sequence and unchanged-environment controls, including worse stationary performance and increased abstention.
+- [x] Preserve original transfer benchmark (76.0%, 69.0%, 66.67%) and the unchanged default navigator.
+- [ ] **Still open:** independent blind seeds; reliable within-episode regime identification; closed-loop navigation benefit; unknown-regime creation, approval and retention; more than two models or unknown spatial topology; full-suite validation. This is not a production continual-learning system.
+- [ ] D2 service adapter, D3 broad transfer, and real AthenZ integration remain open. Versions 2A affective cognition and 2B virtual home remain post-core in their previously agreed order.

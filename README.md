@@ -445,3 +445,9 @@ python -m benchmarks.mixed_experience_benchmark --seeds 17 23 41 --schedule orig
 ```
 
 See [protocol, full results and limitations](docs/MIXED_EXPERIENCE.md). Default policies and existing candidate-approval gates remain unchanged. V2A affect and V2B virtual-home milestones remain future work.
+
+## Within-episode model switching (optional research)
+
+`developmental_ai.switching_belief` now retains a joint posterior over location and the identity of **previously discovered, immutable** world-model hypotheses, and permits a train-calibrated transition prior between them after each observation. The fit, hazard-selection and evaluation histories remain disjoint. A checksum-checked, model-bank-bound hazard receipt and restart-equivalent SQLite state are supported.
+
+In six previously inspected seeds, train-calibrated switching improved changing-world sensor log-loss and spatial Brier score on four seeds and tied two, **but worsened some stationary-world results and greatly increased uncertainty-based abstention**. It is not the default, does not discover new models at runtime or authorize any deployment. See [protocol and full per-seed results](docs/SWITCHING_BELIEF.md), [development results](benchmarks/switching_belief_results.json), and [additional audit results](benchmarks/switching_belief_audit_results.json). Local targeted tests passed; a full reconstructed-suite run exceeded its time limit. The unchanged transfer benchmark still gives 76.0%, 69.0%, and 66.67% for seeds 17/23/41.
