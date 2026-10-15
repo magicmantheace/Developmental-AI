@@ -96,3 +96,16 @@
 21. `mixed_experience.py` may only propose observation-derived models in a simulation. Re-run `python -m benchmarks.mixed_experience_benchmark` on seeds 17/23/41 and 1009/1013/1031 at the *same* fitting/validation/test/navigation budgets, plus the original-only negative control and unchanged transfer benchmark. Report high-noise improvements **and** original-world regressions. Its known 9/11-ring, half-separated markers and initial beacons are engineered assumptions. Do not pass regime labels or simulator true locations to fit, validation, probes or navigation inference. Distinct test probes are context inputs, not candidate training. A validation-selected proposal, diagnostic confidence and SHA256 checksum are **not** approval, independent blindness or permission to act.
 
 21. `switching_belief.py` is a bounded, **optional** per-sensor-step hypothesis-switching experiment. Preserve its stationary `hazard=0` reference and the existing navigation default. Hazard calibration must use observation-only train-namespace records, disjoint from learned model fitting and test evaluation; never supply simulator positions, regime labels or rewards to the filter or its calibration API. Rerun `python -m benchmarks.switching_belief_benchmark` on inspected development seeds 17/23/41 and audit seeds 1009/1013/1031 with the **same** fit/validation/calibration/test budgets. Report log-loss, Brier and abstention on both switching and stationary-control streams. A calibration checksum is not authenticated consent, not statistical confidence, and cannot approve model rollout. Restore/regression tests are required.
+
+22. \`closed_loop_adaptation.py\` is **experimental simulation-only** and must
+    not authorize external actions or silently promote candidates. Use only
+    frozen \`MixedProposal\` bank entries and a model-bound, train-only hazard
+    receipt. Reject privileged simulator fields, unrequested actions and
+    tampered/replaced checkpoints; verify restored states by replaying bounded
+    sensor histories. Reproduce development 17/23/41 and previously inspected
+    audit 1009/1013/1031 on identical train/validation/calibration/evaluation
+    partitions. Compare single-model, static-mixture, live switching and
+    privileged physics-law reference navigation **per seed** in changing,
+    unchanged and continually high-noise worlds. Explicitly publish the
+    high-noise and changing-world regressions. Rerun the unchanged transfer
+    benchmark; preserve D2/D3 and V2A/V2B as open gates.

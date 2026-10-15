@@ -451,3 +451,26 @@ See [protocol, full results and limitations](docs/MIXED_EXPERIENCE.md). Default 
 `developmental_ai.switching_belief` now retains a joint posterior over location and the identity of **previously discovered, immutable** world-model hypotheses, and permits a train-calibrated transition prior between them after each observation. The fit, hazard-selection and evaluation histories remain disjoint. A checksum-checked, model-bank-bound hazard receipt and restart-equivalent SQLite state are supported.
 
 In six previously inspected seeds, train-calibrated switching improved changing-world sensor log-loss and spatial Brier score on four seeds and tied two, **but worsened some stationary-world results and greatly increased uncertainty-based abstention**. It is not the default, does not discover new models at runtime or authorize any deployment. See [protocol and full per-seed results](docs/SWITCHING_BELIEF.md), [development results](benchmarks/switching_belief_results.json), and [additional audit results](benchmarks/switching_belief_audit_results.json). Local targeted tests passed; a full reconstructed-suite run exceeded its time limit. The unchanged transfer benchmark still gives 76.0%, 69.0%, and 66.67% for seeds 17/23/41.
+
+## Closed-loop navigation with live model uncertainty (experimental)
+
+The new \`developmental_ai.closed_loop_adaptation\` connects previously discovered
+mixed-environment model hypotheses with a model-bound train-calibrated switching
+hazard and real *in-simulator* left/right/collect navigation decisions. It
+records ordinary action/sensor evidence, rejects hidden regime/position fields,
+restores checkpoints by replaying the evidence, and has **no external tools,
+automatic learning, or authority to promote a model**.
+
+Changing-world navigation was **62.5% switching vs 68.1% static mixture** on
+development seeds 17/23/41 and **79.2% vs 63.9%** on previously inspected audit
+seeds 1009/1013/1031, with 72 episodes per method and cohort. On continuously
+high noise switching regressed in *both* cohorts. The old navigator remains
+default; results are not blind. See
+[closed-loop protocol and per-seed failures](docs/CLOSED_LOOP_ADAPTATION.md).
+
+\`\`\`sh
+python -m unittest discover -s tests -p test_closed_loop_adaptation.py -v
+python -m benchmarks.closed_loop_adaptation_benchmark --seeds 17 23 41
+python -m benchmarks.closed_loop_adaptation_benchmark --seeds 1009 1013 1031
+\`\`\`
+

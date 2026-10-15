@@ -361,3 +361,26 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [x] Preserve original transfer benchmark (76.0%, 69.0%, 66.67%) and the unchanged default navigator.
 - [ ] **Still open:** independent blind seeds; reliable within-episode regime identification; closed-loop navigation benefit; unknown-regime creation, approval and retention; more than two models or unknown spatial topology; full-suite validation. This is not a production continual-learning system.
 - [ ] D2 service adapter, D3 broad transfer, and real AthenZ integration remain open. Versions 2A affective cognition and 2B virtual home remain post-core in their previously agreed order.
+
+## 2026-10-15 — Bounded closed-loop adaptation experiment
+
+- [x] Add an *optional* action-producing simulation controller joining
+  observation-only mixed-regime model proposals, train-calibrated within-episode
+  switching, and probabilistic spatial navigation. No real-world actions.
+- [x] Freeze copied model banks and receipt, fail closed on mutation, reject
+  privileged observations and unrequested actions, persist bounded SQLite
+  checkpoints, and reconstruct states by sensor-history replay.
+- [x] Run six previously inspected seeds with disjoint train fit/validation/
+  hazard-calibration data and frozen test episodes; report static-mixture,
+  mixed-single-model and privileged physics-law references.
+- [x] **Preserve negative outcomes:** changing-world switching success 45/72 vs
+  static 49/72 on development seeds, but 57/72 vs 46/72 on inspected audit
+  seeds. High-noise stationary switching regressed in both groups.
+- [x] Keep historical transfer benchmark unchanged: 76.0%, 69.0%, 66.7% for
+  seeds 17, 23 and 41, respectively.
+- [ ] **Do not promote this controller as the default.** Learning novel models
+  during experience, genuine blind out-of-family transfer, safe model trust,
+  autonomous goal choice and D2 authenticated integration are still open.
+- [ ] Versions 2A (affective cognition) and 2B (virtual home) retain their
+  preceding and overlapping development sequence; neither is implemented here.
+
