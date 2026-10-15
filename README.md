@@ -474,3 +474,7 @@ python -m benchmarks.closed_loop_adaptation_benchmark --seeds 17 23 41
 python -m benchmarks.closed_loop_adaptation_benchmark --seeds 1009 1013 1031
 ```
 
+
+## Optional sensor novelty guard (experimental)
+
+`developmental_ai.novelty_guard` monitors whether bounded action/odometry/landmark histories are poorly explained by the previously learned structured world-model bank. A model/hazard-bound **train-only** upper-tail surprise receipt provides a diagnostic; optional `GuardedNavigation` stops suggesting actions once unfamiliar evidence triggers a latch. It cannot create models or authorize tools or OS operations. Across six *previously inspected*, not blind seeds, the benchmark flagged **144/144** simulated stuck-landmark episodes, but only **44/144** stuck-odometry and **48/144** altered-map episodes; false alarms were **8/144** normal and **10/144** known-transition streams. Closed-loop stopping slightly reduced normal-world task success (**105/144 → 101/144**). It remains **off by default**. See [research details and limitations](docs/NOVELTY_GUARD.md) and [benchmark code](benchmarks/novelty_guard_benchmark.py).

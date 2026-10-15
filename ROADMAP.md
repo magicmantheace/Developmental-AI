@@ -384,3 +384,12 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [ ] Versions 2A (affective cognition) and 2B (virtual home) retain their
   preceding and overlapping development sequence; neither is implemented here.
 
+
+## 2026-10-15 — Observation novelty and fail-closed optional action pause
+
+- [x] Implement a versioned, model-bound, **read-only** sensor-surprise diagnostic based on a separate, observation-only train reference and whole-trajectory prefix statistics; no model updates or privileged simulator fields.
+- [x] Add an opt-in `GuardedNavigation` that pauses its own action suggestions on a latched unknown reading, with bounded logs, SQLite persistence, strict model/hazard binding and exact replay-based restoration. Existing controller stays unchanged.
+- [x] Publish six inspected-seed benchmarks for known stationary/switching sensors and three synthetic sensor/map faults, including every false alarm, miss, and task-completion regression.
+- [x] Run the unchanged transfer benchmark (76.0%, 69.0%, 66.7%); verify relevant regression modules.
+- [ ] **Still blocked for v1.0:** unknown-environment coverage is poor beyond the particular stuck-landmark fault (odometry faults 44/144, unfamiliar shifted maps 48/144 alarmed); guard pauses 9/144 otherwise-normal closed-loop navigation episodes and decreases normal task completion 105/144 → 101/144. Selection thresholds depend on calibration stream distribution and action policy; no general risk guarantee, autonomous model discovery/promotion, task-family transfer or external actuation.
+- [ ] The default navigator and existing D2/D3 gates remain untouched; planned V2A affective cognition precedes and overlaps V2B virtual home only after core gates.
