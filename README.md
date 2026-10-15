@@ -397,3 +397,31 @@ python -m benchmarks.spatial_calibration_benchmark --seeds 1009 1013 1031
 ```
 
 V2A (affective cognition) and V2B (persistent virtual home) remain **planned, post-core** milestones.
+
+
+## Observation-only structured landmark geometry (experimental)
+
+The optional `developmental_ai.structured_landmarks` learns landmark *locations*
+and categorical sensor/motion parameters using only a one-time starting-position
+beacon and ordinary movement/odometry/landmark sequences. It is given a strong
+**two-distinguishable-landmark ring geometry assumption**, not simulator
+post-reset positions or regime labels. It never installs or promotes a model.
+
+On inspected 17/23/41 seeds, high-noise navigation improved from 23.9% with
+the unconstrained EM model to 56.1% with the structured model; on inspected
+1009/1013/1031 seeds it improved from 13.3% to 55.0%. A newly introduced
+landmark offset of 3 yielded 56.1% vs 25.6% on three development seeds.
+The original-world performance sometimes regressed, no independent blind
+task-family generalization is established, and the default navigation policy
+is unchanged.
+
+See [structured landmark experiment](docs/STRUCTURED_LANDMARKS.md),
+[development results](benchmarks/structured_landmarks_results.json),
+[audit results](benchmarks/structured_landmarks_audit_results.json) and
+[unfamiliar offset results](benchmarks/structured_landmark_novelty_results.json).
+
+```sh
+python -m unittest discover -s tests -v
+python -m benchmarks.structured_landmarks_benchmark --seeds 17 23 41 --train 90 --test 40 --iterations 6 --navigation 60
+python -m benchmarks.structured_landmark_novelty_benchmark --seeds 17 23 41 --offset 3 --train 90 --iterations 6 --test 40 --navigation 60
+```
