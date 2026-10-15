@@ -478,3 +478,13 @@ python -m benchmarks.closed_loop_adaptation_benchmark --seeds 1009 1013 1031
 ## Optional sensor novelty guard (experimental)
 
 `developmental_ai.novelty_guard` monitors whether bounded action/odometry/landmark histories are poorly explained by the previously learned structured world-model bank. A model/hazard-bound **train-only** upper-tail surprise receipt provides a diagnostic; optional `GuardedNavigation` stops suggesting actions once unfamiliar evidence triggers a latch. It cannot create models or authorize tools or OS operations. Across six *previously inspected*, not blind seeds, the benchmark flagged **144/144** simulated stuck-landmark episodes, but only **44/144** stuck-odometry and **48/144** altered-map episodes; false alarms were **8/144** normal and **10/144** known-transition streams. Closed-loop stopping slightly reduced normal-world task success (**105/144 → 101/144**). It remains **off by default**. See [research details and limitations](docs/NOVELTY_GUARD.md) and [benchmark code](benchmarks/novelty_guard_benchmark.py).
+
+## Optional sensor-channel novelty checks (experimental)
+
+The optional `developmental_ai.channel_novelty` detector complements, but does not modify, the older model-surprise guard. It monitors long runs of zero odometry while moving and long runs of a repeated non-null landmark reading. An optional `LayeredNavigation` wrapper pauses further simulated action suggestions if either detector alarms, without choosing replacement actions. Restart is validated by replay. No model promotion, tool authorization or default-policy changes.
+
+On six previously inspected seeds with 144 episodes per condition, stuck-odometry alarms improved from **44/144 to 144/144**; stuck-landmark detection stayed at 144/144. Rotated-layout detection remained weak (49/144). Normal false alarms increased from 8/144 to 10/144; known-shift false alarms from 10/144 to 12/144. The OR of two separately calibrated checks has no joint 10% false-alarm guarantee.
+
+On 144 closed-loop stuck-odometry episodes, the layered wrapper paused 115 sessions versus 36 previously, reducing completed tasks from 37 to 21. Normal-world guarded completion stayed 101/144 for both variants. This is an experimental diagnostic trade-off, not improved goal success.
+
+Reproduce with `python -m unittest tests.test_channel_novelty tests.test_novelty_guard -v` and `python -m benchmarks.channel_novelty_benchmark --seeds 17 23 41` (then with `--seeds 1009 1013 1031`). See [research results](docs/CHANNEL_NOVELTY.md). Versions 2A and 2B remain post-core roadmap milestones.

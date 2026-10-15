@@ -393,3 +393,13 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [x] Run the unchanged transfer benchmark (76.0%, 69.0%, 66.7%); verify relevant regression modules.
 - [ ] **Still blocked for v1.0:** unknown-environment coverage is poor beyond the particular stuck-landmark fault (odometry faults 44/144, unfamiliar shifted maps 48/144 alarmed); guard pauses 9/144 otherwise-normal closed-loop navigation episodes and decreases normal task completion 105/144 → 101/144. Selection thresholds depend on calibration stream distribution and action policy; no general risk guarantee, autonomous model discovery/promotion, task-family transfer or external actuation.
 - [ ] The default navigator and existing D2/D3 gates remain untouched; planned V2A affective cognition precedes and overlaps V2B virtual home only after core gates.
+
+## 2026-10-15 — Model-independent sensor-channel fault diagnostics
+
+- [x] Add train-only calibrated sensor-run detectors and a model-bound receipt; prohibit any hidden simulator positions, regimes, rewards or actions outside the known small ring.
+- [x] Add an optional read-only composite alert and pause-only navigation wrapper with event-replay checkpoint verification; keep the previous guard and navigator unchanged.
+- [x] Reproduce the same six inspected seeds and five conditions at matched model-fitting/calibration/test budgets. Stuck odometry 44/144 to 144/144; normal false alarms 8/144 to 10/144; known-shift alarms 10/144 to 12/144.
+- [x] Record closed-loop task cost: stuck-odometry pause 36/144 to 115/144, task success 37/144 to 21/144. Normal guarded success unchanged at 101/144.
+- [x] Run 172 local tests in 23 reconstructed test modules separately plus the original unchanged transfer benchmark.
+- [ ] No claim of general novelty: rotated-map detection just 49/144, no drift/intermittent fault testing, no blind out-of-family validation, no risk guarantee, no automatic promotion.
+- [ ] Preserve current v1/D2/D3 priorities and the previously agreed V2A-before/overlapping-V2B sequence.
