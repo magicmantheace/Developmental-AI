@@ -309,3 +309,26 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [x] Evaluate six previously inspected seeds against the uncalibrated filter and the known-physics oracle on distinct `test/40000+` histories, publishing NLL, Brier and credible-set diagnostics for both regimes.
 - [x] Retain the original navigation policy, model-bank approvals, and post-core V2A/V2B scope unchanged.
 - [ ] **Open:** sensor-shift adaptation without labelled true positions, robust unknown-regime localization, better high-noise world models, blind out-of-family evaluation and evidence of navigation improvements. No AthenZ/Synveil deployment integration is implied.
+
+
+## 2026-10-14 — Observation-only structured landmark geometry experiment
+
+- [x] Learn landmark origins on each known 9/11-position ring from ordinary
+      action/odometry/landmark histories, with **no simulator post-beacon true
+      position or regime label** supplied to the fitter.
+- [x] Use a **declared** two-distinguishable-landmark geometry prior and shared
+      emission rates; fit motion, odometry and landmark response with latent
+      forward/backward EM. Keep the previous unconstrained model unchanged.
+- [x] Verify six inspected development/audit seeds versus unconstrained EM and
+      physics oracle. Shifted/high-noise navigation improved 23.9% → 56.1% on
+      17/23/41 and 13.3% → 55.0% on 1009/1013/1031.
+- [x] Test a previously unused offset-3 map on three inspected seeds:
+      25.6% → 56.1% high-noise navigation, with 55.0% known-physics oracle.
+- [x] Add independent test histories, per-seed predictive/navigation scores,
+      10 focused tests, versioned seed-bound checkpoints and tamper rejection.
+- [ ] **Remain experimental:** it requires a known two-landmark relation,
+      fixed ring size/sensor vocabulary and externally regime-grouped training.
+      Original-world navigation sometimes regresses; no independent blind
+      task-family validation, automatic discovery, default promotion or real
+      AthenZ/Synveil control.
+- [ ] V2A affect and V2B virtual-home phases remain planned post-core.
