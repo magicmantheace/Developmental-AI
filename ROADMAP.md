@@ -332,3 +332,12 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
       task-family validation, automatic discovery, default promotion or real
       AthenZ/Synveil control.
 - [ ] V2A affect and V2B virtual-home phases remain planned post-core.
+
+## 2026-10-14 — Optional independent-site landmark inference
+
+- [x] Fit zero, one or two categorical marker sites at independent positions on each known 9/11-cell ring from unprivileged initial-beacon/action/odometry/marker histories; train-only likelihood search and latent-state EM.
+- [x] Add train-only coordinate map refinement, seed-bound versioned SQLite model restore and reject altered/privileged records.
+- [x] Benchmark six inspected seeds across unchanged half-spacing, unfamiliar unequal-spacing, one landmark and no landmark, with unconstrained EM, structured half-spacing and privileged known-physics/map comparisons.
+- [x] Improved unequal-spacing high-noise navigation from 31.1% to 41.1% (development) and 32.2% to 54.4% (previously inspected audit), with **regressions** when prior assumptions were correct or markers absent. The old structured model remains default.
+- [ ] **Still blocked:** ungrouped changing-regime trajectory learning, multiple identical or unknown marker symbols, uncalibrated map uncertainty, topology discovery, independent blind transfer, and reliable navigation without engineered geometry.
+- [ ] V1 D2-D10 gates remain open, and post-core V2A affect and V2B virtual home are unchanged.

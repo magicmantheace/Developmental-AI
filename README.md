@@ -425,3 +425,9 @@ python -m unittest discover -s tests -v
 python -m benchmarks.structured_landmarks_benchmark --seeds 17 23 41 --train 90 --test 40 --iterations 6 --navigation 60
 python -m benchmarks.structured_landmark_novelty_benchmark --seeds 17 23 41 --offset 3 --train 90 --iterations 6 --test 40 --navigation 60
 ```
+
+## Experimental flexible landmark geometry (not the default)
+
+`developmental_ai.flexible_landmarks` fits zero, one or two distinguishable landmark sites at independent ring positions using ordinary action, odometry and marker histories. It retains fixed 9/11-cell topology, a one-time initial beacon and engineered sensor symbols. The simulator harness still groups fitting histories by condition.
+
+Compared with the unchanged half-spacing model, **unfamiliar unequal-spacing high-noise** navigation improved from **31.1% to 41.1%** (development seeds 17/23/41) and **32.2% to 54.4%** (inspected audit seeds 1009/1013/1031). The flexible model **regressed** in existing half-spacing and one/no-landmark conditions; it is not promoted. Detailed per-seed maps, log likelihood and navigation baselines: [flexible map protocol and limitations](docs/FLEXIBLE_LANDMARKS.md), [development data](benchmarks/flexible_landmarks_results.json), [audit data](benchmarks/flexible_landmarks_audit_results.json). The seed groups have been inspected and are not blind. Run `python -m benchmarks.flexible_landmarks_benchmark` for reproduction.
