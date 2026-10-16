@@ -474,4 +474,11 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [ ] Demonstrate transferable *learned observation representations* without an engineered shared source/context convention, using prospectively frozen out-of-family evaluation. D1 and D3 remain open.
 - [ ] Protect AthenZ identity and Synveil actuation boundaries; no automatic promotions or privileges; retain V2A and V2B sequence.
 
-See [protocol, results and limitations](docs/ONLINE_MEMORY_GATE.md). The observed 217/240 navigation completions on inspected seeds involve synthetic cue competition from a public beacon and **must not** be construed as unrelated-task generalization.
+See [protocol, results and limitations](docs/ONLINE_MEMORY_GATE.md). The observed 217/240 navigation completions on inspected seeds involve synthetic cue competition from a public beacon and **must not** be construed as unrelated-task generalization.\n
+## 2026-10-16 — Public-cue calibrated alias grounding (experimental, D3 still open)
+
+- [x] Added a versioned, simulation-only adapter with train-only calibration from paired public reference cues and candidate observations, two arbitrary context names, five arbitrarily renamed source labels, frozen-memory-gate binding and checksum-checked evidence replay.
+- [x] Measured all six previously inspected seeds (48 target training pairs and 40 evaluation episodes per seed): **223/240** task successes for learned-gate mapping; **223/240** for a simple paired-cue lookup and for privileged correct-cue reference. All three are equally effective; no incremental learning/transfer value demonstrated over calibration lookup.
+- [x] Retained negative results and weaker first/last/random controls: 43/240, 51/240, 42/240. The trial design was inspected this pass, not blinded or preregistered.
+- [ ] D3 remains open: use genuinely different target-task semantics with no exact public-reference pairing, freeze independent evaluation before examining outcomes, demonstrate learned representations/retention outperform simple target-domain calibration.
+- [ ] D1 independent blind cohort and D2 production integration also remain open; preserve post-core V2A before/overlapping V2B.
