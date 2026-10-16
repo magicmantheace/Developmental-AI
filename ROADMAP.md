@@ -11,8 +11,8 @@ This repository owns **learning and simulation**, not the human's identity or th
 | Due | Gate | Acceptance test | Status |
 | --- | --- | --- | --- |
 | 2026 Q4 | D0: import reproducible fixed-world POC | Existing tests pass; no private DB tracked | Done |
-| 2026 Q4 | D1: randomized worlds + holdout protocol | 3 seeded held-out success gains; independent seeds; persistence | Initial implementation; held-out protocol needs frozen independent seeds |
-| 2027 Q1 | D2: documented simulation and agent interface | Stable versioned schemas, deterministic environment replay, standalone service adapter | Not started |
+| 2026 Q4 | D1: randomized worlds + holdout protocol | 3 seeded held-out success gains; independent seeds; persistence | Fixed development protocol and reserved cohort; independent blind evaluation still open |
+| 2027 Q1 | D2: documented simulation and agent interface | Stable versioned schemas, deterministic environment replay, standalone service adapter | Experimental three-family JSONL adapter and replay implemented; unauthenticated, no production/AthenZ connection |
 | 2027 Q2 | D3: real generalization | Transfer across *held-out task families* and changed observation distributions, not just new layouts | Not started |
 | 2027 Q3 | D4: reusable skills | Skill discovery, transfer, outcome-grounded retrieval, regression checks | Not started |
 | 2027 Q4 | D5: autonomous goal selection in sandbox | Self-initiated achievable goals with visible budgets, feedback, and interrupt controls | Not started |
@@ -412,3 +412,15 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [x] Preserve an exploratory **post-result** alpha=.04 threshold study: 67/144 rotated detections; normal/known-shift false alarms 13/144 and 14/144. This is **not** independently blind evidence.
 - [ ] **Not approved as a default or automatic pause:** false alarm and interruption risk too high; known 9/11 topology and half-separated two-landmark assumptions still limit transfer. Do not tune further on these evaluation streams. Require preregistered out-of-family trials with uninspected seeds, sensor semantics, and realistic closed-loop budgets.
 - [ ] Continue v1/D2/D3 work; the Version 2A emotional-development and Version 2B virtual-home sequence is unaffected.
+
+## 2026-10-15 — Strategic pivot to D1/D2/D3 foundations
+
+- [x] Implement one strict versioned headless environment session API covering **grid navigation, occluded grid and delayed-choice memory**. Public sensor observations, validated action masks, bounded rewards/outcomes and deterministic restart/replay share a common interface; no privileged simulator state reaches an adapter.
+- [x] Implement a simulation-only JSON-lines local service prototype, including action/tick binding, replay-checked snapshots and rejection of unexpected fields. There is no remote/API authentication, network access or AthenZ/Synveil process integration.
+- [x] Publish a fixed three-family **development** protocol with three new inspected seeds, disjoint train and test episodes, protocol fingerprint, fixed metrics and a future reserved cohort blocked from default execution. The development seeds have now been inspected, and the reserved seeds are published rather than secret.
+- [x] Record task-specific baseline successes over 48 development episodes per family: grid random 6 vs scripted 43; occluded random 6 vs scripted 45; delayed random 10 vs reward-trained cue-memory 48. The delayed association uses separate short-delay training, while cue retention and navigation are engineered.
+- [x] Run 37 targeted/related local tests and original transfer benchmark (76%, 69%, 66.67% across 17/23/41). Combined historical suite did not complete within the execution window; do not claim a complete suite pass, CI or PC validation.
+- [ ] **D1 remains open:** genuinely blind, independently run held-out evaluation and robustness under new families/observation types.
+- [ ] **D2 remains open:** stable authenticated service, version negotiation/migrations, resource constraints and actual AthenZ integration with consent and permissions.
+- [ ] **D3 remains open:** one learned agent demonstrably transfers skills across task families on frozen independent evaluation. Task-specific baselines are not general learning.
+- [ ] Preserve core v1 priorities and approved post-core V2A (affect) preceding/overlapping V2B (virtual home). No default navigation or system-control changes.
