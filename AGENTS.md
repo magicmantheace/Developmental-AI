@@ -158,3 +158,6 @@
     per-seed successes and the original transfer benchmark. Do not call any
     such study blind, universally transferable or a passed D3 gate. Preserve
     the sealed D1 cohort unused and the V2A/V2B roadmap ordering.
+
+
+26. `learned_spatial_memory.py` is simulation-only D3 research. Fit movement-memory update rules from *public visible-grid train observations*, not hidden positions, test observations, or occluded rewards. Keep the memory slot, beacon write and event aliases described as engineered. Re-run development 2749/6607/9901 and additional 15101/22003/31013 at the fixed training/evaluation budgets with identical action RNG for learned-vs-engineered comparisons; retain forgetful and random controls. These results are not independently blind and do not close D3. Run `tests.test_learned_spatial_memory` and the unchanged transfer benchmark; preserve D1/D2 and V2A/V2B scope.

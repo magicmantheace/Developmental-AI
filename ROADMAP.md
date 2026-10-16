@@ -433,3 +433,13 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [x] Four new zero-shot tests pass; 31 targeted/related tests pass; original transfer benchmark preserved at 76%, 69%, 66.67%.
 - [ ] **D3 remains open:** this is exploratory, after seeing D1 seed outcomes, not independently blind, and the shared representation/memory is manually engineered. Demonstrate learned representation transfer and separate truly novel task families in frozen independent tests.
 - [ ] Preserve the core v1 sequence and previously approved V2A-before/overlapping-V2B plans; no default policy promotion.
+
+
+## 2026-10-15 — Learned memory-update transfer across related task families (D3 exploratory)
+
+- [x] Train a finite, action/outcome-conditioned target-memory update from public `grid/train` sensor changes without hidden positions, clipped-label contamination or occluded task feedback.
+- [x] Reuse the frozen learned update in an occluded-target environment through the D2 session interface. Compare against engineered update, forgetful-memory and random baselines with matched action seeds.
+- [x] Reproduce development seeds 2749/6607/9901 (133/192 learned and engineered) and additional seeds 15101/22003/31013 (124/192 learned and engineered); report no-memory failures and model fingerprints.
+- [x] Add replay-verifiable state checkpoint, strict input validation and deterministic tests, without changing any default navigation policy.
+- [ ] D3 remains open: one-slot cue write, feature abstraction, event normalization and task family are engineered; no transfer to non-grid tasks or independent blind evaluation.
+- [ ] D1 independent evaluation and D2 authenticated external integration remain open. V2A and V2B plans remain post-core, unchanged.

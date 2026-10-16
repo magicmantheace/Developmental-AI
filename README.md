@@ -511,3 +511,8 @@ A tabular Q policy trained **only** on visible-target grid episodes was reused w
 On three previously inspected development seeds (192 trials per family), the frozen grid-trained policy succeeded on **142/192 occluded episodes**, against **34/192 random** and **178/192 engineered greedy**. Grid test outcomes were 136/192 trained, 32/192 random, 175/192 greedy. The transfer is real reuse of policy weights on a related family, but trails strong task-specific heuristics, is not independently blind and does not close D3.
 
 Run `python -m unittest tests.test_cross_family_transfer -v` and `python -m benchmarks.zero_shot_navigation_transfer_benchmark`. See [study and limitations](docs/ZERO_SHOT_TRANSFER.md). No default behavior, consent boundaries, V2A or V2B plans were changed.
+
+
+## Learned grid-to-occluded memory updates (D3 exploratory)
+
+`developmental_ai.learned_spatial_memory` learns action/outcome-dependent changes in remembered target offset **from public visible-grid training observations**, then reuses them with a frozen grid-trained policy in occluded navigation. The learned updater matches engineered memory: **133/192** successes on development seeds and **124/192** on additional seeds, while a cue-forgetting ablation gets **0/192** in both cohorts. The initial cue write, feature representation and event normalization are still engineered, so this is *not* general learned attention or completion of D3. Details: [protocol and limitations](docs/LEARNED_MEMORY_TRANSFER.md). Versions 2A and 2B remain post-core and unchanged.
