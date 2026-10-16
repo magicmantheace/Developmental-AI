@@ -148,3 +148,13 @@
     heuristics and delayed-memory gate are ENGINEERED: they are baseline
     references, NOT evidence of transferable general intelligence or
     completion of D1, D2 or D3. Preserve V2A before/alongside V2B.
+
+25. Zero-shot transfer study `cross_family_transfer.py` is experimental.
+    Grid-training Q weights MUST remain frozen during evaluation in the
+    occluded task. Use only the public D2 environment frame and action feedback.
+    The occluded beacon retention/dead reckoning is an ENGINEERED adapter,
+    not learned representation transfer. Keep task-specific greedy and random
+    baselines, all inspected development seeds, original-grid regression,
+    per-seed successes and the original transfer benchmark. Do not call any
+    such study blind, universally transferable or a passed D3 gate. Preserve
+    the sealed D1 cohort unused and the V2A/V2B roadmap ordering.
