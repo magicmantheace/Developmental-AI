@@ -482,3 +482,12 @@ See [protocol, results and limitations](docs/ONLINE_MEMORY_GATE.md). The observe
 - [x] Retained negative results and weaker first/last/random controls: 43/240, 51/240, 42/240. The trial design was inspected this pass, not blinded or preregistered.
 - [ ] D3 remains open: use genuinely different target-task semantics with no exact public-reference pairing, freeze independent evaluation before examining outcomes, demonstrate learned representations/retention outperform simple target-domain calibration.
 - [ ] D1 independent blind cohort and D2 production integration also remain open; preserve post-core V2A before/overlapping V2B.
+
+## 2026-10-16 — Reward-only cue grounding without paired references (experimental D3)
+
+- [x] Freeze protocol in Git before inspecting test results; use previously inspected seeds, distinct 360-train/40-test target navigation episodes per seed, and the same public simulation interface.
+- [x] Train context-conditioned unfamiliar source selection using terminal task success **without paired correct-source labels**; add replay-bound local checkpoint and strict public-only inputs.
+- [x] Compare against reward-only direct contextual lookup, context-blind reward learning, random/first/last, and reference oracle; publish all successes and regressions.
+- [ ] Claim *no* D3 closure: 217/240 matches direct lookup and oracle, not evidence of learning relationships beyond context/source correlation. Paired-reference-free is **not** target-domain-training-free.
+- [ ] Next: prospectively freeze and test per-instance-changing source reliability, where source lookup cannot solve the task; include independent seed/observation-family review.
+- [ ] Keep D1, stable production D2, D4-D10 and Versions 2A/2B open; no system actions or model promotion.
