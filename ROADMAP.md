@@ -500,3 +500,11 @@ See [protocol, results and limitations](docs/ONLINE_MEMORY_GATE.md). The observe
 - [x] Run six seeds in separate development/reserved cohorts without retuning settings; report all seven methods and all per-seed failures. Combined navigation successes: learned evidence **206/240**, identity-only **40/240**, handcrafted agreement **209/240**, oracle **221/240**. Original transfer regression unchanged.
 - [ ] **D3 remains open:** the four agreement bins are engineered, and the simple agreement heuristic outperforms the learner overall. Validate unfamiliar task families, unseen probe statistics, and independent evaluation before any promotion.
 - [ ] Keep D1 independent-blind validation and D2 authenticated stable interface gates open. V2A emotional development remains before and then overlapping V2B virtual-home development, post-core.
+
+## 2026-10-16 — Reward-learned raw-token relationship experiment (D3, open)
+
+- [x] Freeze `benchmarks/raw_token_transfer_protocol.json` before evaluation and preserve both six-seed cohorts with fixed train/test budgets.
+- [x] Implement a reward-only, replay-verified raw token-pair learner and a **strong unsupervised cooccurrence matching baseline**, plus identity-only and privileged reference controls.
+- [x] Publish negative comparison: learned raw scorer **203/240** navigation tasks; source-identity **45/240**, unsupervised cooccurrence **208/240**, correct-cue upper bound **220/240**. All six token permutations recoverable without reward. Neither cohort is independent blind validation.
+- [ ] Demonstrate transfer without developer-aligned token positions or a single stationary symbol substitution, and beat simple unsupervised/matched baselines on genuinely different task families.
+- [ ] Keep D1 independent evaluation, D2 supported integration, D3 generalization and later D4–D10 gates OPEN; V2A affect before/alongside V2B home remains unchanged.
