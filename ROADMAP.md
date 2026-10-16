@@ -491,3 +491,12 @@ See [protocol, results and limitations](docs/ONLINE_MEMORY_GATE.md). The observe
 - [ ] Claim *no* D3 closure: 217/240 matches direct lookup and oracle, not evidence of learning relationships beyond context/source correlation. Paired-reference-free is **not** target-domain-training-free.
 - [ ] Next: prospectively freeze and test per-instance-changing source reliability, where source lookup cannot solve the task; include independent seed/observation-family review.
 - [ ] Keep D1, stable production D2, D4-D10 and Versions 2A/2B open; no system actions or model promotion.
+
+
+## 2026-10-16 — D3 reward-only per-episode cue arbitration (experimental)
+
+- [x] Precommit an evaluation schedule **before** inspecting development outcomes: `benchmarks/dynamic_reliability_protocol.json` at `bcb315d2`.
+- [x] Learn reward-conditioned source selection from public forecast/observation agreements; simulate changing reliable source each episode; enforce bounded one-slot learner, train-only feedback, source-independent inference, strict checkpoint replay and no hidden-target labels.
+- [x] Run six seeds in separate development/reserved cohorts without retuning settings; report all seven methods and all per-seed failures. Combined navigation successes: learned evidence **206/240**, identity-only **40/240**, handcrafted agreement **209/240**, oracle **221/240**. Original transfer regression unchanged.
+- [ ] **D3 remains open:** the four agreement bins are engineered, and the simple agreement heuristic outperforms the learner overall. Validate unfamiliar task families, unseen probe statistics, and independent evaluation before any promotion.
+- [ ] Keep D1 independent-blind validation and D2 authenticated stable interface gates open. V2A emotional development remains before and then overlapping V2B virtual-home development, post-core.
