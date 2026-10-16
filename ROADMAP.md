@@ -424,3 +424,12 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [ ] **D2 remains open:** stable authenticated service, version negotiation/migrations, resource constraints and actual AthenZ integration with consent and permissions.
 - [ ] **D3 remains open:** one learned agent demonstrably transfers skills across task families on frozen independent evaluation. Task-specific baselines are not general learning.
 - [ ] Preserve core v1 priorities and approved post-core V2A (affect) preceding/overlapping V2B (virtual home). No default navigation or system-control changes.
+
+## 2026-10-15 — D3 exploratory zero-shot policy reuse (NOT completed)
+
+- [x] Freeze weights of an existing tabular learner trained **only** on visible-target grid episodes and use the new D2 environment interface to evaluate them *without retraining* on an occluded-goal family.
+- [x] Build strict public-observation encoder with an explicit **engineered** target-cue memory and action-feedback dead reckoning. It never reads simulator true position or hidden layout.
+- [x] Run three development seeds 2749/6607/9901 at 1,200 grid-training episodes and 64 disjoint test episodes per family/seed. Occluded successes: trained policy 142/192; random 34/192; engineered greedy 178/192. Visible grid: trained 136/192; random 32/192; greedy 175/192.
+- [x] Four new zero-shot tests pass; 31 targeted/related tests pass; original transfer benchmark preserved at 76%, 69%, 66.67%.
+- [ ] **D3 remains open:** this is exploratory, after seeing D1 seed outcomes, not independently blind, and the shared representation/memory is manually engineered. Demonstrate learned representation transfer and separate truly novel task families in frozen independent tests.
+- [ ] Preserve the core v1 sequence and previously approved V2A-before/overlapping-V2B plans; no default policy promotion.
