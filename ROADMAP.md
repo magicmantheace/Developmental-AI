@@ -508,3 +508,11 @@ See [protocol, results and limitations](docs/ONLINE_MEMORY_GATE.md). The observe
 - [x] Publish negative comparison: learned raw scorer **203/240** navigation tasks; source-identity **45/240**, unsupervised cooccurrence **208/240**, correct-cue upper bound **220/240**. All six token permutations recoverable without reward. Neither cohort is independent blind validation.
 - [ ] Demonstrate transfer without developer-aligned token positions or a single stationary symbol substitution, and beat simple unsupervised/matched baselines on genuinely different task families.
 - [ ] Keep D1 independent evaluation, D2 supported integration, D3 generalization and later D4–D10 gates OPEN; V2A affect before/alongside V2B home remains unchanged.
+
+## 2026-10-16 — Unaligned symbolic observations (D3, remains open)
+
+- [x] Freeze `benchmarks/unaligned_stream_protocol.json` **before** running evaluation. Model independent random insertions in observed and forecast token sequences; no aligned slot indices are supplied.
+- [x] Add `developmental_ai/unaligned_stream.py` with reward-trained token pair weights, bounded monotone DP scoring, strict sensor validation and replay-checked checkpoints. Add six-seed train/test evaluation and comparison to both identity-only and reward-unlabelled unsupervised aligners.
+- [x] Record *negative* result: learned model **122/240**, identity-only **50/240**, unordered pair baseline **58/240**, unsupervised monotone alignment **142/240**, correct-cue reference **222/240**. Every inspected seed trails unsupervised alignment. The hidden token permutation is still trivially recoverable on these synthetic streams.
+- [ ] Solve uncertain symbol/time correspondence beyond developer-chosen proximity windows and monotone insertion DP; then test generalization across genuinely different task families and independent prospectively frozen cohorts. Maintain D1/D2/D3 gates open; do not claim certification or promote the experiment.
+- [ ] Preserve Versions 2A affective development before/alongside Version 2B virtual home, without altering their approved post-core roadmap.
