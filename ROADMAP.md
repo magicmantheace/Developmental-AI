@@ -466,3 +466,12 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [ ] D1 independent evaluation and D2 production-grade service and trust
       boundaries remain open. V2A affect precedes and overlaps V2B virtual
       home, and both remain post-core.
+
+## 2026-10-16 — Per-observation write/keep transfer experiment (D3 research, not a completed gate)
+
+- [x] Add a reward-trained one-slot context/source utility controller choosing WRITE/KEEP on each arriving signal (optional; existing default unchanged).
+- [x] Replay-validated model-bound memory session and six-seed simulation results including first/last/random/no-context and engineered correct-cue comparison.
+- [ ] Demonstrate transferable *learned observation representations* without an engineered shared source/context convention, using prospectively frozen out-of-family evaluation. D1 and D3 remain open.
+- [ ] Protect AthenZ identity and Synveil actuation boundaries; no automatic promotions or privileges; retain V2A and V2B sequence.
+
+See [protocol, results and limitations](docs/ONLINE_MEMORY_GATE.md). The observed 217/240 navigation completions on inspected seeds involve synthetic cue competition from a public beacon and **must not** be construed as unrelated-task generalization.

@@ -542,3 +542,7 @@ python -m unittest tests.test_cross_task_retention -v
 python -m benchmarks.cross_task_retention_benchmark --seeds 2749 6607 9901
 python -m benchmarks.cross_task_retention_benchmark --seeds 17431 24869 37021
 ```
+
+## Per-observation reward-learned memory gate (optional D3 research)
+
+`developmental_ai.online_memory_gate` adds a bounded one-slot WRITE/KEEP decision for each incoming source-labeled observation, learned from simulated terminal reward. A model-bound `CueMemory` snapshot is checked by exact decision-history replay. After training on competing-signal episodes, the gate selects between synthetic target cues for the public D2 occluded-navigation simulator. Six *inspected, nonblind* seeds gave **240/240** source-task successes and **217/240** occluded navigation completions, matching an engineered correct-channel selector and outperforming first/last/random choices. This is **not** general attention, natural language memory, independently blind transfer, or completed D3: finite channels/context, task translation, target cue generation, and the navigation heuristic are manually supplied. Existing defaults are unchanged. See [research notes and reproduction](docs/ONLINE_MEMORY_GATE.md). D1, production D2, D3 and V2A/V2B roadmap gates remain open.
