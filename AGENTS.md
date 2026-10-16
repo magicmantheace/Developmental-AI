@@ -129,3 +129,22 @@
     was explicitly chosen after alpha=.10 outcomes; it is post-hoc, not blind.
     Neither a threshold nor an integrity hash is permission or a statistical
     safety guarantee. Keep existing guard/controller defaults and V2A/V2B order.
+
+23. Cross-family D1/D2 adapter contract: keep `environment_api.py`
+    and `environment_service.py` strictly simulation-only. Do not expose
+    true hidden position, world internals, hidden task rules, arbitrary file
+    access, network, shell commands or permissions. Preserve bounded action
+    masks, monotonic ticks, versioned frames and exact checkpoint replay.
+    A digest is NOT a signed approval. Run `tests.test_environment_api`,
+    `tests.test_environment_contract_benchmark`, the relevant older family
+    tests, and the unchanged transfer benchmark. The JSONL process prototype
+    has no caller authentication or production service guarantees.
+
+24. Treat `benchmarks/frozen_environment_protocol.json` as locked.
+    Never retune seeds/indices, baselines, metrics or reserved test cases after
+    seeing evaluation outcomes. The development seeds have been inspected.
+    Reserved seeds are public, NOT automatically blind; run them only after a
+    candidate freeze and with separate review. The task-specific navigation
+    heuristics and delayed-memory gate are ENGINEERED: they are baseline
+    references, NOT evidence of transferable general intelligence or
+    completion of D1, D2 or D3. Preserve V2A before/alongside V2B.
