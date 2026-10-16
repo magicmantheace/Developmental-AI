@@ -516,3 +516,29 @@ Run `python -m unittest tests.test_cross_family_transfer -v` and `python -m benc
 ## Learned grid-to-occluded memory updates (D3 exploratory)
 
 `developmental_ai.learned_spatial_memory` learns action/outcome-dependent changes in remembered target offset **from public visible-grid training observations**, then reuses them with a frozen grid-trained policy in occluded navigation. The learned updater matches engineered memory: **133/192** successes on development seeds and **124/192** on additional seeds, while a cue-forgetting ablation gets **0/192** in both cohorts. The initial cue write, feature representation and event normalization are still engineered, so this is *not* general learned attention or completion of D3. Details: [protocol and limitations](docs/LEARNED_MEMORY_TRANSFER.md). Versions 2A and 2B remain post-core and unchanged.
+
+## Cross-task retention choice from reward (experimental D3)
+
+`developmental_ai.cross_task_retention` trains two fixed one-slot retention
+hypotheses (keep the initial cue or overwrite with the latest distractor) and
+a response mapping using **only ordinary D2 delayed-choice observations and
+terminal feedback**. A separate train-namespace validation partition selects
+one hypothesis. The selected retention choice is then reused without reward
+retraining in occluded navigation alongside the existing separately learned
+spatial updater. This is **strategy selection**, not general learned attention:
+candidate rules, cue semantics, memory slots, navigation heuristic and cross-task
+mapping remain engineered.
+
+With six inspected seeds (40 test episodes per seed), learned retention matched
+the engineered initial-cue control: **240/240** long-delay choices and
+**225/240** occluded navigation successes, versus **59/240** for the
+latest-cue delayed control and **0/240** for forgotten-cue navigation. These
+are non-blind simulated development results; no learned general-purpose memory
+policy or D3 completion is claimed. Existing defaults are unchanged. See
+[protocol and per-seed results](docs/CROSS_TASK_RETENTION.md).
+
+```sh
+python -m unittest tests.test_cross_task_retention -v
+python -m benchmarks.cross_task_retention_benchmark --seeds 2749 6607 9901
+python -m benchmarks.cross_task_retention_benchmark --seeds 17431 24869 37021
+```

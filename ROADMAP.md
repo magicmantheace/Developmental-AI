@@ -443,3 +443,26 @@ Next: calibration from *unlabeled* movement/landmark sequences using latent-stat
 - [x] Add replay-verifiable state checkpoint, strict input validation and deterministic tests, without changing any default navigation policy.
 - [ ] D3 remains open: one-slot cue write, feature abstraction, event normalization and task family are engineered; no transfer to non-grid tasks or independent blind evaluation.
 - [ ] D1 independent evaluation and D2 authenticated external integration remain open. V2A and V2B plans remain post-core, unchanged.
+
+## 2026-10-15 — Cross-task reward-learned retention choice (experimental)
+
+- [x] Train two frozen, engineered initial-vs-latest cue strategies and their
+      delayed-choice response tables from terminal reward using the D2 public
+      environment API; use a separate train-only validation partition to
+      choose a strategy, without inspecting simulator's hidden correct action.
+- [x] Reuse that learned **strategy choice** on occluded navigation, together
+      with the earlier learned motion-update model, without retraining on
+      occluded rewards. Publish both fixed-retain and forgetful controls.
+- [x] Six inspected development seeds: 240/240 longer-delay decision successes,
+      225/240 occluded navigation completions; matches the hand-programmed
+      initial-cue strategy and therefore establishes no superiority.
+- [x] Read-only versioned gate snapshots, checksum validation, fixed test
+      indices, eight new regression tests and unchanged original transfer
+      benchmark. The checksum does not establish authorized provenance.
+- [ ] **D3 remains open**: the alternatives, cue write representation,
+      abstract role mapping and spatial controller are supplied by developers.
+      Learn fine-grained write/keep decisions when multiple cues compete,
+      including unfamiliar tasks and truly independent precommitted seeds.
+- [ ] D1 independent evaluation and D2 production-grade service and trust
+      boundaries remain open. V2A affect precedes and overlaps V2B virtual
+      home, and both remain post-core.

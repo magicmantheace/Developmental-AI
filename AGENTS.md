@@ -161,3 +161,16 @@
 
 
 26. `learned_spatial_memory.py` is simulation-only D3 research. Fit movement-memory update rules from *public visible-grid train observations*, not hidden positions, test observations, or occluded rewards. Keep the memory slot, beacon write and event aliases described as engineered. Re-run development 2749/6607/9901 and additional 15101/22003/31013 at the fixed training/evaluation budgets with identical action RNG for learned-vs-engineered comparisons; retain forgetful and random controls. These results are not independently blind and do not close D3. Run `tests.test_learned_spatial_memory` and the unchanged transfer benchmark; preserve D1/D2 and V2A/V2B scope.
+
+25. `cross_task_retention.py` is an **experimental cross-family strategy
+    selector**, not a generally learned attention or memory architecture.
+    The candidate rules (initial/latest), shared cue abstraction, one-slot
+    representation, learned spatial updater and navigation heuristic are
+    explicitly engineered. Training/evidence selection must use train-only
+    observations and terminal feedback; keep test indices 85000+ and 86000+
+    isolated. Reproduce both 2749/6607/9901 and 17431/24869/37021
+    cohorts with matching budgets; compare delayed latest-cue and occluded
+    forgetful/initial-cue controls, including all regressions. Never claim
+    blind independence, D3 gate completion, authenticated consent, or
+    authorization of system actions. Preserve the existing transfer benchmark,
+    model defaults, and V2A-before-overlapping-V2B roadmap ordering.
