@@ -503,3 +503,11 @@ On previously inspected seeds (144 rotated-layout trials), the existing two-laye
 The [cross-family benchmark](benchmarks/environment_contract_benchmark.py) uses [a fixed protocol manifest](benchmarks/frozen_environment_protocol.json) and binds results to its SHA-256 checksum. In 48 development trials per family, family-specific policies succeeded 43/48 (grid), 45/48 (occluded), and 48/48 (delayed), compared with seeded random 6/48, 6/48 and 10/48. The delayed-choice association was trained using separate short-delay reward feedback; navigation heuristics and cue retention are engineered. These results **do not show that a single learned policy transfers skills across task families**, or that independent blind evaluation is complete.
 
 [Protocol and limitations](docs/ENVIRONMENT_PROTOCOL.md). Run `python -m unittest tests.test_environment_api tests.test_environment_contract_benchmark -v`, `python -m benchmarks.environment_contract_benchmark`, and the original `python -m benchmarks.transfer_benchmark`. Existing model defaults, V2A and V2B plans remain unchanged.
+
+## D3 zero-shot grid-to-occluded transfer study (exploratory)
+
+A tabular Q policy trained **only** on visible-target grid episodes was reused without updating its weights in an occluded-goal environment through the new public environment adapter. The occluded observation requires an **engineered dead-reckoning memory encoder**; no learned perceptual transfer or general cognition is claimed.
+
+On three previously inspected development seeds (192 trials per family), the frozen grid-trained policy succeeded on **142/192 occluded episodes**, against **34/192 random** and **178/192 engineered greedy**. Grid test outcomes were 136/192 trained, 32/192 random, 175/192 greedy. The transfer is real reuse of policy weights on a related family, but trails strong task-specific heuristics, is not independently blind and does not close D3.
+
+Run `python -m unittest tests.test_cross_family_transfer -v` and `python -m benchmarks.zero_shot_navigation_transfer_benchmark`. See [study and limitations](docs/ZERO_SHOT_TRANSFER.md). No default behavior, consent boundaries, V2A or V2B plans were changed.
