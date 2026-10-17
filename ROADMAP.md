@@ -542,3 +542,15 @@ See [protocol, results and limitations](docs/ONLINE_MEMORY_GATE.md). The observe
 - [x] Publish all six seeds, unchanged stronger controls and a count-estimation negative control. Variable-event cue success **115/240** vs fixed-eight **112/240**, old max-path **110/240**, bag **52/240**; a simple last-token rule **153/240** wins. Event-count MAE **0.9303** loses to length heuristic **0.6312**. Targeted 55-test regression and unchanged historical transfer completed locally.
 - [ ] **D3 stays open:** no demonstrated transferable event segmentation, unknown templates, unrelated natural task semantics, reliable count prediction, or improvement over straightforward heuristic reasoning. Do not promote the new adapter to default, alter past baselines, or claim true blind evaluation.
 - [ ] Preserve frozen D1 independent evaluation, production D2 integration and the V2A-before/overlapping-V2B schedule. The human-origin identity and OS permission boundaries remain outside this repo.
+
+
+## 2026-10-17 — Unsupervised event segmentation and bounded streaming memory (experimental)
+
+- [x] Freeze six-seed source/shifted duration-noise benchmark before evaluation.
+- [x] Learn HMM event persistence and emission noise from raw tokens only; decode variable event spans, append bounded observations, replay-verify model-bound memory.
+- [x] Run six examined seeds and simple raw-run, majority, fixed-parameter, first/last and privileged truth baselines. Source: **298/384 learned vs 281/384 fixed**. Shifted: **250/384 learned vs 253/384 fixed** (no transfer benefit).
+- [ ] Learn salient event-retention behavior from feedback rather than hard-coded longest-span selection.
+- [ ] Test truly independent generators and observation alphabets, validate event counts/boundaries and frozen blind seeds. Current two variants share one generator; D1/D3 remain open.
+- [ ] Maintain D2 simulator-only boundary, default navigator and V2A-before/partly-with-V2B roadmap.
+
+Full conditions, per-seed regressions and test limitations: [docs/EVENT_SEGMENTATION.md](docs/EVENT_SEGMENTATION.md).
