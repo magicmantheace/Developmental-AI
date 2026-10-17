@@ -554,3 +554,16 @@ See [protocol, results and limitations](docs/ONLINE_MEMORY_GATE.md). The observe
 - [ ] Maintain D2 simulator-only boundary, default navigator and V2A-before/partly-with-V2B roadmap.
 
 Full conditions, per-seed regressions and test limitations: [docs/EVENT_SEGMENTATION.md](docs/EVENT_SEGMENTATION.md).
+
+
+## 2026-10-17 — Outcome-guided event retrieval (research only)
+
+- [x] Freeze `benchmarks/outcome_event_memory_protocol.json` **before** evaluating 64 test streams per seed/family, six previously inspected seeds.
+- [x] Train event-segmenter on separate raw source streams, reward-based one-item retrieval on 200 disjoint source trials, and replay-check the model-bound training and streaming focus.
+- [x] Compare equal-budget reward-trained raw token runs, longest/recent HMM event, raw majority and privileged available-target upper bound.
+- [x] Preserve familiar and shifted durations/noise results: reward-trained HMM retrieval **276/384 familiar; 246/384 shifted**, reward-trained raw-run **181/384; 111/384**, available-target oracle **327/384; 339/384**. Historical transfer remains 76.0%, 69.0%, 66.67%.
+- [ ] **D3 remains open:** the relevance map is seed-fixed and context labels/event alphabet are engineered; this is not evidence of relevance generalization to new tasks. Evaluate changing relevance and independently authored task families with truly held-out cohorts.
+- [ ] **D4 remains open:** one-item focus is not skill discovery, outcome-grounded transferable skills, or lifelong retention. Examine delayed outcomes, replayable memory selection after restart, and matched context-state lookup baselines.
+- [ ] Preserve the established D1/D2/D3/D4 gates and V2A affect before/overlapping V2B virtual home. No default model deployment, owner-private data or privileged actions.
+
+Research details: [docs/OUTCOME_EVENT_MEMORY.md](docs/OUTCOME_EVENT_MEMORY.md).

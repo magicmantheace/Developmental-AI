@@ -587,3 +587,12 @@ On six previously inspected seeds (240 delayed-choice trials), the variable-even
 ## Optional event segmentation and streaming span memory (D3 experiment)
 
 `developmental_ai.event_segmentation` fits a bounded four-state sticky HMM from **unlabelled raw token histories**, then decodes hypothetical event spans. `EventSpanMemory` incrementally holds observations, returns the longest inferred event under a deliberately **engineered retention rule**, and supports model-bound replay-checked restart. Six previously inspected seeds give learned-vs-fixed source recall **298/384 vs 281/384**, but shifted-duration/noise recall **250/384 vs 253/384** (a regression). Two conditions come from parameter settings of a single generator, not independent task families. No D3 generalization claim or default promotion; see [results](docs/EVENT_SEGMENTATION.md) and [locked protocol](benchmarks/event_segmentation_protocol.json).
+
+
+## Outcome-guided event retrieval (experimental D3/D4)
+
+`developmental_ai.outcome_event_memory` now learns which **HMM-inferred event spans** to retrieve by training on a binary downstream result, instead of always keeping the longest event. The frozen segmenter learns from raw source-generator observations; the retrieval policy learns on 200 disjoint source-generator reward episodes per seed and is tested without updates on familiar and noisier, changed-duration generators.
+
+Across six previously inspected seeds, outcome-guided inferred-event retrieval succeeds on **276/384 familiar** and **246/384 shifted** trials. A separately reward-trained raw-run memory scores **181/384** and **111/384**; longest HMM event scores **96/384** and **111/384**. A privileged true-state upper reference scores 327/384 and 339/384. The task includes engineered context labels and stable hidden context-to-relevance mappings, so this does **not** establish general relevance understanding, independent blind D3 transfer or completed D4 reusable skills. The new module remains optional; system permissions and navigation defaults are unchanged.
+
+Reproduce with `python -m unittest tests.test_outcome_event_memory tests.test_event_segmentation tests.test_environment_api tests.test_delayed_choice tests.test_occluded_navigation tests.test_transfer -q` and `python -m benchmarks.outcome_event_memory_benchmark --cohort development` / `--cohort additional`. See [full results and limitations](docs/OUTCOME_EVENT_MEMORY.md).
