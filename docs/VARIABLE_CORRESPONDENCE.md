@@ -30,7 +30,7 @@ The original unaligned token-permutation training is untouched (`train/89400..89
 | 94009 | 6 | 12 | 16 | 16 | **17** | 35 |
 | **Total / 240** | **43** | **93** | **109** | **113** | **125 (52.1%)** | **226 (94.2%)** |
 
-The new method beats the previous fixed-eight marginal on **five seeds**, regresses on **one**, and gains **12 tasks / 240** in aggregate. It beats the older max-path alignment on four seeds, loses on one and ties on one. All results are simulation outcomes on previously examined seed families. The correct cue is a privileged scoring reference, not an equally informed controller. Supplying the true hidden token permutation to the new variable-count aligner gave the *same* results as its already-exact learned permutation on these seeds (125/240), leaving a very substantial correspondence/observation-noise gap.
+The new method beats the previous fixed-eight marginal on **five seeds**, regresses on **one**, and gains **12 tasks / 240** in aggregate. It beats the older max-path alignment on five seeds and loses on one. All results are simulation outcomes on previously examined seed families. The correct cue is a privileged scoring reference, not an equally informed controller. Supplying the true hidden token permutation to the new variable-count aligner gave the *same* results as its already-exact learned permutation on these seeds (125/240), leaving a very substantial correspondence/observation-noise gap.
 
 ### Event-count diagnosis — important negative result
 
