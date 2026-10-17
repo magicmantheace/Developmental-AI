@@ -605,3 +605,10 @@ See [experimental evidence](docs/REVERSIBLE_EVENT_PRIORITY.md).
 - [ ] D1 independent validation, D3 broad generalization and D4 actual reusable skills remain open. Preserve agreed V2A-before/overlapping-V2B sequencing.
 
 See [independent replication documentation](docs/NONSTATIONARY_EVENT_VALUE.md).
+
+## 2026-10-17 — Empirically calibrated event-model drift diagnostic (experimental)
+
+- [x] Frozen protocol `benchmarks/event_model_drift_protocol.json` committed **before evaluation**; six already inspected seeds and separate model-fit/calibration/test namespaces.
+- [x] Bounded streaming, read-only surprise CUSUM, HMM surprise-window and raw-change-rate controls; model-bound calibration and exact observation replay.
+- [x] Matched stationary controls reveal **26/240 CUSUM false-alarm episodes**; clean post-change detection **131/240**, often delayed by 21–41 observations per-seed median. Raw-rate control: **13/240 false alarms**, **66/240 clean detections**. No calibrated probability-of-change or deployment reliability is implied.
+- [ ] Independent, genuinely new task-family validation, lower false alarm and faster recovery, and downstream task-utility after alarm. No automatic promotion, external action permission or D1/D3 gate completion. V2A before/overlapping V2B remains unchanged.
