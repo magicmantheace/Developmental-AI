@@ -567,3 +567,28 @@ Full conditions, per-seed regressions and test limitations: [docs/EVENT_SEGMENTA
 - [ ] Preserve the established D1/D2/D3/D4 gates and V2A affect before/overlapping V2B virtual home. No default model deployment, owner-private data or privileged actions.
 
 Research details: [docs/OUTCOME_EVENT_MEMORY.md](docs/OUTCOME_EVENT_MEMORY.md).
+
+
+## 2026-10-17 — Nonstationary outcome-guided event memory (experimental)
+
+- [x] Precommit a three-phase original → unannounced reversal → original-return
+  goal protocol before reading test outcomes.
+- [x] Implement a bounded reward-only priority bank with at most three
+  hypotheses per public context, exact action/reward replay and model binding.
+- [x] Keep matching cumulative-count, 32-reward sliding-window, frozen-original,
+  longest-event and privileged available-goal references.
+- [x] Run development and previously inspected additional cohorts on disjoint
+  train and read-only test namespaces, including return-phase regressions.
+- [ ] **NOT achieved:** prove the bank recalls historical knowledge faster or
+  more accurately than a simple recent-window baseline. It scored
+  188/178/201 across original/reversal/return versus window 187/177/201,
+  while cumulative memory recovered to 202 on return.
+- [ ] Add long-horizon repeat reversals, explicit archive-reidentification
+  accuracy, false-switch testing without reversals, and a truly independent
+  blinded D1 cohort; do not retrofit the frozen benchmark.
+- [ ] D3 generalization and D4 reusable skill discovery/transfer remain open.
+  A contextual four-state event-selection toy does not close them.
+- [ ] Preserve V2A affective cognition preceding and overlapping V2B virtual
+  home. Do not grant external execution, promotion or consent privileges.
+
+See [experimental evidence](docs/REVERSIBLE_EVENT_PRIORITY.md).

@@ -200,3 +200,22 @@
 
 
 27. `outcome_event_memory.py` is optional reward-guided *event retrieval*, not an autonomous episodic memory, general relevance learning or completed D4 skill discovery. The event HMM must be trained only on source-generator raw `train/0..159`; the priority bandit may train only on `source_bursts/train/2000..2199` via the single terminal boolean per episode. The model must not consume hidden relevance labels, true segment boundaries, hidden position or benchmark oracle data. Keep evaluation `test/93000..93063` frozen for development 14003/14009/14033 and previously inspected additional 27007/27011/27017, for BOTH source and shifted generators. Publish all per-seed results and compare against independently reward-trained raw runs, fixed longest/recent spans, majority and hidden-state upper bound. Test rehashed checkpoint tampering and model-bound exact replay; SHA256 is not user authentication. Re-run `tests.test_outcome_event_memory`, event/model/environment tests and unchanged transfer. Never automatically promote the model, alter system permissions or private identity data, or change the approved V2A/V2B sequence. Maintain D3/D4 as open.
+
+
+27. `reversible_event_priority.py` is an optional observation/reward-only
+    research controller, NOT autonomous goal selection, general lifelong memory,
+    authenticated owner memory, or permission to promote or operate any system.
+    Preserve the precommitted original→reversal→return protocol at
+    `benchmarks/reversible_event_memory_protocol.json` and independently
+    replay-verifiable model-bound checkpoints. Run tests for
+    `tests.test_reversible_event_priority` and prior event-segmentation/outcome
+    memory, plus both benchmark cohorts and unchanged transfer. Compare
+    archived bank, cumulative, recent-32 window, frozen original, HMM longest,
+    and privileged available-target references **per phase and seed**.
+    Current results show the bank 188/178/201 and the recent-window
+    187/177/201 on 288 episodes/phase; return-phase early learning regresses.
+    Do not claim archive recall or D3/D4 completion without better evidence.
+    Training may use only public context/raw tokens, selected event and terminal
+    boolean feedback. Evaluation must remain read-only; private goal changes
+    and hidden labels are benchmark-only. SHA256 is not signed authorization.
+    Keep V2A before and overlapping V2B.

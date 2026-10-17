@@ -596,3 +596,26 @@ On six previously inspected seeds (240 delayed-choice trials), the variable-even
 Across six previously inspected seeds, outcome-guided inferred-event retrieval succeeds on **276/384 familiar** and **246/384 shifted** trials. A separately reward-trained raw-run memory scores **181/384** and **111/384**; longest HMM event scores **96/384** and **111/384**. A privileged true-state upper reference scores 327/384 and 339/384. The task includes engineered context labels and stable hidden context-to-relevance mappings, so this does **not** establish general relevance understanding, independent blind D3 transfer or completed D4 reusable skills. The new module remains optional; system permissions and navigation defaults are unchanged.
 
 Reproduce with `python -m unittest tests.test_outcome_event_memory tests.test_event_segmentation tests.test_environment_api tests.test_delayed_choice tests.test_occluded_navigation tests.test_transfer -q` and `python -m benchmarks.outcome_event_memory_benchmark --cohort development` / `--cohort additional`. See [full results and limitations](docs/OUTCOME_EVENT_MEMORY.md).
+
+
+## Reversible reward-priority event memory (optional D3/D4 research)
+
+`developmental_ai.reversible_event_priority` compares a bounded archive of
+event-priority hypotheses with cumulative-count, recent-32-feedback and frozen
+original-memory baselines. The learner sees public 0/1 contexts, raw event
+observations, its proposed span and terminal boolean outcomes—not private
+goals, phase names or hidden event boundaries. The simulator changes the
+context/reward rule after initial training and later restores it.
+
+Across six previously inspected seeds (288 held-out trials per phase), the
+archived bank scores **188 original / 178 reversed / 201 restored**. A simple
+recent-window baseline scores **187 / 177 / 201**, and cumulative counts score
+**188 / 45 / 202**. Therefore the bank responds much better than lifetime
+counts to a reversal, but **does not establish value beyond recent-window
+learning or efficient retrieval of archived historical skills**. It stays
+optional and is not a D3/D4 milestone pass.
+
+Reproduce using `python -m unittest tests.test_reversible_event_priority -v`
+and both cohorts of `python -m benchmarks.reversible_event_priority_benchmark`.
+See [full results and limitations](docs/REVERSIBLE_EVENT_PRIORITY.md).
+Versions 2A and 2B remain in their approved sequence.
