@@ -619,3 +619,8 @@ Reproduce using `python -m unittest tests.test_reversible_event_priority -v`
 and both cohorts of `python -m benchmarks.reversible_event_priority_benchmark`.
 See [full results and limitations](docs/REVERSIBLE_EVENT_PRIORITY.md).
 Versions 2A and 2B remain in their approved sequence.
+
+
+## Independent A→B→A recent-reward memory replication (experimental)
+
+`developmental_ai.nonstationary_event_value` reproduces the changed-reward challenge with a separate precommitted six-seed / 240-test-per-stage protocol. On a hidden A→B→A label mapping, simple **recent-32** reward selection scores **161 / 155 / 169** in original / changed / returned environments. A failure-triggered **archive/recent** model scores **160 / 146 / 168**, and frozen A scores **160 / 21 / 168**. Thus the sliding window adapts, but the archive **does not beat it**. This aligns qualitatively with the separate `reversible_event_priority` study, which uses a *different protocol and cannot be numerically pooled*. All 328 tests in the reconstructed local checkout passed; complete remote CI and hardware tests were not run. See [method and per-seed results](docs/NONSTATIONARY_EVENT_VALUE.md). No default-policy change, gate completion, AthenZ access or Synveil authority.

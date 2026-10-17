@@ -592,3 +592,16 @@ Research details: [docs/OUTCOME_EVENT_MEMORY.md](docs/OUTCOME_EVENT_MEMORY.md).
   home. Do not grant external execution, promotion or consent privileges.
 
 See [experimental evidence](docs/REVERSIBLE_EVENT_PRIORITY.md).
+
+
+## 2026-10-17 — Independent recent-window vs archive A→B→A replication
+
+- [x] Freeze and execute a separate 240-evaluation-episode-per-stage hidden A→B→A reward-switch protocol, with independent training/evaluation indices and no reward-map labels passed to the learner.
+- [x] Implement five replay-verifiable policies: frozen-A, all-history, recent-32, archive+recent, and raw-run recent-32; preserve all seed outcomes, failure-triggered switches and changed-world regressions.
+- [x] Demonstrate that recent-32 rewards outperform frozen-A on B (155/240 vs 21/240). Archive+recent is **worse** on B (146/240) and never beats recent-32 across stages (160/146/168 vs 161/155/169).
+- [x] Run 328 reconstructed local tests, plus original unchanged transfer benchmark. This is not CI or a claim that every remote test module was checked.
+- [ ] Extend evaluation to unpredictable repeat shifts, characterize true archive re-identification and performance under false alarms. Do not tune the frozen protocol post-results.
+- [ ] Keep earlier [reversible priority findings](docs/REVERSIBLE_EVENT_PRIORITY.md) distinct: different protocol, 288 test episodes per phase, non-poolable results. Both experiments **fail to demonstrate an archive advantage over a simple window**.
+- [ ] D1 independent validation, D3 broad generalization and D4 actual reusable skills remain open. Preserve agreed V2A-before/overlapping-V2B sequencing.
+
+See [independent replication documentation](docs/NONSTATIONARY_EVENT_VALUE.md).
