@@ -524,3 +524,12 @@ See [protocol, results and limitations](docs/ONLINE_MEMORY_GATE.md). The observe
 - [x] Same-index navigation: **153/240** probabilistic marginal alignment versus **143/240** unsupervised max-path, **134/240** reward-trained scorer; correct cue **222/240**. Five seeds gain, one seed loses; no blind generalization, no default promotion.
 - [ ] Learn the event count, gap channel and emission probabilities rather than supplying them. Evaluate fresh unrelated environments and uncertainty calibration; D1, D3, production D2 and future integration gates remain open.
 - [ ] Keep V2A affect before/overlapping V2B virtual home, without changing the post-core plan.
+
+
+## 2026-10-17 — Variable correspondences from noisy observation streams (optional D3 experiment)
+
+- [x] Precommitted synthetic insertion/deletion evaluation protocol **before** seeing test outcomes (commit `8555dc8`). Matched known four-symbol vocabularies and monotone eight-event upper bound remain engineered.
+- [x] Added exact sum-product expectation-semiring calculation for 3–8 possible shared-event correspondences, with three train-only EM updates for symbol-match and survival parameters; persistence reconstructs estimates from public evidence.
+- [x] On six previously inspected seeds, variable alignment increased navigation **113/240 → 125/240** versus prior fixed-eight marginal on new matched episodes; one seed regressed; correct-cue reference **226/240**. Preserve per-seed outcomes and old benchmarks.
+- [x] Published crucial negative count-estimation diagnostic: learned count MAE **0.811**, fixed-six **0.775**, simple length rule **0.585**. The latter is post-result diagnostic, not fitting evidence. No claim of accurate event counting, blind generalization or learned arbitrary-duration dynamics.
+- [ ] Validate on genuinely out-of-family simulators and independently frozen D1 evaluation. Complete stable D2 and D3 gates before long-running D4–D10 claims. Existing defaults and V2A-before/overlapping-V2B roadmap remain intact.

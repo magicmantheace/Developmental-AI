@@ -570,3 +570,8 @@ python -m benchmarks.cross_task_retention_benchmark --seeds 17431 24869 37021
 ## Temporal correspondence (optional D3 experiment)
 
 `probabilistic_alignment.py` marginalizes over all possible monotone eight-pair correspondences rather than committing to one path. It uses a *fixed, engineered* generative model and the previously learned unsupervised four-token mapping, not a learned temporal mechanism. Same-index six-seed navigation: **153/240** successes versus **143/240** for the old unsupervised max-path baseline, **134/240** for the prior reward-trained path and **222/240** for the oracle. Five seeds improved; one regressed. No default promotion or completed D1/D3 gate. See [protocol and full results](docs/TEMPORAL_CORRESPONDENCE.md); V2A/V2B unchanged.
+
+
+## Variable event correspondence under insertion/deletion uncertainty (D3 research, 2026-10-17)
+
+An optional `variable_correspondence.py` models **3–8 candidate shared events** instead of hard-coding eight matching observations. It fits a bounded symbol-reliability and event-overlap prior using **120 pseudo-selected, observation-only training streams** per seed, then marginalizes possible monotone alignments. On the same new synthetic deletion/insertion episodes, navigation was **125/240** versus **113/240** for the prior fixed-eight marginal (five seeds improved, one regressed), and **226/240** for the privileged correct-cue benchmark. A post-hoc simple public-length rule estimates the true event count **more accurately** than the learned estimate (MAE 0.585 versus 0.811), so this is not proven event counting. See [full protocol and negative controls](docs/VARIABLE_CORRESPONDENCE.md). The experimental mode is not the default; D1/D3 remain open and versions 2A/2B keep their agreed order.
