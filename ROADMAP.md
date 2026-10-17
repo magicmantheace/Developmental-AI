@@ -24,6 +24,23 @@ This repository owns **learning and simulation**, not the human's identity or th
 | Post-core (Version 2A; precedes and overlaps V2B) | V2A: affective cognition and emotional development | Persistent, event-grounded affect and motivation; learned preferences; bounded regulation; held-out behavior tests; V2B experience integration | Planned; foundations before V2B, later slices co-developed |
 | Post-core (Version 2B) | V2B: persistent virtual home for AthenZ | Headless persistent simulation, experience provenance, bounded goals, reproducible restore/replay and optional 2D/3D viewer | Planned; not a D10 prerequisite |
 
+## 2026-10-17 — AthenZ synthetic D2 peer (unmerged research branch)
+
+- [x] Write a schema-one AthenZ-compatible signed test envelope validator
+  and synthetic SQLite replay/revocation journal on a separate integration branch.
+- [x] Implement a pure, non-executing simulator-ledger projection with
+  independent replay against source trace and pre/post source revision checks;
+  emit only generic simulation-origin proposal and evaluation receipt events.
+- [x] Commit matching frozen synthetic wire vector, 14 mirrored protocol tests,
+  three golden-vector tests and nine synthetic simulator adapter tests.
+- [ ] **Validation is not completed:** private repository Actions run
+  https://github.com/magicmantheace/Developmental-AI/actions/runs/39040877827
+  failed before executing any job step. No passing test result is claimed.
+  Peer work must remain a draft PR until a trusted runner can test it.
+- [ ] Durable authenticated bidirectional IPC, real owner-consent and data
+  revocation, production secrets, request/reply atomicity and optional
+  AthenZ/Synveil installation remain open.
+
 ## Immediate next work
 
 1. Freeze evaluation protocols and add independent post-development blind seeds; measure across obstacle densities, size ranges, sensory noise, and new objective types.
