@@ -533,3 +533,12 @@ See [protocol, results and limitations](docs/ONLINE_MEMORY_GATE.md). The observe
 - [x] On six previously inspected seeds, variable alignment increased navigation **113/240 → 125/240** versus prior fixed-eight marginal on new matched episodes; one seed regressed; correct-cue reference **226/240**. Preserve per-seed outcomes and old benchmarks.
 - [x] Published crucial negative count-estimation diagnostic: learned count MAE **0.811**, fixed-six **0.775**, simple length rule **0.585**. The latter is post-result diagnostic, not fitting evidence. No claim of accurate event counting, blind generalization or learned arbitrary-duration dynamics.
 - [ ] Validate on genuinely out-of-family simulators and independently frozen D1 evaluation. Complete stable D2 and D3 gates before long-running D4–D10 claims. Existing defaults and V2A-before/overlapping-V2B roadmap remain intact.
+
+
+## 2026-10-17 — Cross-task-family temporal correspondence (experimental)
+
+- [x] Commit an evaluation manifest **before** exposing delayed-choice test results: `benchmarks/cross_family_temporal_protocol.json`; preserve 43103/50021/61031 and previously inspected 72019/83003/94009, 40 test episodes per seed.
+- [x] Reuse a frozen navigation-fit token mapping and 30-pair EM temporal checkpoint in a read-only adapter over a synthetic **delayed-choice** side channel; preserve independent train-only response mapping, bounded cue semantics, exact checkpoint replay, input rejection and simulation-only scope.
+- [x] Publish all six seeds, unchanged stronger controls and a count-estimation negative control. Variable-event cue success **115/240** vs fixed-eight **112/240**, old max-path **110/240**, bag **52/240**; a simple last-token rule **153/240** wins. Event-count MAE **0.9303** loses to length heuristic **0.6312**. Targeted 55-test regression and unchanged historical transfer completed locally.
+- [ ] **D3 stays open:** no demonstrated transferable event segmentation, unknown templates, unrelated natural task semantics, reliable count prediction, or improvement over straightforward heuristic reasoning. Do not promote the new adapter to default, alter past baselines, or claim true blind evaluation.
+- [ ] Preserve frozen D1 independent evaluation, production D2 integration and the V2A-before/overlapping-V2B schedule. The human-origin identity and OS permission boundaries remain outside this repo.
