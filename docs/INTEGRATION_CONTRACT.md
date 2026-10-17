@@ -1,6 +1,6 @@
 # Draft integration contract — specification only
 
-This document describes a **future** interoperability interface. It does not imply that the engine, AthenZ, or Synveil currently implement it.
+This document describes a **future** interoperability interface. A bounded synthetic-only AthenZ wire validator and simulator projection now exist ([D2 fixture details](ATHENZ_D2_SYNTHETIC_BRIDGE.md)), but there is still **no authenticated production IPC** or integrated AthenZ/Synveil service.
 
 ## Separation of responsibilities
 
