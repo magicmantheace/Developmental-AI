@@ -34,7 +34,7 @@ Training: unchanged unaligned-stream procedure at `train/89400..89639`, plus the
 | Privileged cipher + same marginal | 77 | 76 | 153 (63.8%) |
 | Correct-cue reference | 114 | 108 | 222 (92.5%) |
 
-The new scorer chooses the actual correct cue **167/240**, versus **153/240** for the old max-path scorer. It improves task completion on seeds 43103, 50021, 61031, 83003 and 94009, regresses by two on 72019; the earlier user-facing summary stated four improvements/one unchanged, but the verified counts show **five improvements and one regression**. The underlying token permutation already matches the hidden simulator mapping on all six seeds; knowing that mapping perfectly cannot improve this particular result. The remaining gap is largely ambiguous noisy sequence correspondence and downstream policy errors.
+The new scorer chooses the actual correct cue **167/240**, versus **153/240** for the old max-path scorer. It improves task completion on seeds 43103, 50021, 61031, 83003 and 94009, and regresses by two on 72019: **five improvements and one regression**. The underlying token permutation already matches the hidden simulator mapping on all six seeds; knowing that mapping perfectly cannot improve this particular result. The remaining gap is largely ambiguous noisy sequence correspondence and downstream policy errors.
 
 These results do not establish statistical superiority on fresh independent worlds, calibration of the diagnostic softmax, generalizable skill learning, emergent temporal understanding or v1 completion. The model deliberately knows the latent eight-event count and emission probabilities. It stays **optional**, with the old policy unchanged.
 

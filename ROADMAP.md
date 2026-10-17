@@ -516,3 +516,11 @@ See [protocol, results and limitations](docs/ONLINE_MEMORY_GATE.md). The observe
 - [x] Record *negative* result: learned model **122/240**, identity-only **50/240**, unordered pair baseline **58/240**, unsupervised monotone alignment **142/240**, correct-cue reference **222/240**. Every inspected seed trails unsupervised alignment. The hidden token permutation is still trivially recoverable on these synthetic streams.
 - [ ] Solve uncertain symbol/time correspondence beyond developer-chosen proximity windows and monotone insertion DP; then test generalization across genuinely different task families and independent prospectively frozen cohorts. Maintain D1/D2/D3 gates open; do not claim certification or promote the experiment.
 - [ ] Preserve Versions 2A affective development before/alongside Version 2B virtual home, without altering their approved post-core roadmap.
+
+## 2026-10-16 — Marginal temporal correspondence (experimental)
+
+- [x] Precommit `benchmarks/temporal_correspondence_protocol.json` before new `test/99700..99739` evaluation. Keep earlier max-path results unchanged.
+- [x] Add bounded normalized sum-product alignment over eight unknown correspondences, validate it against exhaustive enumeration, and benchmark identical six-seed conditions.
+- [x] Same-index navigation: **153/240** probabilistic marginal alignment versus **143/240** unsupervised max-path, **134/240** reward-trained scorer; correct cue **222/240**. Five seeds gain, one seed loses; no blind generalization, no default promotion.
+- [ ] Learn the event count, gap channel and emission probabilities rather than supplying them. Evaluate fresh unrelated environments and uncertainty calibration; D1, D3, production D2 and future integration gates remain open.
+- [ ] Keep V2A affect before/overlapping V2B virtual home, without changing the post-core plan.
