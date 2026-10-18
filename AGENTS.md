@@ -224,3 +224,15 @@
 28. `nonstationary_event_value.py` is an optional A→B→A **replication study** separate from `reversible_event_priority.py` and must never replace it or alter default learning/actuation. Preserve the precommitted `benchmarks/nonstationary_event_value_protocol.json` schedule and all six inspected seeds. Do not expose hidden phase, goal map, true spans or simulator outcome counterfactuals to the training or inference APIs. Compare frozen, cumulative, recent-32, failure-triggered archive, raw-run recent-32 and available-target reference on original/changed/returned phases, including all regressions and switch counts. Reproducible outcomes: window 161/155/169 vs archive 160/146/168; do not claim archive advantage. Re-run new tests, `tests.test_outcome_event_memory`, `tests.test_event_segmentation`, and historical transfer benchmark. Checkpoint SHA/replay are not signed consent. Maintain D1/D3/D4 as open and V2A/V2B ordering; no external or OS actions.
 
 27. `event_model_drift.py` is a simulation-only **read-only** diagnostic. Keep `benchmarks/event_model_drift_protocol.json` frozen and do not adjust CUSUM/window/rate thresholds after inspecting test episodes. Reproduce 14003/14009/14033 and previously inspected 27007/27011/27017 with equal model-fit (`train/0..159`), independent stationary calibration (`train/800+`), and `test/94000+` budgets. Report stationary false alarms, *early* alarms on changed streams, clean post-change detections, delays, and per-seed failures. Neither the calibration receipt nor a model/trace SHA-256 is signed approval, a safety guarantee, or a permission to change an action, memory or installed model. Re-run the original transfer benchmark. Keep D1/D3/D4 open and V2A/V2B sequence intact.
+
+
+29. `repeated_reversal.py` completes the previously committed six-stage
+    A→B→A→B→A→A-control protocol. Never alter the original
+    `benchmarks/repeated_reversal_protocol.json`, the exact schedule, or
+    published per-seed results to improve performance. Archive+recent scored
+    983/1,440 against window32 991/1,440; D3/D4 remain OPEN. The agent
+    cannot receive hidden phase or target labels, only own action/reward
+    histories. Re-run `tests.test_repeated_reversal`, related event-memory
+    tests, both cohorts and original transfer. Checkpoint SHA is not signed
+    provenance, owner permission or safe automatic promotion. Preserve
+    optional simulation-only status and approved V2A before/overlapping V2B.

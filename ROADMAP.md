@@ -612,3 +612,19 @@ See [independent replication documentation](docs/NONSTATIONARY_EVENT_VALUE.md).
 - [x] Bounded streaming, read-only surprise CUSUM, HMM surprise-window and raw-change-rate controls; model-bound calibration and exact observation replay.
 - [x] Matched stationary controls reveal **26/240 CUSUM false-alarm episodes**; clean post-change detection **131/240**, often delayed by 21–41 observations per-seed median. Raw-rate control: **13/240 false alarms**, **66/240 clean detections**. No calibrated probability-of-change or deployment reliability is implied.
 - [ ] Independent, genuinely new task-family validation, lower false alarm and faster recovery, and downstream task-utility after alarm. No automatic promotion, external action permission or D1/D3 gate completion. V2A before/overlapping V2B remains unchanged.
+
+## 2026-10-18 — Frozen repeated reversal archive-vs-window test
+
+- [x] Complete already committed `benchmarks/repeated_reversal_protocol.json`
+  with an additional pre-evaluation exact schedule and six phases A→B→A→B→A→A.
+- [x] Run original and previously inspected additional cohorts, preserve all
+  per-stage/per-seed reward and accuracy results and historical transfer.
+- [x] Add strict reward-only, model-bound, replay-verified bounded memory APIs.
+- [ ] **Not achieved:** archive+recent **983/1,440** does not beat recent-32
+  **991/1,440**. First reversal and first return are worse. Some early
+  return training rewards improve but transfer utility is inconsistent.
+- [ ] Move D3/D4 research beyond fixed context labels and preprogrammed reward
+  reversals; independently authored task families and true blind evaluation
+  remain the priority. Maintain D1/D3/D4 as open and V2A→V2B order.
+
+See [repeated reversal results](docs/REPEATED_REVERSALS.md).
