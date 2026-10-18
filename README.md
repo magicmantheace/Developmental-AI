@@ -639,3 +639,10 @@ the simple 32-reward window. It has not demonstrated a reliably reusable
 skill or a long-term memory advantage. The model receives no hidden phase
 labels. See [full results](docs/REPEATED_REVERSALS.md). D3/D4 stay open;
 no automatic deployment or OS permissions.
+
+
+## 2026-10-18 — Public-DAG procedural skill reuse (experimental)
+
+A bounded, simulation-only skill policy is now trained on workshop dependency tasks and evaluated zero-shot on separately generated repair tasks. It uses a **developer-supplied public dependency graph and goal-ancestor features**; training learns action priority from shaped reward, not prerequisites, causal relationships or free-form plans. Across six already inspected seeds it succeeds on **600/600 workshop and 600/600 repair episodes**, but **exactly ties** a trivial public-graph greedy planner (also 600/600 on both). Random scores 121/600 workshop, 42/600 repair; the goal-ancestor feature ablation scores 306/600 and 180/600. This is engineered relational skill reuse, not D3/D4 completion. Original transfer remains 76.0%, 69.0%, 66.67% on seeds 17/23/41. The new tests and old transfer tests passed 14/14 locally; full repository CI was not run.
+
+Reproduce with `python -m unittest tests.test_procedural_skill tests.test_transfer -q`, `python -m benchmarks.procedural_skill_benchmark --cohort development`, `python -m benchmarks.procedural_skill_benchmark --cohort additional`, and `python -m benchmarks.transfer_benchmark`. See [detailed limitations and results](docs/PROCEDURAL_SKILL_TRANSFER.md). D1, D3, D4 stay open; V2A precedes and overlaps V2B as previously agreed.

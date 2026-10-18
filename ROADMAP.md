@@ -628,3 +628,16 @@ See [independent replication documentation](docs/NONSTATIONARY_EVENT_VALUE.md).
   remain the priority. Maintain D1/D3/D4 as open and V2A→V2B order.
 
 See [repeated reversal results](docs/REPEATED_REVERSALS.md).
+
+
+## 2026-10-18 — Public-DAG procedural skill reuse (experimental)
+
+- [x] Precommit `benchmarks/procedural_skill_protocol.json` before coding or evaluating a new procedural task-family transfer benchmark.
+- [x] Add two seeded public dependency worlds with shuffled per-episode opaque action names, legal-action checks and six-step budgets; reuse workshop-trained action values in repair with **no repair training**.
+- [x] Provide versioned, replay-checked skill artifacts and strict public-frame validation; compare against random, no-ancestor-feature, graph-greedy and ideal public-graph planning references.
+- [x] Verify all six remote implementation/data/doc blobs, run 14 scoped tests and the unchanged original transfer benchmark.
+- [ ] **Critical missing D3/D4 evidence:** learned workshop policy ties the developer-given graph greedy baseline at 600/600 repair successes. The transitive public goal-dependency closure is explicitly **hand-engineered**, and immediate reward tells the learner which prerequisite actions were productive. This is NOT independent prerequisite discovery, general task understanding or a reusable skill library.
+- [ ] Next: independently designed task generators with different observation/action interfaces, hidden prerequisites discovered from action outcomes, skill composition and regression/rollback gates, and genuinely new blind D1 evaluation seeds. Do not tune this frozen benchmark after results.
+- [ ] Preserve open D3/D4 and the approved V2A-before/overlapping-V2B milestones, with external AthenZ/Synveil authority separate.
+
+Research details: [docs/PROCEDURAL_SKILL_TRANSFER.md](docs/PROCEDURAL_SKILL_TRANSFER.md).

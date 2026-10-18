@@ -236,3 +236,6 @@
     tests, both cohorts and original transfer. Checkpoint SHA is not signed
     provenance, owner permission or safe automatic promotion. Preserve
     optional simulation-only status and approved V2A before/overlapping V2B.
+
+
+Procedural skill research `developmental_ai/procedural_skill.py` is an **optional sandbox-only** D3/D4 scaffold. For any edits rerun `tests.test_procedural_skill`, both frozen `benchmarks.procedural_skill_benchmark` cohorts at 600 workshop training / 100 test episodes per seed/family, and the original `benchmarks.transfer_benchmark`. Never claim graph-free prerequisite learning: the goal and full public DAG are visible, transitive ancestry is a manually engineered feature, and reward shaping reinforces good ancestry actions. Publish and retain greedy/oracle ties, random/feature-ablation controls, all six per-seed scores and target-world regressions. Do not reinterpret inspected cohorts as blind, alter the precommitted protocol, install arbitrary external actions or promote policies. Keep D1/D3/D4 open and V2A/V2B sequencing unchanged.
