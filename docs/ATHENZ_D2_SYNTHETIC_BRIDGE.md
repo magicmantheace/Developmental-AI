@@ -1,8 +1,11 @@
 # AthenZ D2 synthetic interoperability fixture (experimental)
 
-**Status:** in-process demonstration only. No production IPC, chat integration,
+**Status:** a trace-verified in-process adapter plus a new **opt-in one-shot
+synthetic subprocess peer** are staged on this private draft branch. The peer
+has not passed private CI. There is still no production IPC, chat integration,
 unattended development loop, owner-consent binding, device action, model
-promotion, training, public network listener or permanent outbound queue.
+promotion, training, or public network listener. The one-shot peer uses an
+outside-Git private durable outbound queue only for synthetic fixtures.
 
 ## Supported adapter
 
@@ -54,3 +57,46 @@ local-only IPC on Windows/WSL2 and Linux, a durable authorized
 input/output outbox, exact replay after restart, AthenZ-backed consent
 lifecycle and revoked-derived-state deletion. Record process loss and
 negative test results. Only then claim a trusted transport.
+
+## Experimental verified simulator peer (2026-10-18)
+
+`python -m developmental_ai.d2_peer --synthetic-d2-test <private-home>`
+is an explicit one-shot development entry point. It has no general-purpose
+shell/agent loop and does nothing unless invoked with the exact flag. An
+already trusted AthenZ supervisor must open its **stdin and stdout binary
+streams** and deliver 96 fresh random bytes (root HMAC key, AthenZ event key,
+learner event key) via stdin *before* the strict authenticated D2 handshake.
+No secret should appear in CLI arguments, public source, telemetry or
+environment variables.
+
+The peer uses the AthenZ Python package as an **optional integration
+dependency**. Developmental AI remains standalone when the entry point is
+not called. The AthenZ connection manages `synthetic:interop` approval
+and the local D2 source registry, creates a fresh authenticated session,
+and sends only a signed SHA-256 trace reference.
+
+Unlike the public AthenZ test stand-in, the private peer generates a
+**real, independently replayable simulator trace** from the unchanged
+`CurriculumBrain(..., seed=11).trace("collect", 1, policy="oracle")`
+and `export_trace` fixture. It verifies that both the original trace
+and ledger match the signed SHA requested by AthenZ using
+`verified_synthetic_replies`. The oracle policy is a privileged
+**baseline**, not a learned cognition model. No simulator state leaves
+the process. The two generic signed event envelopes are staged as one
+transaction in an independent private SQLite outbox, delivered via the
+session-authenticated binary stream, and not marked acknowledged until
+both session-bound HMAC receipts are checked.
+
+Tests in `tests/test_d2_peer.py` validate binary bootstrap, missing/bad
+keys, an unchanged trace, and the default-disabled API. When AthenZ is
+also installed, a separate-process integration test exercises the actual
+private simulator-to-AthenZ roundtrip. Private GitHub Actions were previously
+blocked before any job started; **do not claim these tests passed until
+they have actually executed**. Keep this PR as a draft until validated.
+
+Remaining blockers: verified operating-system peer identity, durable
+restart reconciliation for partially acknowledged messages, protected
+key provisioning/rotation, immutable owner-granted synthetic source
+references and eventually real human-source consent, and an independently
+tested receiver of learner episodes. This experiment does not grant
+Developmental AI access to owner memories, tools, or model promotion.
