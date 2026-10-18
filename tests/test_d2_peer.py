@@ -112,7 +112,10 @@ class OptionalInstalledAthenZInteropTests(unittest.TestCase):
                         if k in os.environ}
                     env["PYTHONNOUSERSITE"] = "1"
                     root = Path(__file__).resolve().parents[1]
-                    env["PYTHONPATH"] = str(root)
+                    athenz_package = next(iter(
+                        importlib.util.find_spec("athenz").submodule_search_locations))
+                    env["PYTHONPATH"] = os.pathsep.join(
+                        (str(root), str(Path(athenz_package).parent)))
                     process = subprocess.Popen(
                         [sys.executable, "-m", "developmental_ai.d2_peer",
                          "--synthetic-d2-test", str(home)],
