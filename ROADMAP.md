@@ -662,3 +662,15 @@ Research details: [docs/PROCEDURAL_SKILL_TRANSFER.md](docs/PROCEDURAL_SKILL_TRAN
 - [ ] Next: preregister new unknown role vocabularies, multiple independently generated prerequisite graphs and substantially stricter budgets, with evaluation of exploration cost and reusable skill composition. Preserve D1 blind validation as open, source boundaries, and V2A-before/overlapping-V2B order.
 
 Research: [docs/ONLINE_PREREQUISITE_PROBING.md](docs/ONLINE_PREREQUISITE_PROBING.md).
+
+## 2026-10-18 — Context-indexed hidden-prerequisite plan memory (experimental)
+
+- [x] Freeze `benchmarks/context_plan_transfer_protocol.json` on GitHub before evaluation, including same-goal alternating contexts, shuffled per-episode action names, and seven-attempt budgets.
+- [x] Implement a simulation-only, two-context successful-trace library that uses only public role/context identifiers, action feedback and terminal success; add exact decision/reward-history replay and tamper rejection.
+- [x] Evaluate six previously inspected seeds on 80 alternating test episodes each with matched latest-plan, reset, lexical and privileged-graph oracle baselines.
+- [x] Preserve outcomes: **387/480** context-keyed recall, **217/480** most-recent plan, **52/480** no retention, **480/480** oracle. Cold 50/120, warm 337/360 for context-keyed method. Run 16 new tests, 8 original baseline tests and unchanged transfer benchmark.
+- [ ] **D4 NOT closed:** this is an engineered per-context dictionary storing whole successful action sequences, not learned causal prerequisites or skills that compose across unseen graphs. Two graph templates, stable role IDs, and public context keys enable the gain; no true blind test or no-role-ID setting was evaluated.
+- [ ] Next: freeze genuinely new graph structures, remove stable role/context identity, evaluate skill composition and failure recovery with matched per-context replay baseline; do not retune this protocol after results. D1, D3, D4 and full CI verification remain open.
+- [ ] Preserve the approved V2A affective cognition before/overlapping V2B virtual home and prohibit any external action authority.
+
+Details: [docs/CONTEXT_PLAN_MEMORY.md](docs/CONTEXT_PLAN_MEMORY.md).
