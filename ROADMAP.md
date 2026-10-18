@@ -650,3 +650,15 @@ Research details: [docs/PROCEDURAL_SKILL_TRANSFER.md](docs/PROCEDURAL_SKILL_TRAN
 - [ ] **Failed D3/D4 transfer gate:** learned workshop success **480/480**, repair zero-shot **222/480**, weaker than random **331/480** and hand-coded role order **480/480**. Prerequisite-role vocabulary remains engineered and inferred intersections are not independent causal evidence.
 - [ ] Next: preregister an experiment where an agent probes unfamiliar prerequisites *during* a target task, without assuming workshop-specific role order; compare blocked-attempt cost to role heuristics and hidden-DAG oracle, and seek independent held-out task generators.
 - [ ] D1 blind validation, D3 cross-family generalization and D4 reusable skill composition still OPEN. V2A precedes and overlaps V2B; AthenZ/Synveil permissions stay external.
+
+
+## 2026-10-18 — Online target-task hidden-prerequisite probes (experimental)
+
+- [x] Freeze `benchmarks/online_prerequisite_probing_protocol.json` before evaluation (commit `3a1a931`).
+- [x] Add `OnlinePrerequisiteAgent`, a public-frame-only Bayesian prerequisite-hypothesis learner with bounded attempted actions, accepted/blocked feedback, and replay-verified checkpoint recovery.
+- [x] Evaluate unchanged workshop and repair generators on six previously inspected seeds, 80 episodes per seed/family; both cold-start first-20 and warm remaining-60 success recorded.
+- [x] Online probe agent achieved **960/960** success, versus workshop-trained static skill **712/960**, naive goal-first+untried **810/960**; average blocked attempts **1.05** versus **3.68** for goal+untried.
+- [ ] **D3/D4 still OPEN**: an engineered stable seven-role vocabulary and 12-action budget make the worlds easy. Hand-coded role-order and privileged oracle both score **960/960**, with fewer blocked actions (zero). The online agent already scores 240/240 on cold episodes; no evidence that retained cross-episode knowledge improves completion.
+- [ ] Next: preregister new unknown role vocabularies, multiple independently generated prerequisite graphs and substantially stricter budgets, with evaluation of exploration cost and reusable skill composition. Preserve D1 blind validation as open, source boundaries, and V2A-before/overlapping-V2B order.
+
+Research: [docs/ONLINE_PREREQUISITE_PROBING.md](docs/ONLINE_PREREQUISITE_PROBING.md).
