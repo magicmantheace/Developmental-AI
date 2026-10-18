@@ -63,6 +63,13 @@ class D2PeerUnitTests(unittest.TestCase):
             self.assertEqual(ledger, ledger2)
             self.assertEqual(ledger["scope"], "simulation-only")
 
+    def test_demo_requires_explicit_enable_without_import_side_effects(self):
+        from developmental_ai.d2_demo import run_demo
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaisesRegex(ValueError, "disabled"):
+                run_demo(Path(tmp))
+            self.assertEqual(list(Path(tmp).iterdir()), [])
+
     def test_entry_point_rejects_implicit_launch(self):
         from developmental_ai.d2_peer import main
         old = sys.argv
@@ -76,6 +83,31 @@ class D2PeerUnitTests(unittest.TestCase):
 @unittest.skipUnless(importlib.util.find_spec("athenz") is not None,
                      "AthenZ Python package must be installed to test D2 cross-process protocol")
 class OptionalInstalledAthenZInteropTests(unittest.TestCase):
+    def test_demo_denies_unapproved_source_without_launch(self):
+        from athenz.developmental_consent import SyntheticSourceRegistry
+        from developmental_ai.d2_demo import run_demo
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp) / "private"
+            with SyntheticSourceRegistry(home):
+                pass
+            with self.assertRaisesRegex(ValueError, "Preapprove"):
+                run_demo(home, enabled=True)
+
+    def test_preapproved_real_private_simulator_demo(self):
+        from athenz.developmental_consent import SyntheticSourceRegistry
+        from developmental_ai.d2_demo import run_demo
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp) / "private"
+            with SyntheticSourceRegistry(home) as grants:
+                preview = grants.preview(SOURCE, "approve")
+                grants.review(SOURCE, "approve",
+                              review_sha256=preview["review_sha256"],
+                              confirmed=True)
+            result = run_demo(home, enabled=True)
+            self.assertEqual(result["status"], "verified_synthetic_process_roundtrip")
+            self.assertEqual(result["authenticated_acknowledgments"], 2)
+            self.assertFalse(result["actions_executed"])
+
     def test_separate_process_real_simulator_trace_durable_ack(self):
         from athenz.developmental_bridge import synthetic_event
         from athenz.developmental_consent import SyntheticSourceRegistry
