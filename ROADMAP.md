@@ -641,3 +641,12 @@ See [repeated reversal results](docs/REPEATED_REVERSALS.md).
 - [ ] Preserve open D3/D4 and the approved V2A-before/overlapping-V2B milestones, with external AthenZ/Synveil authority separate.
 
 Research details: [docs/PROCEDURAL_SKILL_TRANSFER.md](docs/PROCEDURAL_SKILL_TRANSFER.md).
+
+## 2026-10-18 — Hidden-precondition learning without public DAG (experimental)
+
+- [x] Precommit [frozen comparison](benchmarks/hidden_prerequisite_protocol.json) before testing; withhold the entire prerequisite graph from learner frames.
+- [x] Add deterministic, budgeted attempted-action simulation; train on workshop-only accepted/blocked outcomes and save replay-verifiable role-precondition evidence.
+- [x] Report all six inspected seeds, random/goal-first/role-order/oracle controls, train-only validation, and unchanged historical transfer benchmark.
+- [ ] **Failed D3/D4 transfer gate:** learned workshop success **480/480**, repair zero-shot **222/480**, weaker than random **331/480** and hand-coded role order **480/480**. Prerequisite-role vocabulary remains engineered and inferred intersections are not independent causal evidence.
+- [ ] Next: preregister an experiment where an agent probes unfamiliar prerequisites *during* a target task, without assuming workshop-specific role order; compare blocked-attempt cost to role heuristics and hidden-DAG oracle, and seek independent held-out task generators.
+- [ ] D1 blind validation, D3 cross-family generalization and D4 reusable skill composition still OPEN. V2A precedes and overlaps V2B; AthenZ/Synveil permissions stay external.
