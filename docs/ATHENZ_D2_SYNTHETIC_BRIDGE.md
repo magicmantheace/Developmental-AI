@@ -100,3 +100,51 @@ key provisioning/rotation, immutable owner-granted synthetic source
 references and eventually real human-source consent, and an independently
 tested receiver of learner episodes. This experiment does not grant
 Developmental AI access to owner memories, tools, or model promotion.
+
+## Fixed, preapproved local demonstration
+
+The private integration branch also contains
+`python -m developmental_ai.d2_demo`. The command is deliberately
+**disabled unless** the exact `--synthetic-d2-demo` flag is present,
+and it never implicitly approves a source, launches a user-supplied
+executable, runs arbitrary shell commands, or reads a real owner profile.
+
+With both repositories installed into one Python environment, use an
+outside-Git private test home. First review the exact synthetic grant
+using AthenZ's two-step CLI:
+
+```sh
+python -m athenz.developmental_consent_cli --home /private/test/home preview synthetic:interop approve
+python -m athenz.developmental_consent_cli --home /private/test/home review synthetic:interop approve --review-sha256 <digest-from-preview> --confirm
+```
+
+Only after inspecting/confirming that **synthetic-only** preview:
+
+```sh
+python -m developmental_ai.d2_demo --synthetic-d2-demo --home /private/test/home
+```
+
+The first command approves no personal records or real-world actions.
+The second generates all three 32-byte protocol keys in memory for
+this one run, launches the **fixed** private module
+`developmental_ai.d2_peer` under the current Python interpreter
+(no shell and no externally provided executable path), and passes
+bootstrap bytes over a binary stdin pipe. It computes the frozen
+simulator trace digest locally, sends its signed SHA-only reference,
+checks two signed proposals against the durable AthenZ receiver, then
+requires two independent session-HMAC delivery receipts in the private
+learner's outbox before reporting a no-action result. Both processes
+have strict bounded lifetimes.
+
+`tests/test_d2_peer.py` now includes tests for default disablement,
+missing/invalid bootstrap, deterministic trace verification, denied
+unapproved sources, and optional separate-process end-to-end behavior
+when AthenZ is also importable. **None of these private tests is
+reported as passed:** current private Actions infrastructure still
+blocks job execution before any test begins. A successful public
+AthenZ mock-peer test does not validate the private implementation.
+
+This demo is a D2 research fixture, **not** a production training loop,
+OS identity guarantee, authenticated human consent, independent mind
+or model promotion system. Do not supply personal data or replace
+ephemeral demo secrets with real owner credentials.
