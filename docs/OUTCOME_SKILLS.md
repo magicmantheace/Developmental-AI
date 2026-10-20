@@ -107,9 +107,9 @@ from developmental_ai.outcome_skills import OutcomeSkills
 learned = OutcomeSkills()
 learned.observe("collect_ore", [], ["ore"], True)
 learned.observe("smelt", ["ore"], ["ingot", "ore"], True)
-learned.save("private_data/outcome_skills.json")  # keep outside Git
+learned.save("private/outcome_skills.json")  # private/ is excluded by .gitignore
 
-restored = OutcomeSkills.load("private_data/outcome_skills.json")
+restored = OutcomeSkills.load("private/outcome_skills.json")
 assert restored.knowledge() == learned.knowledge()
 ```
 
