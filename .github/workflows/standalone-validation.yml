@@ -26,6 +26,10 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Historical transfer regression (unchanged 3-seed protocol)
         run: python -m benchmarks.transfer_benchmark --seeds 17 23 41 --train-episodes 5000 --test-episodes 300
+      - name: Symbolic skill reuse - development cohort
+        run: python -m benchmarks.outcome_skills_benchmark --cohort dev
+      - name: Symbolic skill reuse - inspected additional cohort
+        run: python -m benchmarks.outcome_skills_benchmark --cohort additional
 
   windows-policy:
     runs-on: windows-latest
@@ -36,4 +40,4 @@ jobs:
         with:
           python-version: "3.11"
       - name: Policy review and original learner regression
-        run: python -m unittest tests.test_policy_review tests.test_transfer tests.test_organism -v
+        run: python -m unittest tests.test_policy_review tests.test_outcome_skills tests.test_transfer tests.test_organism -v
