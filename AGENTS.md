@@ -15,6 +15,19 @@ Priority order: (1) generalization beyond a single simulator family,
 learning and retention, (4) learned reusable skills and composition,
 (5) bounded autonomous simulated goals, (6) sample/compute efficiency.
 
+The optional `benchmarks.continual_skill_benchmark` is a later
+development-only target-adaptation/retention follow-up. It **does train** on
+the nominally unseen delivery task before reporting later success and thus
+cannot be called zero-shot transfer. Source-trained agents have 80 extra
+source episodes relative to the matched target-only training control. Preserve
+the earlier 0/360 unadapted delivery result. Report the complete learning
+curve, the return-to-assembly check, action cost, reference oracle, unchanged
+source control, and full checkpoint replay. See
+`docs/CONTINUAL_SKILL_RETENTION.md` and run both cohorts plus its focused
+tests when changing this experiment. Do not portray the shared glyph action
+ontology, repeated test indices, or inspected cohorts as blind independent
+task-family generalization.
+
 The new optional `outcome_skills.py` experiment has **engineered shared
 glyphs and fact semantics**; its assembly success and delivery failures do
 NOT close D3 or D4. Run `tests.test_outcome_skills` and
