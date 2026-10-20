@@ -1,0 +1,39 @@
+name: Standalone learning validation
+
+on:
+  push:
+    branches:
+      - "priority/**"
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  linux-full:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile Python sources
+        run: python -m compileall -q developmental_ai benchmarks tests
+      - name: Full repository unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Historical transfer regression (unchanged 3-seed protocol)
+        run: python -m benchmarks.transfer_benchmark --seeds 17 23 41 --train-episodes 5000 --test-episodes 300
+
+  windows-policy:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Policy review and original learner regression
+        run: python -m unittest tests.test_policy_review tests.test_transfer tests.test_organism -v
