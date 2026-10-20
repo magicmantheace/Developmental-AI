@@ -3,7 +3,9 @@ from __future__ import annotations
 
 import copy
 import json
+import tempfile
 import unittest
+from pathlib import Path
 
 from developmental_ai.outcome_skills import OutcomeSkills, check_frame, digest
 from benchmarks.outcome_skills_benchmark import SkillWorld, learn, run, DEV, measure, TRAIN, TEST
@@ -39,6 +41,25 @@ class OutcomeSkillsTests(unittest.TestCase):
         bad["sha256"]=digest(bad["state"])
         with self.assertRaisesRegex(ValueError,"does not replay"):
             OutcomeSkills.restore(bad)
+
+    def test_disk_checkpoint_survives_restart_and_corruption(self):
+        original=learn(17011)
+        with tempfile.TemporaryDirectory() as temp:
+            path=Path(temp)/"skills.json"
+            original.save(path)
+            restored=OutcomeSkills.load(path)
+            self.assertEqual(original.record(),restored.record())
+            a=SkillWorld(17011,"assembly","test",90000).frame()
+            self.assertEqual(original.choose(a), restored.choose(a))
+            path.write_text('{"invalid":true}',encoding="utf-8")
+            with self.assertRaises(ValueError):OutcomeSkills.load(path)
+
+    def test_rejects_oversized_observation(self):
+        learner=OutcomeSkills()
+        with self.assertRaises(ValueError):
+            learner.observe("x"*65, [], ["valid"], True)
+        with self.assertRaises(ValueError):
+            learner.observe("valid", [], ["x"*65], True)
 
     def test_rejects_privileged_or_malformed_frames(self):
         f=SkillWorld(17011,"metal","test",90000).frame()
