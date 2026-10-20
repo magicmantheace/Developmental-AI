@@ -34,8 +34,9 @@ def check_frame(frame):
         or type(frame["tick"]) is not int or frame["tick"] < 0
         or type(frame["remaining"]) is not int or frame["remaining"] < 0
         or type(frame["done"]) is not bool
-        or type(frame["facts"]) is not list or len(frame["facts"]) > MAX_FACTS or frame["facts"] != sorted(set(frame["facts"]))
+        or type(frame["facts"]) is not list or len(frame["facts"]) > MAX_FACTS
         or any(type(x) is not str or not x or len(x) > MAX_TOKEN for x in frame["facts"])
+        or frame["facts"] != sorted(set(frame["facts"]))
         or type(frame["actions"]) is not list or len(frame["actions"]) > 24):
         raise ValueError("invalid public frame")
     aliases, glyphs = set(), set()
@@ -68,8 +69,8 @@ class OutcomeSkills:
         if (type(glyph) is not str or not glyph or len(glyph) > MAX_TOKEN or type(accepted) is not bool
             or type(before) is not list or type(after) is not list
             or len(before) > MAX_FACTS or len(after) > MAX_FACTS
-            or before != sorted(set(before)) or after != sorted(set(after))
             or any(type(x) is not str or not x or len(x) > MAX_TOKEN for x in before + after)
+            or before != sorted(set(before)) or after != sorted(set(after))
             or len(self.events) >= MAX_HISTORY):
             raise ValueError("invalid or oversized observation")
         if accepted and (not set(before) <= set(after) or len(after) != len(before) + 1):
@@ -95,7 +96,7 @@ class OutcomeSkills:
         check_frame(frame)
         if frame["done"]:
             raise ValueError("finished simulation")
-        if any(type(x) is not str for x in blocked):
+        if type(blocked) not in (tuple, list, set) or any(type(x) is not str for x in blocked):
             raise ValueError("bad local blocked set")
         actions = {item["glyph"]: item["id"] for item in frame["actions"]}
         goal = next(item["glyph"] for item in frame["actions"] if item["id"] == frame["goal"])
