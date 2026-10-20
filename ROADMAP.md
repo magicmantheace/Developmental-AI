@@ -1,5 +1,27 @@
 # Developmental AI — Milestone roadmap through 2029-02-09
 
+> **CURRENT DEVELOPMENT OVERRIDE (2026-10-20):** The immediate priority is
+> measurable standalone learning, not AthenZ or Synveil integration. Preserve
+> existing integration interfaces but defer additional work and keep the
+> experimental integration pull request unmerged. The near-term work sequence
+> is independent cross-family generalization, durable memory, continual
+> retention, reusable skills, and bounded sandbox goals. Experimental
+> outcomes do not close D3/D4 until independent protocols and strong
+> baselines establish transferable gains. See
+> [standalone priority](docs/STANDALONE_PRIORITY_2026_10_20.md) and
+> [outcome-skills experiment](docs/OUTCOME_SKILLS.md). Preserve the existing
+> 2029 target and V2A-before/overlapping-V2B ordering.
+>
+> **2026-10-20 working branch:** `priority/standalone-policy-review-2026-10-20`
+> introduces manual policy update review and a limited compositional
+> symbolic-skill experiment. The latter achieved 360/360 on assembly,
+> but failed 0/360 on the deeper delivery chain; both share deliberately
+> engineered action semantics. Results are development/supplemental, not blind.
+> The full repository test suite remains **unvalidated**, because GitHub
+> Actions failed before jobs executed. Keep the changes in draft PR #2
+> until full local or runner validation is available.
+
+
 ## Product boundary
 
 This repository owns **learning and simulation**, not the human's identity or the operating system. AthenZ owns consented identity, user-approved memories, dialogue, human-vs-digital autobiographies, and permissioned agent goals. Synveil owns operating-system services, deterministic policy, and controlled actuators. We should never make Synveil a prerequisite for running this engine in a Windows or generic Linux development environment.
