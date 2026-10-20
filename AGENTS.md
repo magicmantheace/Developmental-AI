@@ -1,3 +1,39 @@
+# Critical development override — 2026-10-20
+
+**Standalone learning first.** This directive supersedes earlier instructions
+that would prioritize AthenZ, Synveil, integration plumbing, IPC, synthetic
+adapters, UI work, or unrelated infrastructure. Preserve functioning
+integration code and leave its existing PR unmerged, but do not implement or
+complete integrations unless separately authorized. Do not modify AthenZ
+or Synveil repositories in this development phase.
+
+Every development pass should attempt multiple meaningful, related
+implementation tasks where possible. Measure improvements over strong
+baselines, with unchanged historical protocols and explicit negative results.
+Priority order: (1) generalization beyond a single simulator family,
+(2) long-term experiential/semantic/procedural memory, (3) continual
+learning and retention, (4) learned reusable skills and composition,
+(5) bounded autonomous simulated goals, (6) sample/compute efficiency.
+
+The new optional `outcome_skills.py` experiment has **engineered shared
+glyphs and fact semantics**; its assembly success and delivery failures do
+NOT close D3 or D4. Run `tests.test_outcome_skills` and
+`benchmarks.outcome_skills_benchmark` on both documented cohorts if you
+modify it. Document each phase of evaluation as development, supplemental
+inspected, or genuinely independent. See `docs/OUTCOME_SKILLS.md`.
+
+Do not automatically promote policy or weight changes. Staged candidates
+must be reviewed and approved. `policy_review.py` is a research-stage
+regression gate, not a guarantee of safe lifelong learning. Require
+restart/corruption regression tests for schema changes and run the **full**
+test suite plus unchanged original transfer benchmark before merging.
+Both current Linux and Windows Actions jobs fail before executing any
+steps; this is **not a passing CI signal**. A local scoped test does not
+establish full repository validation. Preserve V2A (computational affect)
+before and overlapping V2B (virtual home) in the longer roadmap.
+
+---
+
 # Worker instructions
 
 **Purpose:** Build a verifiable local-first learning engine for the independent-twin research program, due 2029-02-09. Own simulations, policies, procedural memory, reproducible evaluation, and tested integration APIs only.
