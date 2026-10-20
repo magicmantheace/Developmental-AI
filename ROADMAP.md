@@ -674,3 +674,15 @@ Research: [docs/ONLINE_PREREQUISITE_PROBING.md](docs/ONLINE_PREREQUISITE_PROBING
 - [ ] Preserve the approved V2A affective cognition before/overlapping V2B virtual home and prohibit any external action authority.
 
 Details: [docs/CONTEXT_PLAN_MEMORY.md](docs/CONTEXT_PLAN_MEMORY.md).
+
+
+## 2026-10-20 — Unannounced hidden-graph plan repair and outcome-based trace compaction
+
+- [x] Precommit two **separate** evaluation protocols `benchmarks/plan_repair_protocol.json` and `benchmarks/plan_compaction_protocol.json`; the latter was designed after the first result and is explicitly exploratory, not an independent confirmation.
+- [x] Add a simulation-only procedural environment where hidden A→B→A prerequisites change without a public context label. Per-episode action aliases shuffle while stable opaque role identities remain engineered; seven actions maximum.
+- [x] Publish six-seed repair evaluation: cached repair **434/480**, latest-plan reuse **434/480** (tie), reactive/no-memory **154/480**, hand-coded role order and privileged graph oracle **480/480** each. Plans were overly complete and often worked after the shift.
+- [x] Learn to test removing one action from a successful trace using later public action and terminal outcomes. Frozen follow-up: compaction **395/480** success versus cached repair **434/480**, but actions/episode **4.96** versus **7.00**; a success-efficiency trade-off, not a safe improvement.
+- [x] Add 17 new tests including deterministic replay, malformed public observation rejection, replay-invalidating altered state, and mid-session recovery; run 25 tests total in a local reconstructed checkout, with unchanged transfer benchmark **76.0% / 69.0% / 66.67%**.
+- [ ] **D1/D3/D4 remain OPEN**: new independent family generators, hidden role semantics, robust action-budget-aware causal planning, calibrated success-over-efficiency promotion gates, and full-remote CI still required. Never use reward successes or checksums as owner authorization. Approved **V2A affective cognition before/overlapping V2B virtual home** remains unchanged.
+
+See [plan repair](docs/PLAN_REPAIR.md) and [plan compaction](docs/PLAN_COMPACTION.md).
