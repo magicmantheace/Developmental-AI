@@ -7,10 +7,16 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import tempfile
+from pathlib import Path
 from collections import Counter
 
 SCHEMA = "developmental-ai.outcome-skills/v1"
 MAX_HISTORY = 4000
+MAX_FACTS = 32
+MAX_TOKEN = 64
+MAX_CHECKPOINT_BYTES = 4 * 1024 * 1024
 
 
 def canonical(obj):
@@ -28,14 +34,14 @@ def check_frame(frame):
         or type(frame["tick"]) is not int or frame["tick"] < 0
         or type(frame["remaining"]) is not int or frame["remaining"] < 0
         or type(frame["done"]) is not bool
-        or type(frame["facts"]) is not list or frame["facts"] != sorted(set(frame["facts"]))
-        or any(type(x) is not str or not x for x in frame["facts"])
+        or type(frame["facts"]) is not list or len(frame["facts"]) > MAX_FACTS or frame["facts"] != sorted(set(frame["facts"]))
+        or any(type(x) is not str or not x or len(x) > MAX_TOKEN for x in frame["facts"])
         or type(frame["actions"]) is not list or len(frame["actions"]) > 24):
         raise ValueError("invalid public frame")
     aliases, glyphs = set(), set()
     for a in frame["actions"]:
         if (type(a) is not dict or set(a) != {"id", "glyph"}
-            or any(type(x) is not str or not x for x in a.values())
+            or any(type(x) is not str or not x or len(x) > 128 for x in a.values())
             or a["id"] in aliases or a["glyph"] in glyphs):
             raise ValueError("invalid action descriptors")
         aliases.add(a["id"]); glyphs.add(a["glyph"])
@@ -59,10 +65,11 @@ class OutcomeSkills:
         self._success = {}
 
     def observe(self, glyph, before, after, accepted):
-        if (type(glyph) is not str or not glyph or type(accepted) is not bool
+        if (type(glyph) is not str or not glyph or len(glyph) > MAX_TOKEN or type(accepted) is not bool
             or type(before) is not list or type(after) is not list
+            or len(before) > MAX_FACTS or len(after) > MAX_FACTS
             or before != sorted(set(before)) or after != sorted(set(after))
-            or any(type(x) is not str or not x for x in before + after)
+            or any(type(x) is not str or not x or len(x) > MAX_TOKEN for x in before + after)
             or len(self.events) >= MAX_HISTORY):
             raise ValueError("invalid or oversized observation")
         if accepted and (not set(before) <= set(after) or len(after) != len(before) + 1):
@@ -145,6 +152,33 @@ class OutcomeSkills:
             raise ValueError("no training evidence")
         state = {"schema": SCHEMA, "events": self.events, "knowledge": self.knowledge()}
         return {"state": json.loads(canonical(state)), "sha256": digest(state)}
+
+    def save(self, path):
+        """Atomically save a bounded local checkpoint; caller controls its path."""
+        target = Path(path)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        payload = canonical(self.record()) + "\n"
+        if len(payload.encode("utf-8")) > MAX_CHECKPOINT_BYTES:
+            raise ValueError("skill checkpoint exceeds size limit")
+        temp_path = None
+        try:
+            with tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=target.parent,
+                                             prefix=".skill-pending-", delete=False) as file:
+                temp_path = Path(file.name)
+                file.write(payload)
+                file.flush()
+                os.fsync(file.fileno())
+            os.replace(temp_path, target)
+        finally:
+            if temp_path is not None:
+                temp_path.unlink(missing_ok=True)
+
+    @classmethod
+    def load(cls, path):
+        source = Path(path)
+        if source.stat().st_size > MAX_CHECKPOINT_BYTES:
+            raise ValueError("skill checkpoint exceeds size limit")
+        return cls.restore(json.loads(source.read_text(encoding="utf-8")))
 
     @classmethod
     def restore(cls, saved):
