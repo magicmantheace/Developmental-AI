@@ -4,6 +4,30 @@ A local-first, inspectable **developmental learning research platform**. Its lon
 
 **Target program date:** February 9, 2029. The target is a functioning, continuously learning, independent digital agent modeled on a consenting person's *documented* experiences and choices. Personal identity data belong in the protected AthenZ profile, **not in this repository**.
 
+## October 20, 2026 — standalone learning priority (draft branch)
+
+Development now prioritizes independent learning, cross-family
+generalization, persistent memory, continually retained skills and bounded
+simulated goals **before any new AthenZ/Synveil integration**.
+The standalone work is in an **unmerged draft PR**, not the default main branch.
+
+- [Policy update review](docs/STANDALONE_PRIORITY_2026_10_20.md):
+  isolated candidate training, paired train-only regression review,
+  explicit approval and persistent promotion safeguards. This is not
+  statistical proof of improved lifelong learning.
+- [Outcome-derived symbolic skills](docs/OUTCOME_SKILLS.md):
+  action-outcome evidence, proposed prerequisites, persistent replayable
+  learned skills and failure-inclusive development benchmarks. Simulations
+  use engineered shared glyphs/facts; zero-shot delivery remains **0/360**.
+- [Sequential skill adaptation and retention](docs/CONTINUAL_SKILL_RETENTION.md):
+  explicit delivery training after source-skill acquisition with target-only
+  and frozen-source controls and return-to-assembly retention checks.
+  Target practice is **not** zero-shot generalization.
+
+Validation notice: private Actions have failed **before any test steps run**.
+The new staged benchmark and full upstream suite have not been verified.
+Do not merge or report new exact benchmark results until tests run.
+
 ## Implemented now
 
 1. `developmental_ai.organism`: original 6×6 proof of concept, with five actions, food, hazards, intrinsic novelty, SQLite episodic events, semantic landmarks and saved Q-values. Works on Python standard library alone.
