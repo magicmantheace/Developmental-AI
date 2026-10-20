@@ -68,10 +68,12 @@ class OutcomeSkillsTests(unittest.TestCase):
             with self.assertRaises(ValueError):check_frame(bad)
         bad=copy.deepcopy(f);bad["actions"].append(copy.deepcopy(bad["actions"][0]))
         with self.assertRaises(ValueError):check_frame(bad)
+        bad=copy.deepcopy(f);bad["facts"]=[[]]
+        with self.assertRaises(ValueError):check_frame(bad)
 
     def test_rejects_malformed_transitions(self):
         a=OutcomeSkills()
-        for before,after,accepted in [([], ["a","b"],True),([], ["a"],False),(["a"],[],True)]:
+        for before,after,accepted in [([], ["a","b"],True),([], ["a"],False),(["a"],[],True), ([],[[]],True)]:
             with self.assertRaises(ValueError):a.observe("verb",before,after,accepted)
 
     def test_historical_transfer_succeeds_on_composed_goal_development_fixture(self):
