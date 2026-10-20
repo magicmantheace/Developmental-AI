@@ -17,6 +17,17 @@
 > symbolic-skill experiment. The latter achieved 360/360 on assembly,
 > but failed 0/360 on the deeper delivery chain; both share deliberately
 > engineered action semantics. Results are development/supplemental, not blind.
+> **Additional optional learning experiment (2026-10-20):**
+> `benchmarks/continual_skill_benchmark.py` measures source training,
+> then 0/1/2/4/8/20 episodes of explicit delivery-task training, and a
+> return-to-assembly retention check, with frozen-source, target-only,
+> random and privileged-recipe controls. Source pretraining provides
+> extra total experience; the common symbolic action ontology remains
+> engineered. This does not revise the original zero-shot failure or
+> establish independent cross-family generalization. See
+> [continual skill retention](docs/CONTINUAL_SKILL_RETENTION.md).
+> Exact full-repository benchmark execution remains pending.
+
 > The full repository test suite remains **unvalidated**, because GitHub
 > Actions failed before jobs executed. Keep the changes in draft PR #2
 > until full local or runner validation is available.
