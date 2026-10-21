@@ -821,3 +821,19 @@ See [plan repair](docs/PLAN_REPAIR.md) and [plan compaction](docs/PLAN_COMPACTIO
 > live agent promotion or D3/D4 closure. Full CI and real
 > generalization remain open. See
 > [C adaptation report](docs/QUARANTINED_C_ADAPTATION.md).
+
+
+> **October 21, 2026 — public numeric-feature learning study:**
+> A separate simulation generates fresh opaque action handles
+> independent of two observable, hand-designed numeric properties;
+> no private action-name hash is given to the learner. The model
+> learns 5-neighbor outcome associations from 80 source episodes
+> and reaches **360/360** zero-target-training goals in each
+> of two generators with the *same constructed feature rule*.
+> When the consequences reverse, it reaches **0/360** with
+> **360 harmful outcomes**. This is NOT robust transfer
+> to independently designed physics. Keep D3/D4 open.
+> The next milestone is detecting/handling a changed relation
+> *before* harmful intervention, with genuinely new generated
+> rules, bounded uncertainty and safe abstention. See
+> [experimental evidence](docs/OBSERVABLE_AFFORDANCE_TRANSFER.md).
