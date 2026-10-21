@@ -23,6 +23,17 @@ The standalone work is in an **unmerged draft PR**, not the default main branch.
   explicit delivery training after source-skill acquisition with target-only
   and frozen-source controls and return-to-assembly retention checks.
   Target practice is **not** zero-shot generalization.
+- [Context-indexed A→B→A retained risk memory](docs/CONTEXTUAL_AFFORDANCE.md):
+  after separately observing 80 training episodes in each of two
+  simulated cargo variants, recall the correct stored hazard
+  association using an engineered public numeric context cue.
+  Across six inspected seeds, **360/360** completions occurred in
+  the original context, changed descriptor context and return
+  to original; wrong-context and ambiguous-cue controls regressed
+  substantially. This measures cue-supported recall, NOT
+  unsupervised identification of changing physics or independent
+  action-semantic discovery.
+
 - [Stable numeric affordance memory](docs/AFFORDANCE_MEMORY.md):
   optional outcome-correlated hazard avoidance learned from 80 cargo
   training episodes per seed, with replayable history and numeric
