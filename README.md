@@ -23,6 +23,14 @@ The standalone work is in an **unmerged draft PR**, not the default main branch.
   explicit delivery training after source-skill acquisition with target-only
   and frozen-source controls and return-to-assembly retention checks.
   Target practice is **not** zero-shot generalization.
+- [Anonymous-action cross-dynamics evaluation](docs/OPAQUE_CAUSAL_GENERALIZATION.md):
+  source strategy choice and episode-local feedback probing on different
+  hidden relay/cargo dynamics, with rotating action handles and numeric
+  sensor channels. The selector chose the same fixed heuristic on all six
+  seeds; cargo success 147/360 versus cyclic 145/360 and random 82/360.
+  **Result does not establish learned transferable action semantics.**
+  The precommitted protocol and failure diagnosis are preserved.
+
 - [Optional prerequisite recovery](docs/PREREQUISITE_RECOVERY.md):
   a source-bound, replayable controller that explores unfamiliar actions
   then defers to the existing learner when a new successful action effect
