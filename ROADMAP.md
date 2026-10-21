@@ -793,3 +793,16 @@ Details: [docs/CONTEXT_PLAN_MEMORY.md](docs/CONTEXT_PLAN_MEMORY.md).
 - [ ] **D1/D3/D4 remain OPEN**: new independent family generators, hidden role semantics, robust action-budget-aware causal planning, calibrated success-over-efficiency promotion gates, and full-remote CI still required. Never use reward successes or checksums as owner authorization. Approved **V2A affective cognition before/overlapping V2B virtual home** remains unchanged.
 
 See [plan repair](docs/PLAN_REPAIR.md) and [plan compaction](docs/PLAN_COMPACTION.md).
+
+
+> **2026-10-21 sandbox C adaptation candidate (experimental):**
+> After the two-sentinel policy distinguished known A/B from untrained C,
+> its C task success was still **0/360** (abstentions). A quarantined
+> follow-up trains a fresh risk memory from **80 C simulator episodes
+> per seed**, validates 24 separate train-namespace A/B/C tasks,
+> and requires manual receipt approval before a *sandbox-only*
+> candidate controller can be exercised. Existing policy/default is
+> unchanged. This is **not autonomous discovery or zero-shot
+> learning**: engineered descriptor IDs and an inspected single
+> cargo simulator remain. No D3/D4 milestone is closed. See
+> [quarantined C protocol](docs/QUARANTINED_C_ADAPTATION.md).

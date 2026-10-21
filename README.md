@@ -4,6 +4,15 @@ A local-first, inspectable **developmental learning research platform**. Its lon
 
 **Target program date:** February 9, 2029. The target is a functioning, continuously learning, independent digital agent modeled on a consenting person's *documented* experiences and choices. Personal identity data belong in the protected AthenZ profile, **not in this repository**.
 
+- [Quarantined C adaptation and manual-review rehearsal](docs/QUARANTINED_C_ADAPTATION.md):
+  optional, offline C-specific action-risk learning from 80 simulator
+  episodes per seed, followed by disjoint A/B/C validation and a
+  single-use explicit approval receipt. The simulated caller can
+  exercise a candidate in tests, but there is **no automatic
+  activation, real owner authentication, independent domain transfer
+  or default model change**. Results require separate focused and
+  unchanged full CI verification.
+
 ## October 20, 2026 — standalone learning priority (draft branch)
 
 Development now prioritizes independent learning, cross-family

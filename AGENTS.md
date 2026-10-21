@@ -1,3 +1,23 @@
+# Quarantined C adaptation (2026-10-21)
+
+Quarantined, simulation-only `developmental_ai/quarantined_c.py`
+stores a new C `RiskMemory` from **80 separate C training
+episodes**, after the dual-sentinel controller correctly flagged all
+360 C episodes as unknown while completing 0 C goals. The code
+rehearses 24 **disjoint train-namespace** A/B/C episodes per seed,
+rejecting any C risk candidate that overlaps known risks or fails a
+24/24 goal, zero-spoilage, zero-stall criterion. Receipt review,
+single-use explicit approval and stale-memory checks are sandbox
+programming constructs, NOT verified human authorization. Test
+`approved=True` only represents a simulated caller. All three
+environments retain engineered two-byte action identity descriptors,
+one deterministic cargo simulator, and already-inspected cohorts.
+Do NOT call this independent generalization or D3/D4 completion,
+do not auto-promote or deploy, do not alter AthenZ/Synveil.
+See `docs/QUARANTINED_C_ADAPTATION.md`. Dedicated workflow
+`quarantined-c-validation.yml` checks complete cohorts;
+historical full CI and test suite must remain intact.
+
 The optional `prerequisite_recovery.py` is a **post-hoc, engineered
 handoff** to the old `OutcomeSkills.choose` policy after new action effects
 are observed. It is not a corrected causal learner, independent transfer, or
