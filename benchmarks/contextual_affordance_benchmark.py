@@ -54,8 +54,11 @@ def trial(seed, split, index, phase, method, memories=None, *, collect=False):
     elif method == "novel":
         controller = FilteredNovel()
     elif method == "risk_oracle":
-        harmful = "spoil" if phase == "A" else "wash"
-        controller = FilteredNovel(PrivilegedRisk(token(signature(seed, "cargo", harmful))))
+        # The privileged benchmark reference reads the simulator's true
+        # descriptor assignment (including deterministic collision repair).
+        # This is NEVER exposed to ContextNovel/ContextMemory.
+        controller = FilteredNovel(
+            PrivilegedRisk(token(world.world._features["spoil"])))
     else:
         controller = None
     # Hidden rules and label used ONLY by privileged reference or scoring.
