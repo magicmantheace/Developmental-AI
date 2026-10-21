@@ -46,6 +46,10 @@ jobs:
         run: python -m benchmarks.opaque_causal_benchmark --cohort development
       - name: Opaque numeric cross-dynamics - reserved
         run: python -m benchmarks.opaque_causal_benchmark --cohort reserved
+      - name: Stable numeric affordance memory - development
+        run: python -m benchmarks.affordance_benchmark --cohort development
+      - name: Stable numeric affordance memory - reserved
+        run: python -m benchmarks.affordance_benchmark --cohort reserved
 
   windows-policy:
     runs-on: windows-latest
@@ -56,4 +60,4 @@ jobs:
         with:
           python-version: "3.11"
       - name: Policy review and original learner regression
-        run: python -m unittest tests.test_policy_review tests.test_outcome_skills tests.test_continual_skill_benchmark tests.test_prerequisite_probing tests.test_prerequisite_recovery tests.test_opaque_causal tests.test_transfer tests.test_organism -v
+        run: python -m unittest tests.test_policy_review tests.test_outcome_skills tests.test_continual_skill_benchmark tests.test_prerequisite_probing tests.test_prerequisite_recovery tests.test_opaque_causal tests.test_affordance_memory tests.test_transfer tests.test_organism -v
