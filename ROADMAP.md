@@ -17,6 +17,19 @@
 > symbolic-skill experiment. The latter achieved 360/360 on assembly,
 > but failed 0/360 on the deeper delivery chain; both share deliberately
 > engineered action semantics. Results are development/supplemental, not blind.
+> **Post-hoc unknown-regime stress gate (2026-10-21):**
+> The cue-free first-step diagnostic correctly retrieved the prior
+> learned A/B history across all six inspected seed groups,
+> succeeding at 360/360 per A→B→A stage. A stronger zero-probe
+> union-of-known-risk baseline and an entirely untrained third
+> *descriptor mapping* (spoil/fuel identity swap) have been added.
+> The latter changes identities, not underlying dynamics. These
+> tests audit identifiability, potentially harmful ambiguity and
+> overclaim of cue-free generalization. Results must include
+> task success, spoilage and stalls; negative findings are not
+> regressions to hide. No milestone D3/D4 completion is implied.
+> See [unseen-regime audit](docs/UNSEEN_REGIME_AUDIT.md).
+>
 > **A→B→A context-indexed retention (2026-10-21):**
 > A new experimental risk-memory adapter separately learns two
 > variants of the existing cargo task whose numeric action descriptors
