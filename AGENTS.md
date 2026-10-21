@@ -1,3 +1,28 @@
+# Numeric public-feature transfer research — October 21, 2026
+
+A new isolated `observable_affordances.py` experiment no longer
+hashes simulator-private action names into stable identity codes:
+instead each fresh per-episode action has two **engineered public
+physical measurements**. A 5-nearest-neighbor model learns
+measurement → progress/damage from 80 unfiltered source tasks per
+seed, then faces a new generated task family with 0 target
+training. **Both families deliberately share a simple fixed
+feature law**. On 6 inspected seeds numeric model completed
+collect **360/360**, route **360/360**, while untrained route
+was **31/360** and shuffled-feature route **16/360**. When
+the feature law is reversed, numeric policy fails **0/360**
+and incurs **360 damage actions**. Preserve this severe
+negative result, all stronger controls, seed cohorts and
+the original transfer/legacy benchmarks. Neither artificial
+feature correlations nor near-perfect toy scores establish
+independent semantic understanding, robust safety or D3/D4.
+Run `tests.test_observable_affordances` and both
+`benchmarks.observable_affordance_benchmark` cohorts,
+plus full Linux and Windows validation. All seeds are now
+inspected. Do not merge/promote the experimental branch,
+modify AthenZ/Synveil or authorize external actions.
+See `docs/OBSERVABLE_AFFORDANCE_TRANSFER.md`.
+
 # Verified quarantined C study — 2026-10-21
 
 The optional quarantined C candidate passed its **dedicated** two-cohort
