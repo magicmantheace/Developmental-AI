@@ -28,6 +28,22 @@ tests when changing this experiment. Do not portray the shared glyph action
 ontology, repeated test indices, or inspected cohorts as blind independent
 task-family generalization.
 
+The optional `prerequisite_probing.py` and
+`benchmarks.prerequisite_probing_benchmark` use **observational** failed/
+successful action contexts; singleton fact-set differences are *suggestive*,
+not verified causal prerequisites. The tool must never access simulator
+`RECIPES` or private state, promote itself as default, or authorize actions.
+Preserve the prior zero-shot protocol and negative results. The additional
+development study showed raw probing 40/180 at zero target training but 0/180
+after 4 or 20 target episodes while the existing controller reached 180/180
+at those stages, in an isolated local reproduction. The train-only
+validation-selected controller retains the existing policy when new
+learning regresses; this is **not** independent generalization or proved
+safe lifelong learning. Run its focused tests, both six-seed development
+cohorts, full suite, and historical transfer benchmark before merging.
+See `docs/PREREQUISITE_PROBING.md`. Private Actions are still blocked
+before any jobs start; never claim full validation or merge readiness.
+
 The new optional `outcome_skills.py` experiment has **engineered shared
 glyphs and fact semantics**; its assembly success and delivery failures do
 NOT close D3 or D4. Run `tests.test_outcome_skills` and
