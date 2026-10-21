@@ -1,3 +1,14 @@
+The optional `prerequisite_recovery.py` is a **post-hoc, engineered
+handoff** to the old `OutcomeSkills.choose` policy after new action effects
+are observed. It is not a corrected causal learner, independent transfer, or
+proof of lifelong learning. Retain the severe 1-episode regression and
+earlier raw-prober negative results. On changes, run
+`tests.test_prerequisite_recovery`, both cohorts of
+`benchmarks.prerequisite_recovery_benchmark`, the full repository tests,
+the original transfer benchmark and focused Windows checks. Checkpoint
+source boundaries must replay exactly; no default-model promotion or
+AthenZ/Synveil work. See `docs/PREREQUISITE_RECOVERY.md`.
+
 # Critical development override — 2026-10-20
 
 **Standalone learning first.** This directive supersedes earlier instructions
