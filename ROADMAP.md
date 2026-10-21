@@ -17,6 +17,22 @@
 > symbolic-skill experiment. The latter achieved 360/360 on assembly,
 > but failed 0/360 on the deeper delivery chain; both share deliberately
 > engineered action semantics. Results are development/supplemental, not blind.
+> **A→B→A context-indexed retention (2026-10-21):**
+> A new experimental risk-memory adapter separately learns two
+> variants of the existing cargo task whose numeric action descriptors
+> are swapped (underlying transition rules do not change).
+> It retrieves saved context evidence via a perfect simulator-supplied
+> public two-component beacon. Six now-inspected seeds score
+> **360/360** at each original/changed/return stage. Without the
+> informative beacon, changed-stage success falls to **128/360**;
+> untrained novel-first is **130/360**. This demonstrates
+> context-indexed *retention/retrieval*, not independent discovery
+> of changing dynamics, causal risk, general competence or
+> milestone D3/D4 completion. The frozen seed 51013
+> two-byte collision was corrected deterministically; no seeds
+> were discarded. See
+> [contextual affordance study](docs/CONTEXTUAL_AFFORDANCE.md).
+>
 > **Persistent within-family affordance-risk learning (2026-10-21):**
 > Stable numeric two-byte descriptors supplied by the simulator allow a
 > bounded event-memory policy to carry outcomes across separate cargo
