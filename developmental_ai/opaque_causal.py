@@ -204,10 +204,16 @@ class OpaqueEpisodePolicy:
             after["remaining"] != before["remaining"]-1):
             raise ValueError("invalid causal action feedback")
         old=set(before["actions"]);new=set(after["actions"])
-        if accepted:
+        if after["done"]:
+            # The simulator hides all remaining handles at termination.
+            if new:
+                raise ValueError("terminal actions must be hidden")
+        elif accepted:
             if new != old-{action}:
                 raise ValueError("accepted action must disappear")
-        elif new != old or before["channels"] != after["channels"]:
+        elif new != old:
+            raise ValueError("blocked action changed available actions")
+        if not accepted and before["channels"] != after["channels"]:
             raise ValueError("blocked action changed public state")
         if accepted and before["channels"]==after["channels"]:
             raise ValueError("accepted action did not change observation")
