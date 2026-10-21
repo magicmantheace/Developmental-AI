@@ -135,8 +135,7 @@ generalization.
 
 ### Verified GitHub checks
 
-The [exact implementation commit `24b470ae`]
-(https://github.com/magicmantheace/Developmental-AI/actions/runs/39594043121)
+The [implementation's successful GitHub Actions run](https://github.com/magicmantheace/Developmental-AI/actions/runs/39594043121)
 passed **537/537 Linux repository tests**, **79/79 Windows focused
 tests**, the original three-seed transfer benchmark, all previous
 optional cognitive experiments, and both new stable-descriptor cohorts.
