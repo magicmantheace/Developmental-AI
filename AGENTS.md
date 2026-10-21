@@ -9,6 +9,33 @@ the original transfer benchmark and focused Windows checks. Checkpoint
 source boundaries must replay exactly; no default-model promotion or
 AthenZ/Synveil work. See `docs/PREREQUISITE_RECOVERY.md`.
 
+# Latest retained context-indexed learning experiment (2026-10-21)
+
+A new optional A→B→A descriptor-remapping study has two
+replayable `RiskMemory` stores and a publicly supplied, perfectly
+distinguishing two-number context beacon. The generator keeps cargo
+physics the same but swaps numeric identities of a harmless and a
+harmful action. **Both prior memories are trained separately**, each on
+80 cargo episodes, and a context nearest-neighbor lookup picks a store.
+This is **memory retrieval with an engineered cue**, NOT latent change
+detection, autonomous regime discovery or independent transfer.
+The protocol at `benchmarks/contextual_affordance_protocol.json`
+was frozen first. On six now-inspected seeds, exact A→B→A results
+were **360/360 in each stage** versus changed-B frozen A-only
+**128/360**, untrained **130/360**, and ambiguous-cue **128/360**.
+The first development run was blocked by a two-byte hash collision
+on frozen seed 51013; it was repaired deterministically within the
+optional simulator instead of changing seeds. All previous physics,
+experimental protocols and default policies were untouched.
+See `docs/CONTEXTUAL_AFFORDANCE.md`.
+
+Run `tests.test_contextual_affordance`, both
+`benchmarks.contextual_affordance_benchmark` cohorts, full unit
+suite and unchanged three-seed historical transfer regression on
+changes. Never claim blind generalization, statistically reliable
+real-world safety, user consent, self-development or automatic policy
+promotion. Keep AthenZ/Synveil integration deferred.
+
 # Current evidence: stable affordance-memory experiment (2026-10-21)
 
 `affordance_memory.py` adds optional *engineered stable two-byte numeric
