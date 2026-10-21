@@ -54,6 +54,13 @@ class RecoveryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'unreplayable'):
             RecoveryProber.restore(bad)
 
+    def test_reject_unhashable_source_glyphs_before_set_operations(self):
+        p=RecoveryProber.from_source(learn(DEV[0]))
+        bad=copy.deepcopy(p.record())
+        bad['state']['source_glyphs']=[['malformed']]
+        bad['sha256']=digest(bad['state'])
+        with self.assertRaises(ValueError):RecoveryProber.restore(bad)
+
     def test_forged_positive_memory_rejected_by_existing_replay(self):
         p=RecoveryProber.from_source(learn(DEV[0]))
         saved=p.record();bad=copy.deepcopy(saved)
