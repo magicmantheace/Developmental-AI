@@ -83,15 +83,65 @@ cannot prove a wholly forged yet internally consistent history is real.
 The experiment does not touch human data, OS privileges, networks, or
 third-party integrations.
 
-## Experimental results
+## Results on the precommitted cohorts (inspected development evidence)
 
 The original one-family raw-token alignment and outcome-skill benchmarks
-remain unchanged. Both cohorts here should be reported completely rather
-than cherry-picking selected-policy successes.
+remain unchanged. The reserved cohort was first run in GitHub Actions
+after the protocol and implementation were fixed. It is **now inspected**;
+future changes cannot treat it as a fresh blind holdout.
 
-**Validation status:** To verify this branch, run the tests and benchmarks
-below on the *exact HEAD*. Do not quote earlier CI green checks for a new
-commit or imply results before execution.
+Results are **successful tasks out of 180 episodes per cohort**, combining
+three seeds and 60 test episodes per family per seed.
+
+| Family / cohort | Trained-choice | Novel-first fixed | Retry-first fixed | Switch fixed | Cyclic | Random | Privileged oracle |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Relay, development | 180 | 180 | 167 | 180 | 180 | 148 | 180 |
+| Relay, reserved | 180 | 180 | 168 | 180 | 180 | 145 | 180 |
+| Cargo, development | 67 | 67 | 53 | 59 | **68** | 42 | 180 |
+| Cargo, reserved | 80 | 80 | 66 | 73 | 77 | 40 | 180 |
+| **Cargo, combined / 360** | **147** | **147** | 119 | 132 | 145 | 82 | 360 |
+
+Source training selected the *prewritten novel-first heuristic on every one
+of six seeds*. The learned-choice column is therefore **identical** to the
+unaltered novel-first baseline, not a distinct learned improvement.
+Its net +2/360 cargo successes over cyclic exploration is negligible as
+evidence for policy transfer; the cyclic baseline actually wins on the
+development cohort (68 vs 67). Simple fixed methods saturate the relay
+family. The oracle succeeds on both families, showing they are feasible.
+
+### Diagnosed cargo failure — irreversible harm
+
+Across all 360 cargo tasks, the selected method successfully executed the
+hidden spoilage action **213 times**, versus **212** for cyclic. The selected
+method failed exactly **213** cargo episodes in this generator. This strong
+association is not evidence that the policy identified spoilage; the action
+was scored by simulator-private labels **after** the public learner acted.
+
+Spoilage irreversibly consumes cargo before processing; with no stable
+semantic action descriptions or action-to-effect identity across episodes,
+the agent cannot know which anonymous handle is harmful before trying it.
+Its no-repeat rule reduces wasted blocked attempts, but cannot solve this
+information deficit. The oracle has the hidden action meanings and avoids
+spoilage entirely, so it is not a fair equally-informed comparator.
+
+The learner's cargo action count is shorter than cyclic's, but some
+episodes end early or stall, and shorter failed episodes are **not** a
+quality improvement. Scores and costs must be read together.
+
+**Scientific conclusion:** The mechanism learns episode-local
+accepted/blocked histories and can replay them, but source policy selection
+does **not** demonstrate a meaningful zero-shot cross-family advantage.
+There is no learned stable action semantics, no learned causal graph shared
+between worlds, and no evidence of semantic generalization.
+
+### GitHub execution
+
+[The initial full execution](https://github.com/magicmantheace/Developmental-AI/actions/runs/39542047394)
+passed Linux full tests **523/523**, historical 3-seed transfer,
+all previous symbolic/continual/prerequisite benchmarks, and both new
+precommitted cohorts. The Windows focused suite passed **65/65**.
+An additional benchmark immutability assertion was committed afterward;
+check the latest run for an exact-current-HEAD pass.
 
 ```sh
 python -m unittest tests.test_opaque_causal -v
