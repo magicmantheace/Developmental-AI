@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import sqlite3
+from contextlib import closing
 import tempfile
 import unittest
 from pathlib import Path
@@ -36,7 +37,7 @@ class PolicyReviewTests(unittest.TestCase):
         self.assertEqual(record["receipt"]["validation_start"], VALIDATION_START)
         self.assertEqual(record["receipt"]["training_episodes"], 20)
         self.assertEqual(self._identity(), before)
-        with sqlite3.connect(self.path) as conn:
+        with closing(sqlite3.connect(self.path)) as conn:
             self.assertIsNone(conn.execute(
                 "SELECT value FROM transfer_metadata WHERE name='trained'").fetchone())
         proposal.reject()
