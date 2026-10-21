@@ -23,6 +23,14 @@ The standalone work is in an **unmerged draft PR**, not the default main branch.
   explicit delivery training after source-skill acquisition with target-only
   and frozen-source controls and return-to-assembly retention checks.
   Target practice is **not** zero-shot generalization.
+- [Unknown mapping C stress and conservative union-risk baseline](docs/UNSEEN_REGIME_AUDIT.md):
+  follows the successful two-known-regime cue-free diagnostic work.
+  Compares that diagnostic with a simpler union of known risky action
+  identities, then evaluates a never-trained third descriptor mapping
+  that gives a necessary action the old hazard identity.
+  This is an **adversarial scientific control**, not an independent
+  blind evaluation or deployable risk guarantee.
+
 - [Context-indexed A→B→A retained risk memory](docs/CONTEXTUAL_AFFORDANCE.md):
   after separately observing 80 training episodes in each of two
   simulated cargo variants, recall the correct stored hazard
