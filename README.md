@@ -23,6 +23,12 @@ The standalone work is in an **unmerged draft PR**, not the default main branch.
   explicit delivery training after source-skill acquisition with target-only
   and frozen-source controls and return-to-assembly retention checks.
   Target practice is **not** zero-shot generalization.
+- [Blocked-outcome prerequisite probing](docs/PREREQUISITE_PROBING.md):
+  optional observed-positive/negative evidence and local action-retry control
+  with a train-only two-policy validation selector. **Negative result retained:**
+  raw new controller deteriorates after target training, so it is not a
+  replacement for the original learner. The gate selects the existing
+  controller when validation shows regression.
 
 Validation notice: private Actions have failed **before any test steps run**.
 The new staged benchmark and full upstream suite have not been verified.
