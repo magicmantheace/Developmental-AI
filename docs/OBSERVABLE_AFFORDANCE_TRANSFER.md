@@ -92,6 +92,32 @@ but **fails catastrophically** when the engineered feature rule
 reverses. It does not autonomously recognize rule change or know
 how to stop unsafe exploration.
 
+### Verified GitHub cohorts (all six seeds)
+
+The [dedicated GitHub Actions run](https://github.com/magicmantheace/Developmental-AI/actions/runs/39672714422)
+completed with **9/9 dedicated tests passing**, both frozen
+three-seed cohorts, and raw JSON tables retained as artifacts.
+All reserved seeds are **now inspected**. The table below reports
+task successes / damaging actions across **360 episodes** per world
+(60 per seed, six seeds):
+
+| World | Numeric KNN | Novel | Random | Shuffled features | Privileged oracle |
+| --- | --- | --- | --- | --- | --- |
+| Collect | **360 / 0** | 70 / 290 | 73 / 287 | 44 / 316 | 360 / 0 |
+| Route, no target training | **360 / 0** | 31 / 329 | 21 / 339 | 16 / 344 | 360 / 0 |
+| Route-reversed | **0 / 360** | 27 / 333 | 23 / 337 | 45 / 315 | 360 / 0 |
+
+This reproduces the local development findings in the second
+precommitted cohort. Although newly generated actions have unrelated
+opaque handles and the learner receives no hidden categorical
+action identity, the handcrafted feature law is an unusually
+informative shared prior. **The 360/360 positive-domain scores
+must be read alongside 0/360 and 360 damaging actions after the
+feature rule reversal.** The system currently cannot detect that
+its confident expectations have become invalid before harmful
+consequences in this simulator. The full historical regression
+workflow on the final documentation commit is a separate gate.
+
 ### Interpretation and next gate
 
 This is an improvement over memorizing hidden action identities:
