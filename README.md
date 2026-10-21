@@ -23,6 +23,16 @@ The standalone work is in an **unmerged draft PR**, not the default main branch.
   explicit delivery training after source-skill acquisition with target-only
   and frozen-source controls and return-to-assembly retention checks.
   Target practice is **not** zero-shot generalization.
+- [Stable numeric affordance memory](docs/AFFORDANCE_MEMORY.md):
+  optional outcome-correlated hazard avoidance learned from 80 cargo
+  training episodes per seed, with replayable history and numeric
+  action-descriptor reidentification. Cargo test success **360/360**
+  across six inspected seeds versus untrained **136/360**, shuffled
+  descriptors **136/360**, cyclic **134/360**. Descriptors are **engineered
+  stable action identities** provided by the simulator. This is
+  within-family adaptation, not independent cross-task generalization
+  or proof of safe causal understanding.
+
 - [Anonymous-action cross-dynamics evaluation](docs/OPAQUE_CAUSAL_GENERALIZATION.md):
   source strategy choice and episode-local feedback probing on different
   hidden relay/cargo dynamics, with rotating action handles and numeric
