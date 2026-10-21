@@ -54,6 +54,10 @@ jobs:
         run: python -m benchmarks.contextual_affordance_benchmark --cohort development
       - name: Context-dependent action meaning A-B-A - reserved
         run: python -m benchmarks.contextual_affordance_benchmark --cohort reserved
+      - name: Cue-free diagnostic A-B-A - inspected development
+        run: python -m benchmarks.no_cue_probe_benchmark --cohort development
+      - name: Cue-free diagnostic A-B-A - inspected additional
+        run: python -m benchmarks.no_cue_probe_benchmark --cohort inspected-additional
 
   windows-policy:
     runs-on: windows-latest
@@ -64,4 +68,4 @@ jobs:
         with:
           python-version: "3.11"
       - name: Policy review and original learner regression
-        run: python -m unittest tests.test_policy_review tests.test_outcome_skills tests.test_continual_skill_benchmark tests.test_prerequisite_probing tests.test_prerequisite_recovery tests.test_opaque_causal tests.test_affordance_memory tests.test_contextual_affordance tests.test_transfer tests.test_organism -v
+        run: python -m unittest tests.test_policy_review tests.test_outcome_skills tests.test_continual_skill_benchmark tests.test_prerequisite_probing tests.test_prerequisite_recovery tests.test_opaque_causal tests.test_affordance_memory tests.test_contextual_affordance tests.test_no_cue_diagnostic tests.test_transfer tests.test_organism -v
