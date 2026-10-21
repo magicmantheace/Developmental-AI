@@ -22,11 +22,11 @@ MAX_CHANNELS = 12
 def signature(seed, family, hidden_name):
     """SIMULATOR-ONLY identity encoding; must never run inside a policy."""
     raw = hashlib.sha256(f"{SCHEMA}/{seed}/{family}/{hidden_name}".encode()).digest()
-    return [raw[0], raw[1], raw[2]]
+    return [raw[0], raw[1]]
 
 
 def token(value):
-    if (type(value) is not list or len(value) != 3 or
+    if (type(value) is not list or len(value) != 2 or
         any(type(x) is not int or not 0 <= x <= 255 for x in value)):
         raise ValueError("invalid bounded numeric descriptor")
     return ".".join(str(v) for v in value)
