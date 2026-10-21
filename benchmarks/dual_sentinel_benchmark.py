@@ -49,7 +49,7 @@ def sentinel_episode(seed, index, variant, memories):
     return {"success":int(world.success()), "spoilage":spoiled,
             "attempts":world.world.world.base.tick, "blocked":blocked,
             "stalled":int(not world.world.world.base.done),
-            "probed":len(policy.events)>0,
+            "probe":int(len(policy.events)>0),
             "unknown":int(policy.unknown),
             "known_match":int(policy.selected is not None)}
 
