@@ -57,6 +57,19 @@ and the distance tie is broken deterministically.
 - Seeds: development 51001/51013/51031 and initially reserved
   61001/61013/61031. Once both cohorts have been run, all seeds must
   be called **inspected**.
+- **Pre-evaluation implementation issue, preserved:** Frozen seed 51013
+  produces a two-byte descriptor collision between `load` and `spoil`
+  in the old generator. The initial development benchmark stopped with
+  `ValueError: descriptor hash collision` before producing scores.
+  Instead of selecting convenient new seeds, the new optional simulator
+  now resolves duplicates **deterministically** by incrementing the
+  second descriptor byte until it is unique, in the same action
+  declaration order. The precommitted seeds, two-byte feature size,
+  underlying cargo rules, and all original benchmarks remain untouched.
+  The privileged oracle is updated to read the corrected simulator
+  descriptor rather than assuming that every raw hash is unique.
+  This post-protocol code correction is disclosed; it is not
+  independent prospective validation.
 - Controls: contextual retrieval, frozen A-only policy, B-only/latest
   policy, untrained novel-first, ambiguous-beacon ablation, simulator-
   privileged hazard-code oracle and fully privileged action-order oracle.
