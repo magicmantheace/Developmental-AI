@@ -106,6 +106,20 @@ class DualSentinelTests(unittest.TestCase):
             sentinel_episode(self.seed,START,variant,self.memories)
         self.assertEqual(saved,self.memories.record())
 
+    def test_benchmark_probe_summary_uses_shared_schema(self):
+        # Prevent recurrence of the first focused-run KeyError('probe'):
+        # the new episode and historical summarizer must agree.
+        from benchmarks.dual_sentinel_benchmark import report_rows
+        from benchmarks.unseen_regime_benchmark import summarise
+        episode=sentinel_episode(self.seed,START,"C",self.memories)
+        summary=report_rows([episode])
+        self.assertEqual(summary["episodes"],1)
+        self.assertEqual(summary["probed"],1)
+        self.assertEqual(summary["unknown"],1)
+        self.assertEqual(summary["successes"],0)
+        self.assertEqual(summary["spoilage"],0)
+        self.assertEqual(summarise([episode])["successes"],0)
+
     def test_frozen_cohorts_and_methods(self):
         self.assertEqual(EPISODES,60)
         self.assertEqual(METHODS[0],"sentinel")
