@@ -9,6 +9,30 @@ the original transfer benchmark and focused Windows checks. Checkpoint
 source boundaries must replay exactly; no default-model promotion or
 AthenZ/Synveil work. See `docs/PREREQUISITE_RECOVERY.md`.
 
+# Current evidence: stable affordance-memory experiment (2026-10-21)
+
+`affordance_memory.py` adds optional *engineered stable two-byte numeric
+action descriptors* to unchanged `OpaqueWorld` cargo and relay. A
+`RiskMemory` model replays exactly 80 cargo training episodes and
+identifies observational failure-associated features from public actions,
+numeric sensor deltas and terminal outcome. The code/benchmark protocol
+was committed first (`benchmarks/affordance_protocol.json`). This is
+**within-family cargo adaptation**, NOT independent semantic inference:
+descriptors are simulator-created, seed/family-scoped re-encodings of
+hidden action identities. On six now-inspected seeds, trained cargo
+360/360 versus fixed novel 136/360, shuffled-descriptor 136/360,
+cyclic 134/360 and privileged risk oracle 360/360. Relay retention
+remained 360/360 but fixed methods were already at ceiling. A
+causally confounded risk association is not guaranteed safe outside
+this fixed simulator. No promotion/merge by default.
+
+Keep both cohorts, strong controls, training budget, descriptors and
+historical protocols fixed; run `tests.test_affordance_memory`,
+`benchmarks.affordance_benchmark` (development AND reserved), full
+suite and original three-seed transfer before changing. Preserve negative
+results and make no AthenZ/Synveil integration edits. Details:
+`docs/AFFORDANCE_MEMORY.md`.
+
 # Latest cross-dynamics result — 2026-10-20
 
 `developmental_ai/opaque_causal.py` and
