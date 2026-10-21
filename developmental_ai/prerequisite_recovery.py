@@ -53,8 +53,8 @@ class RecoveryProber:
             or state['schema'] != SCHEMA
             or type(state['source_count']) is not int
             or type(state['source_glyphs']) is not list
-            or state['source_glyphs'] != sorted(set(state['source_glyphs']))
-            or any(type(g) is not str for g in state['source_glyphs'])):
+            or any(type(g) is not str for g in state['source_glyphs'])
+            or state['source_glyphs'] != sorted(set(state['source_glyphs']))):
             raise ValueError('unsupported recovery schema')
         memory = OutcomeSkills() if state['memory'] is None else OutcomeSkills.restore(state['memory'])
         length = state['source_count']
