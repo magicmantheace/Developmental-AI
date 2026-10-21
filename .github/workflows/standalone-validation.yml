@@ -42,6 +42,10 @@ jobs:
         run: python -m benchmarks.prerequisite_recovery_benchmark --cohort dev
       - name: Prerequisite recovery comparison - inspected additional
         run: python -m benchmarks.prerequisite_recovery_benchmark --cohort additional
+      - name: Opaque numeric cross-dynamics - development
+        run: python -m benchmarks.opaque_causal_benchmark --cohort development
+      - name: Opaque numeric cross-dynamics - reserved
+        run: python -m benchmarks.opaque_causal_benchmark --cohort reserved
 
   windows-policy:
     runs-on: windows-latest
@@ -52,4 +56,4 @@ jobs:
         with:
           python-version: "3.11"
       - name: Policy review and original learner regression
-        run: python -m unittest tests.test_policy_review tests.test_outcome_skills tests.test_continual_skill_benchmark tests.test_prerequisite_probing tests.test_prerequisite_recovery tests.test_transfer tests.test_organism -v
+        run: python -m unittest tests.test_policy_review tests.test_outcome_skills tests.test_continual_skill_benchmark tests.test_prerequisite_probing tests.test_prerequisite_recovery tests.test_opaque_causal tests.test_transfer tests.test_organism -v
