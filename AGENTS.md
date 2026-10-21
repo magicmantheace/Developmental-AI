@@ -9,6 +9,34 @@ the original transfer benchmark and focused Windows checks. Checkpoint
 source boundaries must replay exactly; no default-model promotion or
 AthenZ/Synveil work. See `docs/PREREQUISITE_RECOVERY.md`.
 
+# Unknown-regime stress audit (2026-10-21)
+
+The latest *experimental* no-cue learner correctly selected A/B histories
+from one public intervention on all six **inspected** seeds: 360/360 per
+A→B→A stage, compared to 147/360 on B for the same probe followed
+by permanently selecting A. This benchmark was green on Linux
+(562/562 tests) and Windows (104/104 focused). This is two-known-
+context retrieval, not autonomous discovery of a new regime.
+
+An omitted strong baseline has now been added: **union of all risk codes
+flagged by either historical memory**, with no diagnostic or regime
+choice. A third, **never-trained mapping C** swaps signatures for the
+harmful action and a necessary *fuel* action (not the harmless wash
+distractor). The current study is post-hoc, keeps all pre-inspected
+seeds, and compares no-cue inference, union-risk, frozen A/B, novel
+and privileged hazard oracle, with spoilage/stalls measured.
+Its protocol was committed first at
+`benchmarks/unseen_regime_protocol.json`. See
+`docs/UNSEEN_REGIME_AUDIT.md`. The union is NOT generally safe,
+and cannot recognize newly harmful meanings absent from memories.
+
+Do not claim independent generalization, automatic novelty detection,
+causal safety, retained skill discovery or D3/D4 milestone completion.
+Keep all baselines, negative outcomes, default policies and
+AthenZ/Synveil integrations unchanged. Validate full Linux/Windows
+tests, historical transfer, and both
+`benchmarks.unseen_regime_benchmark` inspected cohorts.
+
 # Latest retained context-indexed learning experiment (2026-10-21)
 
 A new optional A→B→A descriptor-remapping study has two
