@@ -4,7 +4,7 @@ The optional quarantined C candidate passed its **dedicated** two-cohort
 GitHub benchmark at source commit `8d76bc2`. Six INSPECTED seeds
 scored `staged_C` A/B/C **360/360 each**, 0 spoilage/stalls;
 old sentinel A/B 360/360 but C 0/360; **C-only memory**
-A/B 0/360 (221 accepted spoilage actions across A+B), C 360/360;
+A/B 0/360 (442 accepted spoilage actions across A+B (221 per environment)), C 360/360;
 untrained novel A/B/C 138/360 each; privileged oracle 360/360 each.
 This study used **80 C simulator episodes per seed** plus prior A/B
 training and per-seed separate 24/24 A/B/C *train-validation* gates.
