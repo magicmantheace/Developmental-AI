@@ -83,6 +83,66 @@ Strong baselines and the shuffle ablation are essential. If filtering
 underperforms fixed heuristics, preserve that result. All cohorts and
 individual seeds must be reported; there is no automatic promotion.
 
+## Measured development results — six inspected seeds
+
+These are **within-cargo-family** test outcomes after cargo training.
+The reserved cohort has now been evaluated and is **inspected**; it is
+not available for subsequent independent tuning.
+
+| Policy | Development /180 | Reserved /180 | Combined /360 |
+| --- | ---: | ---: | ---: |
+| **Learned descriptor-risk veto** | **180** | **180** | **360** |
+| Same novel-first policy, no memory | 62 | 74 | 136 |
+| Learned risk memory, descriptors shuffled each episode | 62 | 74 | 136 |
+| Fixed cyclic | 69 | 65 | 134 |
+| Random | 47 | 49 | 96 |
+| Privileged simulator hazard-code veto | 180 | 180 | 360 |
+| Privileged full-action-order oracle | 180 | 180 | 360 |
+
+- Original unfiltered training succeeded on **158 of 480** tasks across
+  six seeds (80 episodes each); no privileged semantic action labels entered
+  the learner during training.
+- Each seed's replayed memory identified **exactly one** candidate
+  failure-associated numeric descriptor.
+- Trained evaluation had **0 successful spoilage actions**; the
+  untrained policy had **224/360 successful spoilage actions**, equal to
+  its 224 failed cargo episodes.
+- The descriptor-shuffle negative control exactly matched the
+  no-memory baseline on these cases. This supports a narrower conclusion:
+  recurrence of an **engineered stable descriptor** is necessary for
+  this risk filter to work.
+- The previously known relay-world test remained **360/360** with
+  training-derived memory; relay also reaches 360/360 with simple
+  fixed novel/cyclic methods. That measures no interference, not
+  generalization or gain in relay proficiency.
+
+Per-seed cargo trained results: 60/60 on each of
+31013, 31019, 31033, 43013, 43019 and 43033.
+Per-seed untrained results: 16, 23, 23, 29, 24, 21 successes
+respectively, all out of 60.
+
+**Interpretation:** The memory extracts a terminal-failure correlate
+from public training outcomes. It can make future decisions on new
+per-episode handles *because the numeric descriptor is stable*.
+A disguised action-identity feature is a strong simulator prior; no
+perceptual affordance representation is learned. A correlation that
+identifies spoilage in one fixed environment might veto a productive
+resource-consuming action when conditions change. The risk threshold is
+not statistically calibrated, and the oracle and baseline share the
+hand-designed environment. This does not establish independent causal
+inference, transfer to different physics, real-world safety or D3
+generalization.
+
+### Verified GitHub checks
+
+The [exact implementation commit `24b470ae`]
+(https://github.com/magicmantheace/Developmental-AI/actions/runs/39594043121)
+passed **537/537 Linux repository tests**, **79/79 Windows focused
+tests**, the original three-seed transfer benchmark, all previous
+optional cognitive experiments, and both new stable-descriptor cohorts.
+Subsequent documentation-only commits require their own HEAD
+checks if asserting exact branch-wide CI status.
+
 ## Execution
 
 ```sh
@@ -93,10 +153,8 @@ python -m unittest discover -s tests -v
 python -m benchmarks.transfer_benchmark --seeds 17 23 41 --train-episodes 5000 --test-episodes 300
 ```
 
-**Validation status:** New benchmark execution requires its own GitHub
-Actions run; green historical commits cannot validate this feature. See the
-draft PR for the exact head commit and run. Do not merge merely because
-numeric-feature toy trials improve.
+**Validation:** The code-version GitHub run passed on both operating
+systems; no automatic policy promotion or merge is authorized by this result.
 
 ## Next gate
 
