@@ -110,8 +110,8 @@ environment**.
 
 For staged C, **0 successful spoilage actions** and **0 stalls** occurred
 across the 1,080 test tasks. The C-only baseline stalled on **all
-720 A+B tasks** and recorded 221 accepted spoilage actions across
-those two older environments. The untrained baseline completed only
+720 A+B tasks** and recorded 442 accepted spoilage actions across
+those two older environments (221 per environment). The untrained baseline completed only
 138 per environment and caused 222 accepted spoilage actions per
 environment. These old-task regressions are essential controls, not
 errors to suppress. Source/candidate memories remained unchanged
