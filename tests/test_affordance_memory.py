@@ -2,7 +2,9 @@
 from __future__ import annotations
 
 import copy
+import tempfile
 import unittest
+from pathlib import Path
 
 from developmental_ai.affordance_memory import (
     SCHEMA, DescribedWorld, FilteredNovel, RiskMemory, check, record_step,
@@ -91,6 +93,27 @@ class AffordanceMemoryTests(unittest.TestCase):
         self.assertEqual(first,run(seed,"test",TEST_START,"cargo","learned",m))
         self.assertEqual(saved,m.record())
         self.assertEqual(saved,replica.record())
+
+    def test_atomic_disk_checkpoint_survives_restart_and_corrupt_restore(self):
+        trained,_=learn(DEVELOPMENT[0])
+        with tempfile.TemporaryDirectory() as temporary:
+            file=Path(temporary)/"private"/"learned-risks.json"
+            trained.save(file)
+            self.assertTrue(file.is_file())
+            restored=RiskMemory.load(file)
+            self.assertEqual(trained.record(),restored.record())
+            self.assertEqual(
+                run(DEVELOPMENT[0],"test",TEST_START,"cargo","learned",trained),
+                run(DEVELOPMENT[0],"test",TEST_START,"cargo","learned",restored))
+            file.write_text('{"bad":true}',encoding="utf-8")
+            with self.assertRaises(ValueError):RiskMemory.load(file)
+
+    def test_checkpoint_file_size_limit_rejects_invalid_large_data(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            file=Path(temporary)/"oversized.json"
+            file.write_bytes(b"x"*(2*1024*1024+1))
+            with self.assertRaisesRegex(ValueError,"exceeds configured limit"):
+                RiskMemory.load(file)
 
     def test_record_rejects_corrupted_stats_even_rehashed(self):
         memory,_=learn(DEVELOPMENT[0])
