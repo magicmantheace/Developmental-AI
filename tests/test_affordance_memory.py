@@ -66,7 +66,7 @@ class AffordanceMemoryTests(unittest.TestCase):
 
     def test_risk_memory_discovers_correlated_failure_association(self):
         memory=RiskMemory()
-        risk=[1,2,3];safe=[4,5,6]
+        risk=[1,2];safe=[4,5]
         failure={"signature":risk,"accepted":True,"increases":1,"decreases":1}
         success={"signature":safe,"accepted":True,"increases":1,"decreases":0}
         for i in range(10):
@@ -75,10 +75,10 @@ class AffordanceMemoryTests(unittest.TestCase):
         self.assertFalse(memory.analysis()[token(safe)]["risk_candidate"])
 
     def test_hash_and_signature_bounded(self):
-        with self.assertRaises(ValueError):token([1,2,256])
-        with self.assertRaises(ValueError):token([True,2,3])
-        with self.assertRaises(ValueError):token(["1",2,3])
-        self.assertEqual(len(signature(DEVELOPMENT[0],"cargo","spoil")),3)
+        with self.assertRaises(ValueError):token([1,256])
+        with self.assertRaises(ValueError):token([True,2])
+        with self.assertRaises(ValueError):token(["1",2])
+        self.assertEqual(len(signature(DEVELOPMENT[0],"cargo","spoil")),2)
 
     def test_train_memory_restores_and_does_not_change_on_test(self):
         seed=DEVELOPMENT[0]
@@ -103,7 +103,7 @@ class AffordanceMemoryTests(unittest.TestCase):
 
     def test_invalid_episode_order_and_injected_transitions(self):
         m=RiskMemory()
-        accepted={"signature":[1,2,3],"accepted":True,"increases":1,"decreases":0}
+        accepted={"signature":[1,2],"accepted":True,"increases":1,"decreases":0}
         with self.assertRaises(ValueError):m.add(1,[accepted],True)
         with self.assertRaises(ValueError):m.add(0,[dict(accepted,script="run")],True)
         with self.assertRaises(ValueError):m.add(0,[dict(accepted,accepted=False)],True)
