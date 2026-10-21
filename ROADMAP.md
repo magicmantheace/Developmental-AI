@@ -17,6 +17,15 @@
 > symbolic-skill experiment. The latter achieved 360/360 on assembly,
 > but failed 0/360 on the deeper delivery chain; both share deliberately
 > engineered action semantics. Results are development/supplemental, not blind.
+> **Experimental recovery update (2026-10-20):**
+> A separate optional source-skill-bound policy uses observational
+> prerequisite probes until a new action effect is learned, then falls back
+> to the previously validated controller. Six inspected symbolic seeds
+> suggested improved adaptation and retention, but the 1-episode
+> regression remains. This is an engineered handoff, NOT independent
+> causal learning or completion of D3/D4. Details:
+> [prerequisite recovery](docs/PREREQUISITE_RECOVERY.md).
+>
 > **Blocked-outcome probing update (2026-10-20):**
 > New optional `prerequisite_probing.py` records failed/successful
 > fact-context evidence and permits bounded unknown-action exploration.
