@@ -17,6 +17,18 @@
 > symbolic-skill experiment. The latter achieved 360/360 on assembly,
 > but failed 0/360 on the deeper delivery chain; both share deliberately
 > engineered action semantics. Results are development/supplemental, not blind.
+> **Persistent within-family affordance-risk learning (2026-10-21):**
+> Stable numeric two-byte descriptors supplied by the simulator allow a
+> bounded event-memory policy to carry outcomes across separate cargo
+> episodes. Six now-inspected development/reserved seeds: trained
+> 360/360, untrained 136/360, shuffled descriptors 136/360, cyclic
+> 134/360; relay retention 360/360 (also at fixed-baseline ceiling).
+> This is an important implementation of *persistent outcome-grounded
+> behavior* in one fixed task family, NOT perceptual action discovery,
+> independent generalization, statistically calibrated risk or D3/D4
+> completion. See
+> [affordance-memory report](docs/AFFORDANCE_MEMORY.md).
+>
 > **Anonymous-action generalization update (2026-10-20):**
 > A separate precommitted study evaluates one observable-action
 > strategy selector on monotonic relay switches and consumptive cargo
