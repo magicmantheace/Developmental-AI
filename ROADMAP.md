@@ -17,6 +17,19 @@
 > symbolic-skill experiment. The latter achieved 360/360 on assembly,
 > but failed 0/360 on the deeper delivery chain; both share deliberately
 > engineered action semantics. Results are development/supplemental, not blind.
+> **Blocked-outcome probing update (2026-10-20):**
+> New optional `prerequisite_probing.py` records failed/successful
+> fact-context evidence and permits bounded unknown-action exploration.
+> Reproduction of the six inspected synthetic seeds exposed a *serious
+> continual-learning regression*: raw probing gained some initial target
+> success, then fell to zero after adaptation. A separate train-only
+> validation-selector retains the historical controller when new
+> behavior regresses. This is a two-policy gate, not a general
+> continual-learning solution or a D3/D4 milestone completion. See
+> [prerequisite probing](docs/PREREQUISITE_PROBING.md). No
+> integration or V2A/V2B work was added. Full upstream validation remains
+> blocked by Actions job startup failures.
+>
 > **Additional optional learning experiment (2026-10-20):**
 > `benchmarks/continual_skill_benchmark.py` measures source training,
 > then 0/1/2/4/8/20 episodes of explicit delivery-task training, and a
