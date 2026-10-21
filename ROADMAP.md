@@ -806,3 +806,18 @@ See [plan repair](docs/PLAN_REPAIR.md) and [plan compaction](docs/PLAN_COMPACTIO
 > learning**: engineered descriptor IDs and an inspected single
 > cargo simulator remain. No D3/D4 milestone is closed. See
 > [quarantined C protocol](docs/QUARANTINED_C_ADAPTATION.md).
+
+
+> **2026-10-21 quarantined C validation result (inspected toy simulator):**
+> The offline separate-C memory candidate passed strict 24/24 A/B/C
+> train-namespace review gates on all six inspected seeds and
+> achieved **360/360 test successes in each A/B/C stage** after
+> 80 C training episodes per seed, with no spoilage.
+> Sentinel-only C abstained (0/360); C-only retained C (360/360)
+> but regressed A/B to 0/360; untrained scored 138/360 each.
+> Approval booleans were **simulated only**. This is
+> deliberate within-family adaptation under engineered action
+> identity, not independent discovery, true user consent,
+> live agent promotion or D3/D4 closure. Full CI and real
+> generalization remain open. See
+> [C adaptation report](docs/QUARANTINED_C_ADAPTATION.md).

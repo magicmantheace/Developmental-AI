@@ -10,8 +10,11 @@ A local-first, inspectable **developmental learning research platform**. Its lon
   single-use explicit approval receipt. The simulated caller can
   exercise a candidate in tests, but there is **no automatic
   activation, real owner authentication, independent domain transfer
-  or default model change**. Results require separate focused and
-  unchanged full CI verification.
+  or default model change**. The separate full-cohort focused study measured **360/360**
+  completed goals in each A/B/C context after C training,
+  versus the unadapted two-sentinel controller's **0/360** in C.
+  The C-only model lost A/B completely; all approvals were simulated.
+  Do not portray this as zero-shot or independent transfer.
 
 ## October 20, 2026 — standalone learning priority (draft branch)
 

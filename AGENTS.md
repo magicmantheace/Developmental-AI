@@ -1,3 +1,22 @@
+# Verified quarantined C study — 2026-10-21
+
+The optional quarantined C candidate passed its **dedicated** two-cohort
+GitHub benchmark at source commit `8d76bc2`. Six INSPECTED seeds
+scored `staged_C` A/B/C **360/360 each**, 0 spoilage/stalls;
+old sentinel A/B 360/360 but C 0/360; **C-only memory**
+A/B 0/360 (221 accepted spoilage actions across A+B), C 360/360;
+untrained novel A/B/C 138/360 each; privileged oracle 360/360 each.
+This study used **80 C simulator episodes per seed** plus prior A/B
+training and per-seed separate 24/24 A/B/C *train-validation* gates.
+All six `approved=True` calls were **simulated harness inputs**,
+not actual owner permission. No production promotion occurred.
+The task remains one deterministic hand-authored cargo world with
+simulator-hashed stable numeric action IDs. Hence this is NOT
+zero-shot C, independent transfer, safe novel action discovery,
+real authenticated autonomy, or D3/D4 completion. See
+`docs/QUARANTINED_C_ADAPTATION.md`. Preserve every frozen
+benchmark/negative control and keep PR draft/unmerged.
+
 # Quarantined C adaptation (2026-10-21)
 
 Quarantined, simulation-only `developmental_ai/quarantined_c.py`

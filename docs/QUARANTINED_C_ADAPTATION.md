@@ -83,6 +83,49 @@ See [benchmarks/quarantined_c_protocol.json](../benchmarks/quarantined_c_protoco
 6. Code review and full unchanged historical regression tests remain
    necessary; the experimental PR stays draft/unmerged.
 
+## Full inspected synthetic results — 2026-10-21
+
+The [separate focused GitHub Actions run](https://github.com/magicmantheace/Developmental-AI/actions/runs/39645086099)
+finished successfully. Its 11 dedicated unit tests passed, and both
+complete three-seed development/previously-inspected additional cohorts
+executed with all raw tables retained as CI artifacts.
+
+Every seed completed its strict offline rehearsal gate (24/24 A,
+24/24 B and 24/24 C tasks, zero spoilage/stalls), and the test harness
+**simulated** `approved=True` only after validating the matching
+receipt. **No owner authenticated approval was given** and no default
+policy was changed.
+
+The following outcomes are summed over **six previously inspected seeds**,
+60 separate test episodes per seed and environment: **360 episodes per
+environment**.
+
+| Policy | A success | B success | C success |
+| --- | ---: | ---: | ---: |
+| **Offline staged C candidate** | **360/360** | **360/360** | **360/360** |
+| Prior sentinel, abstaining on unknown | 360/360 | 360/360 | **0/360** |
+| **C-only risk memory** (no context recall) | **0/360** | **0/360** | 360/360 |
+| Untrained novel-first exploration | 138/360 | 138/360 | 138/360 |
+| Privileged hazard oracle | 360/360 | 360/360 | 360/360 |
+
+For staged C, **0 successful spoilage actions** and **0 stalls** occurred
+across the 1,080 test tasks. The C-only baseline stalled on **all
+720 A+B tasks** and recorded 221 accepted spoilage actions across
+those two older environments. The untrained baseline completed only
+138 per environment and caused 222 accepted spoilage actions per
+environment. These old-task regressions are essential controls, not
+errors to suppress. Source/candidate memories remained unchanged
+through test evaluation and replay checks.
+
+**Interpretation:** separate memory storage plus previously engineered
+A/B diagnostic probes is enough to recover prior task success after
+**additional C-specific simulation training**, while direct use of
+the C memory on A/B fails. It does **not** prove online autonomous
+adaptation, zero-shot C competence, general-purpose causal discovery,
+cross-family generalization or real-world safety. Full repository CI
+on the latest *documentation* commit must be checked separately;
+the green focused run validates the unchanged candidate code.
+
 ## How to verify
 
 ```sh
