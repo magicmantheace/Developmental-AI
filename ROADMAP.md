@@ -17,6 +17,17 @@
 > symbolic-skill experiment. The latter achieved 360/360 on assembly,
 > but failed 0/360 on the deeper delivery chain; both share deliberately
 > engineered action semantics. Results are development/supplemental, not blind.
+> **Anonymous-action generalization update (2026-10-20):**
+> A separate precommitted study evaluates one observable-action
+> strategy selector on monotonic relay switches and consumptive cargo
+> processing, with rotated anonymous action handles and numeric sensors.
+> Both cohorts are now inspected. The selector chose a fixed strategy
+> on every seed and achieved cargo 147/360 versus simple cyclic 145/360
+> and random 82/360; the privileged oracle was 360/360. Irreversible
+> harmful actions were a major failure mode. This remains **development
+> evidence only**; true independent D3 generalization is open. See
+> [opaque causal study](docs/OPAQUE_CAUSAL_GENERALIZATION.md).
+>
 > **Experimental recovery update (2026-10-20):**
 > A separate optional source-skill-bound policy uses observational
 > prerequisite probes until a new action effect is learned, then falls back
