@@ -27,9 +27,10 @@ POLICIES=("learned","novel","cyclic","random","descriptor_shuffled",
           "risk_oracle","full_oracle")
 
 
-class FixedRisks:
+class FixedRisks(RiskMemory):
     """BENCHMARK ONLY: privileged stable signature of simulator 'spoil'."""
     def __init__(self, code):
+        super().__init__()
         self.code=code
 
     def avoid(self):
