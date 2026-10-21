@@ -8,6 +8,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import tempfile
+from pathlib import Path
 
 from developmental_ai.outcome_skills import canonical, digest
 from developmental_ai.opaque_causal import OpaqueWorld, validate as validate_base
@@ -17,6 +20,7 @@ MAX_TRAIN = 80
 MAX_ACTIONS = 10
 MAX_STEPS = 18
 MAX_CHANNELS = 12
+MAX_CHECKPOINT_BYTES = 2 * 1024 * 1024
 
 
 def signature(seed, family, hidden_name):
@@ -166,6 +170,39 @@ class RiskMemory:
         state={"schema":SCHEMA,"episodes":self.events,
                "statistics":self.analysis()}
         return {"state":json.loads(canonical(state)),"sha256":digest(state)}
+
+    def save(self, path):
+        """Persist replay-verifiable learning evidence via atomic replacement.
+
+        The caller chooses a PRIVATE local path; this never writes to a
+        repository, remote service, or external model process automatically.
+        """
+        target=Path(path)
+        payload=(canonical(self.record())+"\n").encode("utf-8")
+        if len(payload)>MAX_CHECKPOINT_BYTES:
+            raise ValueError("affordance checkpoint exceeds configured limit")
+        target.parent.mkdir(parents=True,exist_ok=True)
+        pending=None
+        try:
+            with tempfile.NamedTemporaryFile("wb",dir=target.parent,
+                                             prefix=".affordance-pending-",
+                                             delete=False) as stream:
+                pending=Path(stream.name)
+                stream.write(payload)
+                stream.flush()
+                os.fsync(stream.fileno())
+            os.replace(pending,target)
+        finally:
+            if pending is not None:
+                pending.unlink(missing_ok=True)
+
+    @classmethod
+    def load(cls, path):
+        target=Path(path)
+        if target.stat().st_size>MAX_CHECKPOINT_BYTES:
+            raise ValueError("affordance checkpoint exceeds configured limit")
+        data=json.loads(target.read_text(encoding="utf-8"))
+        return cls.restore(data)
 
     @classmethod
     def restore(cls, saved):
