@@ -36,10 +36,28 @@ may be innocent; excluding necessary actions could worsen performance.
 The default `OpaqueEpisodePolicy` is unchanged.
 
 The memory is versioned and SHA-256 checksummed and reconstructs its
-statistics from bounded event history upon restart. This proves internal
-consistency only; it cannot authenticate a forged coherent training
-history or owner consent. Test evaluation is read-only. Model updates
-cannot promote themselves to a default policy.
+statistics from bounded event history upon restart. A direct `save`/`load`
+interface now writes a size-limited (2 MiB maximum) JSON checkpoint to a
+caller-selected **local** path through atomic replacement with file
+flush/fsync and checksum/replay validation at load. The saved state is
+never automatically published or used to promote a policy.
+This proves internal consistency only; it cannot authenticate a forged
+coherent training history or owner consent. Test evaluation is read-only.
+Model updates cannot promote themselves to a default policy.
+
+Example with the repository's ignored `private/` directory:
+
+```python
+from pathlib import Path
+from developmental_ai.affordance_memory import RiskMemory
+from benchmarks.affordance_benchmark import learn
+
+memory, _ = learn(31013)
+path = Path("private/affordance-risks.json")
+memory.save(path)
+restarted = RiskMemory.load(path)
+assert restarted.record() == memory.record()
+```
 
 ## Frozen development protocol
 
@@ -139,8 +157,8 @@ The [implementation's successful GitHub Actions run](https://github.com/magicman
 passed **537/537 Linux repository tests**, **79/79 Windows focused
 tests**, the original three-seed transfer benchmark, all previous
 optional cognitive experiments, and both new stable-descriptor cohorts.
-Subsequent documentation-only commits require their own HEAD
-checks if asserting exact branch-wide CI status.
+Subsequent disk persistence and documentation changes require a new
+successful HEAD check; prior green results cannot validate those new tests.
 
 ## Execution
 
