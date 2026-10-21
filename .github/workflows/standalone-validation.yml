@@ -34,6 +34,10 @@ jobs:
         run: python -m benchmarks.continual_skill_benchmark --cohort dev
       - name: Sequential skill learning and retention - inspected additional
         run: python -m benchmarks.continual_skill_benchmark --cohort additional
+      - name: Observational prerequisite probing - development
+        run: python -m benchmarks.prerequisite_probing_benchmark --cohort dev
+      - name: Observational prerequisite probing - inspected additional
+        run: python -m benchmarks.prerequisite_probing_benchmark --cohort additional
 
   windows-policy:
     runs-on: windows-latest
@@ -44,4 +48,4 @@ jobs:
         with:
           python-version: "3.11"
       - name: Policy review and original learner regression
-        run: python -m unittest tests.test_policy_review tests.test_outcome_skills tests.test_continual_skill_benchmark tests.test_transfer tests.test_organism -v
+        run: python -m unittest tests.test_policy_review tests.test_outcome_skills tests.test_continual_skill_benchmark tests.test_prerequisite_probing tests.test_transfer tests.test_organism -v
