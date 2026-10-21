@@ -16,6 +16,18 @@ A local-first, inspectable **developmental learning research platform**. Its lon
   The C-only model lost A/B completely; all approvals were simulated.
   Do not portray this as zero-shot or independent transfer.
 
+- [Outcome learning from public numeric measurements](docs/OBSERVABLE_AFFORDANCE_TRANSFER.md):
+  a new sandbox task generator with per-episode unique action handles
+  and two public, identity-independent engineered features. After
+  80 source training episodes per seed, a 5-nearest-neighbor
+  outcome-memory model completed **360/360** goals in both
+  collect and route across six inspected seeds with **zero
+  route training**. Feature-shuffle route scored **16/360**.
+  Crucially, flipping the shared feature rule produced **0/360**
+  completions and **360 harmful outcomes**. This shows both
+  within-designed-feature transfer and catastrophic failure
+  under nonstationary consequences. No default promotion.
+
 ## October 20, 2026 — standalone learning priority (draft branch)
 
 Development now prioritizes independent learning, cross-family
