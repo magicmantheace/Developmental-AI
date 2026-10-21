@@ -25,6 +25,21 @@ class ContextualAffordanceTests(unittest.TestCase):
         self.assertEqual(a.world._features["spoil"],b.world._features["wash"])
         self.assertEqual(a.world._features["wash"],b.world._features["spoil"])
 
+    def test_frozen_seed_collision_is_repaired_without_changing_protocol(self):
+        seed=51013  # Frozen before code; raw load/spoil two-byte hashes collide.
+        a=ShiftedCargo(seed,"test",8400,"A")
+        b=ShiftedCargo(seed,"test",8400,"B")
+        for obj in (a,b):
+            fingerprints=[token(obj.world._features[name])
+                          for name in obj.world.base._names]
+            self.assertEqual(len(fingerprints),len(set(fingerprints)))
+        self.assertNotEqual(a.world._features["spoil"],
+                            a.world._features["load"])
+        self.assertEqual(a.world._features["spoil"],
+                         b.world._features["wash"])
+        self.assertEqual(trial(seed,"test",8400,"A","risk_oracle")["success"],1)
+        self.assertEqual(trial(seed,"test",8400,"B","risk_oracle")["success"],1)
+
     def test_public_context_has_no_private_names_or_recipes(self):
         for phase in ("A","B"):
             obj=ShiftedCargo(DEVELOPMENT[0],"test",8401,phase).frame()
