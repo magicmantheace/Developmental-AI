@@ -17,6 +17,7 @@ from developmental_ai.affordance_memory import (
     signature, token,
 )
 from developmental_ai.outcome_skills import canonical, digest
+from developmental_ai.opaque_causal import OpaqueWorld
 
 SCHEMA = "developmental-ai.contextual-affordance/v1"
 CUES = {"A": [0, 2], "B": [2, 0]}  # SIMULATOR ONLY; never seen as phase names
@@ -41,7 +42,28 @@ class ShiftedCargo:
             raise ValueError("only two controlled environments")
         self.phase = phase
         self.seed = seed
-        self.world = DescribedWorld(seed, split, index, "cargo")
+        try:
+            self.world = DescribedWorld(seed, split, index, "cargo")
+        except ValueError as exc:
+            if str(exc) != "descriptor hash collision":
+                raise
+            # Protocol-preserving simulator fix: two-byte descriptors can
+            # collide on an already-frozen seed (51013: load/spoil). Do NOT
+            # cherry-pick a replacement seed or change the earlier simulator.
+            # Resolve duplicate codes deterministically in action declaration
+            # order, only inside this new optional synthetic environment.
+            world = object.__new__(DescribedWorld)
+            world.base = OpaqueWorld(seed, split, index, "cargo")
+            world.seed, world.family, world.remap = seed, "cargo", False
+            world._features = {}
+            used = set()
+            for name in world.base._names:
+                code = signature(seed, "cargo", name)
+                while token(code) in used:
+                    code = [code[0], (code[1] + 1) % 256]
+                world._features[name] = code
+                used.add(token(code))
+            self.world = world
         if phase == "B":
             # SIMULATOR ONLY. The same numeric code now identifies a
             # different private action; neither the learner nor record
