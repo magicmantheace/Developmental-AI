@@ -162,7 +162,8 @@ def measure(seeds=DEV):
             outcomes={m:episode(seed,"train",i,"relay",m) for m in POLICIES}
             fit.add(i,outcomes)
         selected=fit.freeze()
-        replay=StrategySelector.restore(fit.record())
+        fit_snapshot=fit.record()
+        replay=StrategySelector.restore(fit_snapshot)
         if replay.selection!=selected:
             raise AssertionError("meta-learner checkpoint inconsistent")
         validation={m:summarize([episode(seed,"train",500+i,"relay",m)
@@ -177,6 +178,8 @@ def measure(seeds=DEV):
                                   collect_journal=(method=="selected" and i==0))
                           for i in range(TEST_N)]
                 families[family][method]=summarize(outcomes)
+        if fit.record()!=fit_snapshot:
+            raise AssertionError("held-out evaluation mutated source strategy selection")
         report["rows"].append({"seed":seed,"source_selection":selected,
                                "source_sha256":fit.record()["sha256"],
                                "train":{m:summarize([r[m] for r in fit.rows])
