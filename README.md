@@ -23,6 +23,14 @@ The standalone work is in an **unmerged draft PR**, not the default main branch.
   explicit delivery training after source-skill acquisition with target-only
   and frozen-source controls and return-to-assembly retention checks.
   Target practice is **not** zero-shot generalization.
+- [Optional prerequisite recovery](docs/PREREQUISITE_RECOVERY.md):
+  a source-bound, replayable controller that explores unfamiliar actions
+  then defers to the existing learner when a new successful action effect
+  changes its plan frontier. Post-hoc symbolic development benchmarks showed
+  better bounded delivery adaptation while retaining assembly abilities, but
+  **zero improvement after one training episode** and no independently
+  generated cross-domain task transfer.
+
 - [Blocked-outcome prerequisite probing](docs/PREREQUISITE_PROBING.md):
   optional observed-positive/negative evidence and local action-retry control
   with a train-only two-policy validation selector. **Negative result retained:**
