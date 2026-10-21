@@ -9,6 +9,28 @@ the original transfer benchmark and focused Windows checks. Checkpoint
 source boundaries must replay exactly; no default-model promotion or
 AthenZ/Synveil work. See `docs/PREREQUISITE_RECOVERY.md`.
 
+# Latest cross-dynamics result — 2026-10-20
+
+`developmental_ai/opaque_causal.py` and
+`benchmarks.opaque_causal_benchmark` use different hand-coded hidden
+relay/cargo dynamics, per-episode rotated anonymous action handles and
+sensor channels, a common **engineered** numeric observation contract,
+and a relay-only learned choice among three prewritten exploration
+strategies. The protocol at `benchmarks/opaque_causal_protocol.json`
+was committed before model execution. Both seed groups are now
+**inspected**; they must not be presented as fresh blind holdouts.
+The strategy selector chose fixed `novel` on all six seeds: cargo
+147/360 versus cyclic 145/360, random 82/360, privileged oracle
+360/360. This is NOT evidence of meaningful semantic generalization;
+irreversible spoilage explains most failures. Preserve all controls,
+report both source/target families and all seeds, and run
+`tests.test_opaque_causal` and both cohorts plus the full and frozen
+transfer suites on changes. No AthenZ/Synveil integration.
+
+Historical notes in this file about GitHub Actions startup failure are
+outdated: the isolated fallback-policy branch has had fully successful
+Linux/Windows CI. **Only claim success for the exact current commit**.
+
 # Critical development override — 2026-10-20
 
 **Standalone learning first.** This directive supersedes earlier instructions
