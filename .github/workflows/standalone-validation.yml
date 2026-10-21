@@ -66,6 +66,10 @@ jobs:
         run: python -m benchmarks.dual_sentinel_benchmark --cohort development
       - name: Two-sentinel known/unknown guard - inspected additional
         run: python -m benchmarks.dual_sentinel_benchmark --cohort inspected-additional
+      - name: Public nonidentity-feature transfer - development
+        run: python -m benchmarks.observable_affordance_benchmark --cohort development
+      - name: Public nonidentity-feature transfer - reserved
+        run: python -m benchmarks.observable_affordance_benchmark --cohort reserved
 
   windows-policy:
     runs-on: windows-latest
@@ -76,4 +80,4 @@ jobs:
         with:
           python-version: "3.11"
       - name: Policy review and original learner regression
-        run: python -m unittest tests.test_policy_review tests.test_outcome_skills tests.test_continual_skill_benchmark tests.test_prerequisite_probing tests.test_prerequisite_recovery tests.test_opaque_causal tests.test_affordance_memory tests.test_contextual_affordance tests.test_no_cue_diagnostic tests.test_unseen_regime tests.test_dual_sentinel tests.test_quarantined_c tests.test_transfer tests.test_organism -v
+        run: python -m unittest tests.test_policy_review tests.test_outcome_skills tests.test_continual_skill_benchmark tests.test_prerequisite_probing tests.test_prerequisite_recovery tests.test_opaque_causal tests.test_affordance_memory tests.test_contextual_affordance tests.test_no_cue_diagnostic tests.test_unseen_regime tests.test_dual_sentinel tests.test_quarantined_c tests.test_observable_affordances tests.test_transfer tests.test_organism -v
