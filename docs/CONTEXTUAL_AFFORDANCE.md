@@ -92,6 +92,63 @@ online agent merely matches a supplied beacon to an existing memory.
 This is *retention and recall under a known context cue*, not automatic
 self-directed discovery that the world changed.
 
+## Verified development + reserved results
+
+The fixed cohorts are **now both inspected**. The study was designed
+after the original static hazard learning result, and the original new
+run initially failed on frozen seed 51013's descriptor collision. After
+a deterministic input-collision correction (see above), the model and
+both benchmark cohorts executed successfully in GitHub Actions.
+
+Each cohort contains **three seeds × 60 independent test episodes**
+per stage; totals below are **out of 360** across both cohorts.
+The B variant still uses the original cargo *physics*, but swaps the
+codes for two actions. Training uses 80 *unfiltered* episodes in each
+phase **per seed**; across the six seeds, phase A source training
+succeeded in 164/480 and changed-phase B training in 171/480.
+
+| Strategy | Initial A | Changed B | Return A |
+| --- | ---: | ---: | ---: |
+| **Public-cue-selected memory** | **360/360** | **360/360** | **360/360** |
+| Frozen **A-only** risk memory | 360/360 | 128/360 | 360/360 |
+| Latest **B-only** risk memory | 128/360 | 360/360 | 133/360 |
+| Untrained novel-first | 130/360 | 130/360 | 131/360 |
+| Context memory with **ambiguous cue** | 360/360 | 128/360 | 360/360 |
+| Privileged hazard-identity veto | 360/360 | 360/360 | 360/360 |
+| Privileged full action-order oracle | 360/360 | 360/360 | 360/360 |
+
+The cue-selected agent performed **zero successful spoilage actions**
+across all 1,080 A/B/A test episodes. On changed B, frozen A-only
+memory performed **232** successful spoilage actions across 360
+episodes, matching its 232 failures. On return A, B-only memory
+performed **227**, matching its failures in that stage.
+The ambiguous-cue negative control exactly matched old-only memory
+on B (**128/360**), confirming the model's dependency on the
+externally supplied context signal.
+
+Every one of the six inspected seeds scored **60/60** separately on
+each of the three context-selected evaluation stages. The known
+two-component beacon allows trivial regime separation. The learner
+does not discover the beacon, choose when to explore new dynamics,
+infer the hidden descriptor remapping, nor autonomously allocate
+training episodes into contexts.
+
+A single learner with distinct stored histories **can recover its
+prior behavior after a known context change** in this small
+deterministic simulation. This is retained *retrieval*, **not** proof
+of independently learned action semantics, causal risk, safe online
+adaptation, unseen-world generalization or a self-developing mind.
+
+### Verified execution
+
+[First passing complete code run](https://github.com/magicmantheace/Developmental-AI/actions/runs/39599591270):
+Linux full suite **550/550 tests** and both changed-context
+benchmark cohorts passed, alongside the historical transfer and
+all previous optional benchmarks; Windows focused suite passed.
+The later documentation update does not change simulator behavior.
+See the draft PR for latest-HEAD CI before declaring all checks
+on the final documentation commit.
+
 ## Interpretation requirements
 
 An A→B→A result should always include the following caveats:
