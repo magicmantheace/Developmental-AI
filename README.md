@@ -870,3 +870,20 @@ for that study caused **744 harmful simulated actions / 2,208**; the
 learner initiated none. No generalization to independently created
 unfamiliar task families, proven provenance, or default promotion.
 [Detailed precommitted protocols, seeds, original negative findings, results and CI](docs/FAST_REACQUISITION.md).
+
+
+### October 22: New observation schemas and rules (draft, experimental)
+
+An opt-in `VariableOutcomeMemory` extends the **existing** numeric outcome
+learning architecture to remember public `features/progress/damage` feedback
+from previously unknown, variable-length action-feature vocabularies.
+The frozen study trains on different quarry and coolant mechanisms, then
+examines adaptation to a third relay mechanism after **0, 16, 48, and 160**
+externally observed simulator outcomes, revisiting earlier tasks each time.
+It compares against target-only, frozen source, recent-window, random,
+abstention and privileged oracle controls and counts actor-generated harm.
+The feature names and shared goal/outcome counters are developer-engineered,
+and partitioning by feature-key signature is a handcrafted assumption, **not
+learned semantic alignment or zero-shot generalization**. Do not promote
+this optional experiment or merge the draft PR based on test passes alone.
+[Protocol, method, limitations and verification](docs/VARIABLE_AFFORDANCE.md).
