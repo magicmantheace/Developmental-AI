@@ -963,3 +963,30 @@ the source anchor, learned range statistic and confidence thresholds
 remain manually engineered; no real-world safety or independent
 unseen-physics generalization proven. No default promotion.
 [Full protocol, results and counterexamples](docs/SAME_SCHEMA_SWITCH.md).
+
+
+### October 22 — Fast public-outcome surprise response (opt-in research)
+
+A separate optional `FastShockMemory` uses archive-predicted
+outcome surprises to decide whether to apply an **immediately trained
+recent-eight model**. It has no regime labels, action authority,
+physical integration, or default promotion. Its statistical relation,
+early archive, surprise threshold and window sizes are engineered.
+
+**Frozen two-cohort results:** [dedicated CI 39852314056 passed](https://github.com/magicmantheace/Developmental-AI/actions/runs/39852314056)
+with **35 related tests and six predeclared seeds**. After 8 public
+feedback observations of a hidden reversed-rule environment with
+**unchanged feature keys**, fast shock completed **180/180** held-out
+tasks (prior 12+4 disjoint selector **26/180**); after original rules
+returned, it completed **180/180** after 4 observations. However,
+its reversed-rule results **exactly equal the simple recent-eight
+baseline at every tested checkpoint**: this is *not evidence of an
+improvement over that baseline*. It regressed against the older
+selector after prolonged exposure (e.g. B32: **136/180** versus
+**180/180**). At zero post-switch feedback the new policy caused
+**180 harmful test actions in 180 tasks**; the external actor also
+caused **751 harmful simulated TRAIN actions / 2,112 events**.
+Recent model fit overlaps the observations used to trigger it, a
+predictive evaluation weakness, so this is neither a safe switch
+detector nor independently verified novel-physics generalization.
+[Precommitted protocol, full baselines and negative results](docs/FAST_SHOCK.md).
