@@ -912,3 +912,34 @@ Study: [observable reversal calibration](docs/OBSERVABLE_REVERSAL_CALIBRATION.md
   or integrate AthenZ/Synveil. Preserve V2A before/overlapping V2B.
 
 See [absolute adequacy report](docs/ABSOLUTE_ADEQUACY.md).
+
+
+## 2026-10-21 — Passive outcomes from an independent simulated actor
+
+- [x] Freeze `benchmarks/passive_outcome_protocol.json` before
+  implementation, including two new now-inspected seed groups,
+  matched held-out third-rule tasks and full actor/learner harm
+  attribution.
+- [x] Implement strictly read-only action-outcome ingestion,
+  recomputed public sensor transitions, replayed checkpoints,
+  exact 240-event/24-event observational comparison, and
+  guarded vs raw numeric outcome prediction.
+- [x] Full six-seed results: **253/360** raw learner tasks
+  completed, 10 harmful TEST actions after 240 random
+  observations/seed; guarded policy **160/360 and 10 harms**,
+  so conservatism lost tasks without reducing measured
+  danger. From 24 subset observations guard was 22/360;
+  biased old-policy actor guard was 0/360.
+- [x] Credit simulated data collection correctly: independent
+  random actor produced **302 harmful actions /1,440**, biased
+  actor **450/1,440**, and the first-24 subset must not be
+  double-counted. Learner issued **0** collection actions,
+  but the collection process was NOT harmless.
+- [ ] Before any broader claim, audit independent generator
+  holdouts, observer selection bias, provenance, forged
+  plausible evidence and task/harm uncertainty. No real human
+  observer is connected and no owner authorization occurs.
+- [ ] D1/D3/D4 stay open; main/default untouched, PR draft,
+  no AthenZ/Synveil integration. V2A remains before and
+  overlaps V2B. See
+  [passive outcome report](docs/PASSIVE_OUTCOME_LEARNING.md).

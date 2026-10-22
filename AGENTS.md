@@ -1,3 +1,37 @@
+# Passive outcome learning on the third numeric rule — 2026-10-21
+
+Optional `developmental_ai/passive_outcome_learning.py` accepts only
+already-executed *public before/action/after transitions* from
+independent simulated actors. It never chooses an action to
+collect its own training data. A synthetic random actor
+provided 240 third-rule events per seed across six now
+INSPECTED seeds. Raw five-nearest-neighbor model trained
+on those observations completed **253/360** held-out third-rule
+tasks, with **10 harmful TEST actions**; conservative
+filter completed **160/360** with the **same 10 harms**.
+A 24-event filtered learner completed **22/360**. A biased
+old-normal-policy actor produced only **13 productive events**
+of 1,440 events, and its guarded passive learner completed
+**0/360**. The frozen old normal and reversed memories
+remained at 0/360 with 293 and 296 harms respectively.
+Passive data does NOT mean harmless data collection: random
+actor incurred **302 harmful actions in 1,440 recorded events**,
+and separate biased actor **450/1,440**. The random24 prefix
+is a subset (34 harmful events already counted in the
+random240 total). The observer and learner are both only
+simulated and no human consent/provenance verification exists.
+The archive is replayable by SHA-256 but not authenticated.
+[Focused CI 39718642738] passed **11/11** tests and both
+three-seed cohorts; final full historical regression is
+a separate gate. Frozen protocol
+`benchmarks/passive_outcome_protocol.json`,
+full report `docs/PASSIVE_OUTCOME_LEARNING.md`.
+This is NOT zero-shot unknown law competence, risk-free
+learning, independent world transfer, general self-developed
+intelligence or D1/D3/D4 completion. No automatic policy
+promotion. Keep PR draft, main untouched, AthenZ/Synveil
+integration deferred and V2A then V2B ordering unchanged.
+
 # Absolute outcome adequacy: noisy and never-trained third feature rule — 2026-10-21
 
 Optional `developmental_ai/absolute_adequacy.py` and
