@@ -936,3 +936,30 @@ studies do not prove safety, source truth, independent novel-physics
 generalization or D3 completion. Both dedicated cohorts and
 historical focused regressions passed.
 [Methods, frozen protocols, full results and failures](docs/RELATION_TRANSFER.md).
+
+
+### October 22 — Rule changes without a sensor-schema hint (opt-in)
+
+A new, bounded `SameSchemaSwitchMemory` compares an immutable early
+range/outcome experience archive with a separately fitted recent model,
+using a held-out four-feedback-event predictive comparison. It is
+tested on an identical-feature A→reversed B→A simulator, **without
+exposing any stage, phase or schema-change labels** to the learner.
+
+[The precommitted dedicated CI study passed](https://github.com/magicmantheace/Developmental-AI/actions/runs/39849488743):
+36 focused/historical regression tests, both frozen three-seed cohorts.
+After 16 externally observed B outcomes, the adaptive method completed
+**170/180** held-out reversed-rule tasks (frozen A and cumulative
+memory 0/180); after 48, **180/180**. When A returned, it
+reacquired **180/180 after four** A observations. **Major negatives:**
+at B0 and return-A0 the new policy made **180 harmful TEST actions /
+180**; at B8 it completed **0/180** while a simple recent-eight
+baseline completed **167/180**. B64 regressed to 178/180, while
+recent-32 achieved 180/180. Abstentions at B4/B8 reduced harms by
+only 30 and **all 30 abstentions were task failures**. The separate
+random training actor caused **701 harmful outcomes / 2,112**
+actions; learner-generated training actions zero. All dynamics,
+the source anchor, learned range statistic and confidence thresholds
+remain manually engineered; no real-world safety or independent
+unseen-physics generalization proven. No default promotion.
+[Full protocol, results and counterexamples](docs/SAME_SCHEMA_SWITCH.md).
