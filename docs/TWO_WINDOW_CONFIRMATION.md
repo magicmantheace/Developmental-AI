@@ -28,7 +28,7 @@ conditions only:
 - `recent8`: **zero test damage** on switched conditions, but
   **60/720 task failures by abstention**.
 - `cumulative8`: **60 harmful test actions** under
-  normal→reversed, and 480/720 switched-condition completions;
+  normal→reversed, and 240/720 switched-condition completions;
   pooling old and current evidence can retain obsolete conclusions.
 - `always_abstain`: no test damage but no completed tasks.
 
