@@ -1,3 +1,29 @@
+# Numeric consequence reversal calibration — 2026-10-21
+
+The optional `observable_reversal_calibration.py` experiment fits an
+engineered-feature source model from 80 normal `collect` episodes
+and a separate reversed-rule model from 80 `route-reversed` episodes.
+It selects between these **already trained** models using the public
+effects of 12 disposable training-namespace interventions, with an
+explicit minimum evidence/margin abstention criterion and exact
+replay checks. On six INSPECTED seeds (test indices 14000..14059),
+both normal and reversed test worlds reached **360/360** completions
+and 0 *test* damage, but **56/144 calibration interventions damaged
+the simulated rehearsal worlds**. The deliberately wrong-calibration
+control caused **720/720 test failures and damaging actions**, and
+abstention avoided harm but completed no tasks. Frozen protocol:
+`benchmarks/observable_reversal_calibration_protocol.json`;
+full report: `docs/OBSERVABLE_REVERSAL_CALIBRATION.md`.
+
+The numeric features and physics are engineered, all seeds inspected;
+this is NOT blind cross-domain generalization, real-world safe
+experimentation, automatically learned new causal dynamics or
+authenticated model promotion. Preserve original numeric affordance
+negative results, rerun nine focused tests, both calibration cohorts,
+full Linux/Windows unit tests and original frozen transfer benchmark.
+Keep experimental PR draft, main/defaults/real actions unchanged,
+AthenZ/Synveil integration deferred, D1/D3/D4 open and V2A/V2B order.
+
 # Numeric public-feature transfer research — October 21, 2026
 
 A new isolated `observable_affordances.py` experiment no longer
