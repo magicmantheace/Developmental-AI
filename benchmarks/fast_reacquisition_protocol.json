@@ -66,7 +66,8 @@
       71029
     ],
     "episodes_per_checkpoint_per_seed": 30,
-    "read_only": true
+    "read_only": true,
+    "random_baseline": "Independent seeded random TEST action policy, not used to gather training outcomes; shares test tasks with all methods."
   },
   "cohorts": {
     "development": [
@@ -88,6 +89,7 @@
     "recent_32_knn",
     "cumulative_knn",
     "frozen_A_knn",
+    "untrained_random",
     "always_abstain",
     "privileged_oracle"
   ],
