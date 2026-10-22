@@ -834,3 +834,20 @@ Across six previously inspected seeds, a context-indexed successful plan complet
 `developmental_ai.plan_repair` introduces a simulation-only A→B→A hidden-prerequisite environment with **no public context label**, per-episode shuffled action aliases, stable opaque role identities and a seven-action limit. A bounded cached-plan controller avoids retrying a recently blocked action at unchanged progress, but **ties** a simple latest-plan baseline at **434/480** completed goals; the encoded roles and overly complete plans limit conclusions. See [frozen results](docs/PLAN_REPAIR.md).
 
 `developmental_ai.plan_compaction` is a separately precommitted **exploratory follow-up**, designed after those results: trial removal of one stored plan role, retain shorter successful sequences, and validate checkpoints by replay. It improves mean attempts from **7.00 to 4.96**, but completes only **395/480** goals versus cached repair's **434/480**. The hand-coded role-order policy still completes **480/480**. Do not promote this optimization or claim causal skills or D4 completion. See [follow-up results](docs/PLAN_COMPACTION.md). Both studies use six evaluated, non-blind seeds and preserve all default agent behavior. V2A and V2B order remains unchanged.
+
+
+### October 22: Experimental A→B→A numeric memory retrieval (draft PR only)
+
+An opt-in `RegimeRetrievalMemory` now reuses existing numerical outcome
+learning to retrieve earlier experience after a rule reversal. Across six
+**now-inspected** seeds, each method faced 360 held-out simulator episodes
+per stage. Retrieval completed **360/360 on A, 360/360 on B, and 360/360
+on early return to A** after 160 A observations, 160 B observations and
+12 return-A observations. Cumulative kNN got 160/360 on return; recent-32
+got 1/360; frozen A got 360/360 return but 0/360 on B. The independent
+random training actor generated **664 harmful simulated actions / 1,992**
+observations. These are not harm-free demonstrations. This narrow reversal
+result **does not establish unfamiliar-family generalization, source truth,
+independent motivation, or D3/D6 completion**. Original controller unchanged,
+no model promotion, no AthenZ/Synveil integration.
+[Full protocol, baselines, negative findings and CI](docs/REGIME_RETRIEVAL.md).
