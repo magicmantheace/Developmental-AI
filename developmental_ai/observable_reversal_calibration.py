@@ -47,7 +47,8 @@ class OutcomeCalibration:
             not isinstance(changed,NumericOutcomeMemory) or
             not source.examples or not changed.examples):
             raise ValueError("two trained memories required")
-        self.models={"source":source,"changed":changed}
+        self.models={"source":NumericOutcomeMemory.restore(source.record()),
+                     "changed":NumericOutcomeMemory.restore(changed.record())}
         self.fingerprints={k:v.record()["sha256"] for k,v in self.models.items()}
         self.events=[]
 
