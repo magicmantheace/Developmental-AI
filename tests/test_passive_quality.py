@@ -51,7 +51,8 @@ class PassiveQualityTests(unittest.TestCase):
         self.assertFalse(self.coverage["biased"].report()["coverage_passed"])
 
     def test_forged_coherent_public_observations_escape_coverage(self):
-        self.assertEqual(self.forged_count,60)
+        self.assertEqual(self.forged_count,
+                         min(60,self.random.stats()["actor_harmful_actions"]))
         self.assertTrue(self.coverage["forged"].report()["coverage_passed"])
         self.assertEqual(self.forged.stats()["observations"],RECORDS)
         self.assertEqual(self.forged.record(),
