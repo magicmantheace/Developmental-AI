@@ -98,6 +98,10 @@ jobs:
         run: python -m benchmarks.passive_quality_benchmark --cohort development
       - name: Passive evidence bias and forgery audit - reserved
         run: python -m benchmarks.passive_quality_benchmark --cohort reserved
+      - name: Paired signed outcome witnesses - development
+        run: python -m benchmarks.paired_witness_benchmark --cohort development
+      - name: Paired signed outcome witnesses - reserved
+        run: python -m benchmarks.paired_witness_benchmark --cohort reserved
 
   windows-policy:
     runs-on: windows-latest
@@ -108,4 +112,4 @@ jobs:
         with:
           python-version: "3.11"
       - name: Policy review and original learner regression
-        run: python -m unittest tests.test_policy_review tests.test_outcome_skills tests.test_continual_skill_benchmark tests.test_prerequisite_probing tests.test_prerequisite_recovery tests.test_opaque_causal tests.test_affordance_memory tests.test_contextual_affordance tests.test_no_cue_diagnostic tests.test_unseen_regime tests.test_dual_sentinel tests.test_quarantined_c tests.test_observable_affordances tests.test_observable_reversal_calibration tests.test_sequential_probe tests.test_two_window_confirmation tests.test_absolute_adequacy tests.test_passive_outcome tests.test_passive_quality tests.test_transfer tests.test_organism -v
+        run: python -m unittest tests.test_policy_review tests.test_outcome_skills tests.test_continual_skill_benchmark tests.test_prerequisite_probing tests.test_prerequisite_recovery tests.test_opaque_causal tests.test_affordance_memory tests.test_contextual_affordance tests.test_no_cue_diagnostic tests.test_unseen_regime tests.test_dual_sentinel tests.test_quarantined_c tests.test_observable_affordances tests.test_observable_reversal_calibration tests.test_sequential_probe tests.test_two_window_confirmation tests.test_absolute_adequacy tests.test_passive_outcome tests.test_passive_quality tests.test_paired_witness tests.test_transfer tests.test_organism -v
