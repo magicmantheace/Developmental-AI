@@ -380,3 +380,104 @@ class FastRegimeMemory(RegimeRetrievalMemory):
         if obj.record() != record:
             raise ValueError("fast-retrieval evidence failed replay")
         return obj
+
+
+# Selection-only internal evidence consistency. Never silently overwrite
+# old numeric memory, change benchmark physics, or promote this controller.
+CONSISTENT_SCHEMA = "developmental-ai.consistent-regime-retrieval/v1"
+CONSISTENCY_CUTOFF = -1.5
+RECENT_NEAR_TIE = 0.75
+
+
+class ConsistentRegimeMemory(FastRegimeMemory):
+    """Retain old skills while rejecting internally contradictory blocks.
+
+    Complete archival blocks are split in half. Each half predicts feedback
+    from the other half, out of sample. Under-performing blocks are excluded
+    from selection but NEVER deleted. A fresh, independently-scored recent
+    candidate remains available for rules absent from the archive. This is
+    engineered model validation, not a trustworthy evidence-source check.
+    """
+
+    @classmethod
+    def _cross_half_score(cls, events):
+        if len(events) != REGIME_CHUNK:
+            raise ValueError("not a complete archived memory")
+        a, b = NumericOutcomeMemory(), NumericOutcomeMemory()
+        for row in events[:REGIME_CHUNK//2]:
+            a.add(row)
+        for row in events[REGIME_CHUNK//2:]:
+            b.add(row)
+        total = (sum(cls._likelihood(a, row) for row in events[REGIME_CHUNK//2:])
+                 + sum(cls._likelihood(b, row) for row in events[:REGIME_CHUNK//2]))
+        return total / REGIME_CHUNK
+
+    def selection(self):
+        if len(self.events) < REGIME_CHUNK + FAST_REGIME_TAIL:
+            raise ValueError("insufficient independent consistency evidence")
+        if self._cache is not None:
+            return dict(self._cache[0])
+        tail = self.events[-FAST_REGIME_TAIL:]
+        block_count = (len(self.events) - FAST_REGIME_TAIL)//REGIME_CHUNK
+        quarantine = []
+        candidates = []
+        for index in range(block_count):
+            events = self.events[index*REGIME_CHUNK:(index+1)*REGIME_CHUNK]
+            quality = self._cross_half_score(events)
+            if quality < CONSISTENCY_CUTOFF:
+                quarantine.append(index)
+                continue
+            memory = NumericOutcomeMemory()
+            for event in events:
+                memory.add(event)
+            candidates.append((f"archive_{index}", index, memory))
+        recent = NumericOutcomeMemory()
+        for event in self.events[-(FAST_REGIME_RECENT+FAST_REGIME_TAIL):-FAST_REGIME_TAIL]:
+            recent.add(event)
+        candidates.append(("recent_8", block_count, recent))
+        ranked = []
+        for name, index, memory in candidates:
+            cost = -sum(self._likelihood(memory, e) for e in tail)
+            ranked.append((cost, index, name, memory))
+        best = min(ranked, key=lambda x: (x[0], x[1]))
+        recent_entry = next(r for r in ranked if r[2] == "recent_8")
+        if best is not recent_entry and recent_entry[0] - best[0] <= RECENT_NEAR_TIE:
+            best = recent_entry
+        next_best = min((r for r in ranked if r is not best),
+                        key=lambda x: (x[0], x[1]), default=None)
+        decision = {
+            "source": best[2], "candidates": len(ranked),
+            "quarantined_archive_indices": quarantine,
+            "log_margin": round(next_best[0] - best[0], 6)
+                          if next_best is not None else 0.0,
+            "scoring_events": FAST_REGIME_TAIL,
+            "overlap_with_selected_training": 0,
+        }
+        self._cache = (decision, best[3])
+        return dict(decision)
+
+    def record(self):
+        if not self.events:
+            raise ValueError("no experienced outcomes to checkpoint")
+        state = {"schema": CONSISTENT_SCHEMA, "events": self.events}
+        return {"state": json.loads(canonical(state)), "sha256": digest(state)}
+
+    @classmethod
+    def restore(cls, record):
+        if (type(record) is not dict or set(record) != {"state", "sha256"}
+                or type(record["state"]) is not dict
+                or type(record["sha256"]) is not str
+                or digest(record["state"]) != record["sha256"]):
+            raise ValueError("invalid consistency checkpoint digest")
+        state = record["state"]
+        if (set(state) != {"schema", "events"}
+                or state["schema"] != CONSISTENT_SCHEMA
+                or type(state["events"]) is not list
+                or not 1 <= len(state["events"]) <= MAX_SAMPLES):
+            raise ValueError("invalid consistency checkpoint schema")
+        obj = cls()
+        for event in state["events"]:
+            obj.observe(event)
+        if obj.record() != record:
+            raise ValueError("cannot replay consistency checkpoint")
+        return obj
