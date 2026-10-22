@@ -36,16 +36,20 @@ class RegimeRetrievalTests(unittest.TestCase):
 
     def test_selector_uses_out_of_sample_tail_and_retains_prior_regime(self):
         self.assertEqual(self.bank.selection()["chunk_index"], 0)
-        for _ in range(REGIME_CHUNK):
-            self.bank.observe(evidence("B"))
-        for _ in range(REGIME_TAIL):
-            self.bank.observe(evidence("B"))
+        # Put the B block on a *complete* new chunk. The initial setUp
+        # included a 12-event incomplete A chunk; appending B there would
+        # deliberately mix rules and is not evidence of a B-only memory.
+        bank = RegimeRetrievalMemory()
+        for _ in range(REGIME_CHUNK * 2):
+            bank.observe(evidence("A"))
+        for _ in range(REGIME_CHUNK + REGIME_TAIL):
+            bank.observe(evidence("B"))
         # Last 12 training points are never allowed in candidate chunks.
-        self.assertEqual(self.bank.selection()["chunks_evaluated"], 2)
-        self.assertEqual(self.bank.selection()["chunk_index"], 1)
+        self.assertEqual(bank.selection()["chunks_evaluated"], 3)
+        self.assertEqual(bank.selection()["chunk_index"], 2)
         for _ in range(REGIME_TAIL):
-            self.bank.observe(evidence("A"))
-        self.assertEqual(self.bank.selection()["chunk_index"], 0)
+            bank.observe(evidence("A"))
+        self.assertEqual(bank.selection()["chunk_index"], 0)
 
     def test_no_independent_selection_evidence_is_rejected(self):
         bank = RegimeRetrievalMemory()
