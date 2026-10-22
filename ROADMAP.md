@@ -1076,3 +1076,34 @@ Do not claim safe causal exploration or successful zero-shot transfer.
 Evidence supports partial D1/D4/D6 architecture research, not D3
 generalization completion. Preserve D1–D10 and V2A/V2B order.
 [Full results](docs/VARIABLE_AFFORDANCE.md).
+
+
+#### October 22, 2026 — Learned relation reuse and harmful transfer recovery
+
+**Partial D3/D4/D6 research, NOT D3 gate completion**. An optional
+replayable `RelationOutcomeMemory` trained on numeric public
+first-action outcomes transfers a developer-engineered max-minus-min
+relation to entirely new feature key sets and dimensionalities.
+A precommitted six-seed controlled study yielded **240/240 zero-target-
+feedback successes each** on lattice/prism, versus target-only
+37/240 and 22/240. These worlds deliberately share one mathematical
+rule, a major transfer shortcut. A negative-rule control produced
+**0/240 successes, 240 harmful TEST actions** and no recovery after
+64 target samples — explicit catastrophic negative transfer.
+
+A separately frozen six-seed study of opt-in `GatedRelationMemory`
+compares the inherited model with a target-specific candidate on a
+four-event held-out feedback tail. Counterphase recovery reached
+173/240 after 8, 224/240 after 16, **240/240 after 24** observed
+target outcomes; all compatible and source-revisit tasks stayed
+240/240. Critical remaining failures: 240/240 harm before 8 target
+observations; at 8 target samples a target-only model was stronger
+(221/240 versus gated 173/240); exact feature-key signatures provide
+engineered novelty information; internally consistent source forgery
+remains unresolved. Two independent actor cohorts caused **868** and
+**816** harmful TRAIN actions out of **2,592 each**, never learner
+initiated. Both dedicated focused CI runs passed, with full
+Linux/Windows exact HEAD gate checked separately. Preserve other
+negative findings, all existing D1–D10 phases, V2A then partly
+overlapping V2B, and defer AthenZ/Synveil integration. See
+[RELATION_TRANSFER.md](docs/RELATION_TRANSFER.md).
