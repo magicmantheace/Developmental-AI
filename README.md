@@ -851,3 +851,22 @@ result **does not establish unfamiliar-family generalization, source truth,
 independent motivation, or D3/D6 completion**. Original controller unchanged,
 no model promotion, no AthenZ/Synveil integration.
 [Full protocol, baselines, negative findings and CI](docs/REGIME_RETRIEVAL.md).
+
+
+### October 22: Early adaptive retrieval and consistency screening (experimental)
+
+Two opt-in learners extend the existing public numeric outcome memory.
+`FastRegimeMemory` tries previous 64-event experience blocks and a
+recent eight-observation hypothesis against four distinct new feedback
+events. `ConsistentRegimeMemory` screens prior blocks using cross-half
+out-of-sample prediction without deleting historical data.
+
+In a new frozen 6-seed A→B→A reversal cohort, cross-half filtering improved
+B-after-48 TEST completions **96/180 → 173/180**, reducing harmful TEST
+actions **84 → 7**. However a recent-32 baseline reached **180/180**
+at that checkpoint, and recent-8 was better at early B-8 (**159/180**
+versus consistency **26/180**). External random simulation actor training
+for that study caused **744 harmful simulated actions / 2,208**; the
+learner initiated none. No generalization to independently created
+unfamiliar task families, proven provenance, or default promotion.
+[Detailed precommitted protocols, seeds, original negative findings, results and CI](docs/FAST_REACQUISITION.md).
