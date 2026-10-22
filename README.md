@@ -1,3 +1,13 @@
+- [Absolute predictive adequacy with noisy and unknown feature rules](docs/ABSOLUTE_ADEQUACY.md):
+  a public-outcome calibration can flag an *untrained third rule*
+  as unsupported by either old numeric model (6/6 inspected
+  seeds), reducing third-rule test damage from **192 to 0**.
+  But it completes **0/360** unknown tasks, falsely declines
+  3/12 noisy familiar contexts, and incurs **56 harmful actions
+  among 144 offline calibration probes**. This is uncertain
+  model rejection, **not** safe causal adaptation or autonomous
+  unfamiliar-task learning.
+
 - [Two-window public-outcome confirmation](docs/TWO_WINDOW_CONFIRMATION.md):
   after separately fitting two engineered numeric-feature outcome models,
   compare the first and recent four observed calibration results.

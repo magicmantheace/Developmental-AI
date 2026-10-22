@@ -887,3 +887,28 @@ Study: [observable reversal calibration](docs/OBSERVABLE_REVERSAL_CALIBRATION.md
   actuation, V2A before and overlapping V2B, cross-project
   integration deferred. See
   [two-window report](docs/TWO_WINDOW_CONFIRMATION.md).
+
+
+## 2026-10-21 — Absolute model adequacy under noise and third-rule novelty
+
+- [x] Freeze an independent simulator protocol BEFORE implementation,
+  adding a task-feasible third rule with no training and 10% neutralizing
+  noise on familiar laws. Never reuse these inspected outcomes as blind.
+- [x] Evaluate absolute best-model likelihood plus agreement of public
+  four-observation windows, against relative-only, recent-only,
+  always-abstain, wrong/frozen known models and privileged oracle.
+- [x] Six inspected seeds: new gate **202/360 noisy normal,
+  151/360 noisy reversed, 0/360 unknown**; relative-only **244/360,
+  222/360, 0/360**. New gate rejected all six unknown contexts and
+  avoided harmful unknown TEST actions, versus relative-only **192**
+  harms, but falsely rejected **3/12 known noisy calibrations**.
+  **56/144 offline probes caused damage** (16/48 in unknown context),
+  so gate is NOT safe to use for active exploration.
+- [ ] **Open:** passive/no-intervention observation and rigorous hazard
+  and usefulness accounting, then a wholly new precommitted
+  generator and fresh holdout. Abstention must count failed goals;
+  calibration itself cannot be presumed harmless.
+- [ ] Do not close D1/D3/D4, auto-promote, permit OS/network actions
+  or integrate AthenZ/Synveil. Preserve V2A before/overlapping V2B.
+
+See [absolute adequacy report](docs/ABSOLUTE_ADEQUACY.md).

@@ -1,3 +1,31 @@
+# Absolute outcome adequacy: noisy and never-trained third feature rule — 2026-10-21
+
+Optional `developmental_ai/absolute_adequacy.py` and
+`novel_feature_world.py` retain original two engineered numeric
+outcome models. An eight-probe public-only offline calibration
+compares per-window **absolute** predictive fit (mean negative
+log likelihood threshold 1.2) plus previous relative margin.
+One new simulator rule makes near-diagonal features productive,
+a rule neither source model has been trained on; known normal/
+reversed regimes have hash-deterministic 10% neutralizing noise.
+Frozen protocol `benchmarks/absolute_adequacy_protocol.json`
+was committed before candidate code. On six now-INSPECTED
+seeds, adequacy gate scored noisy normal **202/360**, reversed
+**151/360**, third **0/360** with all 6 unknown contexts
+identified and **0 harmful third-world test actions**.
+Relative-only control scored 244/360, 222/360, 0/360,
+but caused **192 harmful test actions** in the third world.
+Absolute gate made **3/12 false unknown decisions** on known
+noisy worlds. **56/144 calibration actions damaged disposable
+simulators**, including 16/48 against the unfamiliar rule.
+Third-rule oracle is 360/360, showing tasks are feasible, but
+candidate **does not learn** the third rule and only abstains.
+Focused GitHub CI 39717495708 passed 8/8 and both seed cohorts.
+See `docs/ABSOLUTE_ADEQUACY.md`. This is NOT safe exploration,
+blind naturalistic transfer, general cognition or D3/D4.
+Preserve all original tests; keep PR draft, main/default
+unchanged and Synveil/AthenZ integration deferred.
+
 # Two-window confirmation evidence (2026-10-21)
 
 The optional `two_window_confirmation.py` experiment is

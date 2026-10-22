@@ -2,6 +2,72 @@
 
 **Experimental, simulation-only; not real-world safe experimentation.**
 
+## Verified two-cohort results — 2026-10-21
+
+[Focused GitHub Actions run 39717495708](https://github.com/magicmantheace/Developmental-AI/actions/runs/39717495708)
+passed all **8** new regression tests and both 3-seed cohorts,
+producing full synthetic JSON output artifacts. Both cohorts were
+inspected by this run and are **not blind** after this point. Results
+below total 60 test tasks × 6 seeds = **360** per environment:
+
+| Policy | Noisy normal | Noisy reversed | Untrained third |
+| --- | ---: | ---: | ---: |
+| **Absolute adequacy, both windows** | **202/360** | **151/360** | **0/360** |
+| Previous relative-only two-window agreement | 244/360 | 222/360 | 0/360 |
+| Previous most-recent four-only | 244/360 | 222/360 | 0/360 |
+| Frozen normal-only memory | 244/360 | 0/360 | 0/360 |
+| Frozen reversed-only memory | 0/360 | 222/360 | 0/360 |
+| Always abstain | 0/360 | 0/360 | 0/360 |
+| Privileged true-effect oracle | 322/360 | 313/360 | 360/360 |
+
+The *new* gate returned **`unknown` on 6/6 third-rule seed
+evaluations**, and it recorded **zero damaging TEST actions** in the
+unknown third environment. The relative-only two-window control
+caused **192 harmful TEST actions** in the third world, and its
+recent-four-only counterpart caused **238**. The third rule is
+feasible: the privileged oracle completed 360/360 tasks there.
+
+This protection came with **false unknown labels in 3/12 familiar
+seed/environment calibrations**: one noisy-normal seed, two
+noisy-reversed seeds. The gated policy's known-rule completion
+fell from relative-only **244 to 202** in normal and **222 to
+151** in reversed. The new gate also incurred **1 damaging test
+action in noisy normal** and **1 in noisy reversed** (model
+imperfection despite correct broad rule selection); relative-only
+incurred 2 and 3 respectively.
+
+**Calibration interventions are not harmless:** Across all
+six seeds × three environments × eight *offline single-action*
+probes = **144 actions**, **56 caused simulated damage**:
+22 noisy-normal, 18 noisy-reversed, and 16 in the unknown
+third-rule environment. These harm totals are per actual
+calibration transcript and **not multiplied by the comparison
+policies that reuse it**. The gate must not be described as
+zero-harm or deployable because it avoided *test* harms by
+refusing to act in the unknown world.
+
+Because the new unknown rule is never trained, completing **zero
+third-rule tasks** is expected and must be treated as task failure,
+not adaptation. The noisy known-world privileged oracle itself
+could only complete 322/360 and 313/360 due to feature/outcome
+perturbations in the particular synthetic generator. Neither
+absolute support threshold (1.2 mean NLL), engineered numeric
+features, deterministic 10% neutralizing noise, or the new
+third physics establishes genuine calibrated uncertainty in
+an unseen naturalistic environment. This is retrospective
+mechanistic evidence; further post-result threshold tuning
+cannot turn these seeds into independent held-out validation.
+
+**Next necessary step:** evaluate non-interventional
+public-outcome observation and a *predeclared unseen fourth
+generator*. Do not authorize probes just to identify an unknown
+hazard. Compare work completed, missed warnings, observation
+cost, and any damage caused by whichever external process
+produces observational data, without assigning that harm
+to the passive observer itself.
+
+
+
 The previous two-window study demonstrated a trade-off: comparing
 first and recent public-action feedback can reject a stale rule
 but can also abstain from useful work. This separate study asks
