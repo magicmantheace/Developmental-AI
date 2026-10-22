@@ -481,3 +481,118 @@ class ConsistentRegimeMemory(FastRegimeMemory):
         if obj.record() != record:
             raise ValueError("cannot replay consistency checkpoint")
         return obj
+
+
+# A third, opt-in extension to the SAME public-outcome learning architecture.
+# Unlike NumericOutcomeMemory, it accepts previously unknown feature vocabularies.
+# Exact key-set partitioning is a deliberately engineered inductive bias.
+VARIABLE_MODEL_SCHEMA = "developmental-ai.variable-outcome-memory/v1"
+VARIABLE_MAX_KEYS = 5
+
+
+def variable_feature_check(features):
+    if (type(features) is not dict or not 2 <= len(features) <= VARIABLE_MAX_KEYS
+            or any(type(k) is not str or not 1 <= len(k) <= 30
+                   or any(c not in "abcdefghijklmnopqrstuvwxyz_" for c in k)
+                   or type(v) is not int or not 0 <= v <= 9
+                   for k, v in features.items())):
+        raise ValueError("invalid variable numeric action observations")
+    return features
+
+
+class VariableOutcomeMemory:
+    """Persistent outcome learning across *observed* feature schemas.
+
+    No family labels, hidden physics, source names, stable action IDs or known
+    target vocabulary are accepted by observe(). Each independently learned
+    schema shares one append-only event history but predicts with its own
+    5NN evidence, avoiding contamination when attribute vocabularies differ.
+
+    The schema signature is manually defined as the set of observed keys.
+    This does not semantically align new words with old words or demonstrate
+    zero-shot transfer. Target-family feedback is still required.
+    """
+
+    def __init__(self):
+        self.events = []
+        self._groups = {}
+
+    def observe(self, event):
+        if (type(event) is not dict or set(event) != {"features", "progress", "damage"}
+                or type(event["progress"]) is not bool or type(event["damage"]) is not bool
+                or (event["progress"] and event["damage"])
+                or len(self.events) >= MAX_SAMPLES):
+            raise ValueError("invalid or oversized variable outcome event")
+        variable_feature_check(event["features"])
+        row = json.loads(canonical(event))
+        self.events.append(row)
+        signature = tuple(sorted(row["features"]))
+        self._groups.setdefault(signature, []).append(row)
+
+    def estimate(self, features):
+        variable_feature_check(features)
+        signature = tuple(sorted(features))
+        seen = self._groups.get(signature, [])
+        if not seen:
+            return {"progress": 0.0, "damage": 0.0,
+                    "evidence": 0, "schema_known": False}
+        neighbors = sorted(enumerate(seen), key=lambda entry: (
+            sum((features[key] - entry[1]["features"][key]) ** 2
+                for key in signature), entry[0]))[:5]
+        return {
+            "progress": sum(int(row["progress"]) for _, row in neighbors) / len(neighbors),
+            "damage": sum(int(row["damage"]) for _, row in neighbors) / len(neighbors),
+            "evidence": len(neighbors), "schema_known": True,
+        }
+
+    def choose(self, frame):
+        if (type(frame) is not dict or
+                set(frame) != {"schema","episode","tick","budget","progress",
+                               "damage","target","actions","done"} or
+                frame["schema"] != "developmental-ai.variable-affordance-frame/v1" or
+                type(frame["done"]) is not bool or
+                type(frame["actions"]) is not list or len(frame["actions"]) > 16):
+            raise ValueError("invalid variable-affordance public frame")
+        if frame["done"]:
+            return None
+        options = []
+        seen = set()
+        for action in frame["actions"]:
+            if (type(action) is not dict or set(action) != {"id", "features"}
+                    or type(action["id"]) is not str or not action["id"].startswith("a_")
+                    or len(action["id"]) != 20 or action["id"] in seen):
+                raise ValueError("invalid anonymous action observation")
+            seen.add(action["id"])
+            prediction = self.estimate(action["features"])
+            score = prediction["progress"] * 3 - prediction["damage"] * 10
+            options.append((-score, action["id"]))
+        return min(options)[1] if options else None
+
+    def signatures(self):
+        return {"|".join(sig): len(rows) for sig, rows in sorted(self._groups.items())}
+
+    def record(self):
+        if not self.events:
+            raise ValueError("no observed events to preserve")
+        state = {"schema": VARIABLE_MODEL_SCHEMA, "events": self.events}
+        return {"state": json.loads(canonical(state)), "sha256": digest(state)}
+
+    @classmethod
+    def restore(cls, record):
+        if (type(record) is not dict or set(record) != {"state","sha256"}
+                or type(record["state"]) is not dict or
+                type(record["sha256"]) is not str
+                or digest(record["state"]) != record["sha256"]):
+            raise ValueError("invalid cross-schema memory digest")
+        state = record["state"]
+        if (set(state) != {"schema","events"} or
+                state["schema"] != VARIABLE_MODEL_SCHEMA or
+                type(state["events"]) is not list or
+                not 1 <= len(state["events"]) <= MAX_SAMPLES):
+            raise ValueError("invalid cross-schema memory structure")
+        obj = cls()
+        for row in state["events"]:
+            obj.observe(row)
+        if obj.record() != record:
+            raise ValueError("cross-schema observation memory cannot replay")
+        return obj
