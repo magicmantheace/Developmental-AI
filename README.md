@@ -903,3 +903,36 @@ actions out of 3,120 independent observer actions**, although the
 learner had no training action authority. The key-set partition is
 engineered, the new rules all author-designed and new-family feedback
 required; D3 remains open. [Detailed scientific results](docs/VARIABLE_AFFORDANCE.md).
+
+
+### October 22: Controlled relational reuse and conflict detection (optional)
+
+A new `RelationOutcomeMemory` learns observed outcome distributions by a
+**designer-provided** value-range statistic rather than by exact sensor key
+names. Across precommitted six-seed, read-only synthetic tests it reused
+240 externally observed basin outcomes to solve **240/240 lattice and
+240/240 prism** tasks, with previously unseen numeric feature
+vocabularies and **zero target observations**. Target-only did 37/240
+and 22/240; fixed heuristics were substantially weaker. These three
+simulators **intentionally share one engineered range-based rule**, so
+this is narrow controlled structural transfer, not automatically
+discovered new laws.
+
+A deliberately reversed `counterphase` rule exposed catastrophic
+negative transfer: **0/240 successes and 240 harmful TEST actions**,
+even after 64 target observations. The opt-in `GatedRelationMemory`
+now uses four independent recent target feedback examples to choose
+between historical and target-specific predictive models. On a
+**separately frozen six-seed cohort** it improved counterphase
+0/240 → 173/240 after eight new outcomes → **240/240 after 24**,
+without losing 240/240 compatible new-schema successes or 240/240
+source revisit. It is **slower** than the target-only learner at
+eight and sixteen samples (173 vs 221; 224 vs 235), and **still
+causes 240/240 harmful actions with no contradictory feedback**.
+Source-side observation acquisition incurred **868/2,592 harmful
+simulated actions** in the first study and **816/2,592** in the
+separate gate study; no learner-issued TRAIN interventions. These
+studies do not prove safety, source truth, independent novel-physics
+generalization or D3 completion. Both dedicated cohorts and
+historical focused regressions passed.
+[Methods, frozen protocols, full results and failures](docs/RELATION_TRANSFER.md).
