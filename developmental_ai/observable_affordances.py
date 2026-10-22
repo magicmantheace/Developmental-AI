@@ -302,3 +302,81 @@ class RegimeRetrievalMemory:
         if memory.record() != record:
             raise ValueError("unreplayable continual evidence")
         return memory
+
+
+# Second optional continual policy: sooner re-use of past experience, or
+# learning a fresh recent hypothesis without being told which rule changed.
+FAST_REGIME_SCHEMA = "developmental-ai.fast-regime-retrieval/v1"
+FAST_REGIME_TAIL = 4
+FAST_REGIME_RECENT = 8
+
+
+class FastRegimeMemory(RegimeRetrievalMemory):
+    """Predictive retrieval with an out-of-sample, short-term candidate.
+
+    The recent candidate is fitted on the eight observations *preceding* the
+    four-scoring-event tail, never on the tail itself. Thus a formerly unseen
+    rule can begin to form its own hypothesis rather than requiring a 64-event
+    full archival block; old stable hypotheses are still accessible. The
+    candidate set and 4/8 event windows are engineered, not self-discovered.
+    """
+
+    def selection(self):
+        if len(self.events) < REGIME_CHUNK + FAST_REGIME_TAIL:
+            raise ValueError("insufficient independent fast retrieval evidence")
+        if self._cache is not None:
+            return dict(self._cache[0])
+        tail = self.events[-FAST_REGIME_TAIL:]
+        candidate_count = (len(self.events) - FAST_REGIME_TAIL) // REGIME_CHUNK
+        candidates = []
+        for index in range(candidate_count):
+            m = NumericOutcomeMemory()
+            for event in self.events[index*REGIME_CHUNK:(index+1)*REGIME_CHUNK]:
+                m.add(event)
+            candidates.append((f"archive_{index}", index, m))
+        if len(self.events) >= FAST_REGIME_RECENT + FAST_REGIME_TAIL:
+            recent = NumericOutcomeMemory()
+            for event in self.events[-(FAST_REGIME_TAIL+FAST_REGIME_RECENT):-FAST_REGIME_TAIL]:
+                recent.add(event)
+            candidates.append(("recent_8", candidate_count, recent))
+        ranked = []
+        for name, index, model in candidates:
+            likelihood = sum(self._likelihood(model, e) for e in tail)
+            ranked.append((-likelihood, index, name, model))
+        # The first complete archive wins exact score ties over short-term.
+        best = min(ranked, key=lambda x: (x[0], x[1]))
+        runner_up = min((r for r in ranked if r is not best),
+                        key=lambda x: (x[0], x[1]), default=None)
+        decision = {"source": best[2], "candidates": len(ranked),
+                    "log_margin": round(runner_up[0] - best[0], 6)
+                    if runner_up is not None else 0.0,
+                    "scoring_events": FAST_REGIME_TAIL,
+                    "overlap_with_selected_training": 0}
+        self._cache = (decision, best[3])
+        return dict(decision)
+
+    def record(self):
+        if not self.events:
+            raise ValueError("no experienced outcomes to checkpoint")
+        state = {"schema": FAST_REGIME_SCHEMA, "events": self.events}
+        return {"state": json.loads(canonical(state)), "sha256": digest(state)}
+
+    @classmethod
+    def restore(cls, record):
+        if (type(record) is not dict or set(record) != {"state", "sha256"}
+                or type(record["state"]) is not dict
+                or type(record["sha256"]) is not str
+                or digest(record["state"]) != record["sha256"]):
+            raise ValueError("invalid fast-retrieval checkpoint digest")
+        state = record["state"]
+        if (set(state) != {"schema", "events"}
+                or state["schema"] != FAST_REGIME_SCHEMA
+                or type(state["events"]) is not list
+                or not 1 <= len(state["events"]) <= MAX_SAMPLES):
+            raise ValueError("invalid fast-retrieval checkpoint structure")
+        obj = cls()
+        for event in state["events"]:
+            obj.observe(event)
+        if obj.record() != record:
+            raise ValueError("fast-retrieval evidence failed replay")
+        return obj
