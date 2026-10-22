@@ -1,3 +1,36 @@
+# Passive evidence quality audit — 2026-10-22
+
+The optional `passive_quality.py` audit uses only public
+numeric action-feature opportunities from **60 independent
+unacted simulation frames per seed** and coarse feature
+coverage. Earlier passive archives remain untouched.
+Precommitted protocol:
+`benchmarks/passive_quality_protocol.json`.
+[Focused run 39722045466] passed 11/11 regression tests
+and both seed cohorts. Across six now INSPECTED seeds:
+random-observer memory completed **269/360** third-rule
+tasks, **4 harmful test actions**; biased-observer memory
+**13/360**, **66 test harms**, but a coverage gate rejected
+all biased datasets and abstained on **360/360** tasks.
+A *coherently falsified* training stream (328 actually damaging
+outcomes rewritten as productive) passed coverage **6/6**
+and replay integrity, but its model completed only
+**33/360** tasks and caused **327 harmful test actions**.
+The forged corpus reuses the original random actor's
+events; the genuinely separate training actors caused
+**328 random + 513 biased = 841** harms in **2,880** action
+events, not zero. No dataset received real source
+authentication. Valid checksum or covariate coverage
+CANNOT prove public physical sensor changes truly happened.
+The first focused run expected exactly 60 falsifications
+on a seed with only 58 harmful outcomes; this was
+corrected to frozen **up to 60** requirement without
+changing seeds/method. Full historical CI is separate.
+See `docs/PASSIVE_QUALITY.md`. This is NOT deployable
+safety, independent physics learning or D1/D3/D4.
+Keep experimental PR draft/unmerged, main and defaults
+unchanged, no AthenZ/Synveil work; preserve V2A/V2B order.
+
 # Passive outcome learning on the third numeric rule — 2026-10-21
 
 Optional `developmental_ai/passive_outcome_learning.py` accepts only

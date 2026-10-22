@@ -943,3 +943,31 @@ See [absolute adequacy report](docs/ABSOLUTE_ADEQUACY.md).
   no AthenZ/Synveil integration. V2A remains before and
   overlaps V2B. See
   [passive outcome report](docs/PASSIVE_OUTCOME_LEARNING.md).
+
+
+## 2026-10-22 — Passive evidence representativeness and coherent forgery audit
+
+- [x] Freeze passive quality protocol and two fresh three-seed cohorts
+  before candidate implementation; separate true random and old-policy
+  data from a **counterfeit re-labeling** of original random episodes.
+- [x] Implement public-feature opportunity reference using 60
+  no-action simulator frames per seed, a three-region
+  covariate-coverage check, and fully coherent rehashed sensor
+  fabrication in an adversarial BENCHMARK ONLY.
+- [x] All six now-inspected seed groups: genuine random learner
+  **269/360** successes and **4 test harms**, biased learner
+  **13/360** and **66 harms**, forged learner **33/360** and
+  **327 harms**. Coverage rejected biased datasets **6/6**
+  but accepted forged datasets **6/6**.
+- [x] Include the harm of *external collection*: random
+  actor **328/1,440** harmful actions, biased actor
+  **513/1,440**, total **841/2,880**. Falsified
+  corpus is a reuse of random actions, not another actor.
+- [ ] **Open:** independent authenticated outcome witnesses,
+  compromised-source detection, missing data and non-collusion
+  assumptions, fresh holdouts and calibrated risk. No
+  action authority for a model trained on only unverified
+  external observations, regardless of SHA/coverage result.
+- [ ] D1/D3/D4 still open; experimental PR stays draft and
+  main/default untouched. AthenZ/Synveil integration deferred.
+  [Full report](docs/PASSIVE_QUALITY.md).

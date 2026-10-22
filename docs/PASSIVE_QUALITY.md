@@ -1,6 +1,90 @@
 # Passive evidence quality — selection bias vs coherent fabrication
 
-**Sandbox-only research.** The learner still sees engineered numeric
+**Sandbox-only research.**
+
+## Verified six-seed results — October 22, 2026
+
+[Focused GitHub Actions run 39722045466](https://github.com/magicmantheace/Developmental-AI/actions/runs/39722045466)
+**PASS**: 11/11 focused tests and both predeclared three-seed cohorts.
+The previously reserved cohort has now been inspected and must NOT be
+called blind again. The original first run
+[39721994545](https://github.com/magicmantheace/Developmental-AI/actions/runs/39721994545)
+failed only one test asserting `exactly 60` forgeries when one seed
+had **58** damaging observations. The frozen protocol specified
+**up to** 60 per seed; the test assumption was corrected, without
+changing seeds, selection, thresholds or adversarial code.
+
+All rows below aggregate 60 held-out TEST tasks across six seeds,
+**360 tasks per policy**, on the same original third-rule simulator:
+
+| Experimental policy | Completed /360 | Harmful TEST actions | Explicit abstentions |
+| --- | ---: | ---: | ---: |
+| Raw random corpus (240 public events/seed) | **269** | **4** | 0 |
+| Coverage-gated random corpus | **269** | **4** | 0 |
+| Raw old-policy-biased corpus (240/seed) | **13** | **66** | 0 |
+| Coverage-gated biased corpus | **0** | **0** | **360** |
+| Raw coherently falsified random corpus | **33** | **327** | 0 |
+| Coverage-gated falsified corpus | **33** | **327** | 0 |
+| Always abstain | 0 | 0 | 360 |
+| Privileged physical-effect oracle | **360** | 0 | 0 |
+
+**Distribution coverage (three coarse public feature bins):**
+- Genuine random observer: passed in **6/6** seed cohorts.
+- Biased old-policy observer: failed in **6/6** cohorts.
+- Internally coherent falsified random observer: **also passed
+  in all 6/6**, despite being maliciously misleading.
+- **No archive was actually authenticated.** The audit's
+  `origin_authenticated` field is `false` for EVERY dataset,
+  including genuine random observations. A source that creates
+  internally valid forged records and recomputes their SHA-256 digest
+  is indistinguishable through public-record consistency and
+  marginal feature-coverage checks alone. The guard cannot
+  verify event origin or real-world physical effects.
+
+### Actual actor cost versus dishonest claims
+
+The two genuinely distinct training-actor corpora contain
+**1,440** public first-action events each across all seeds.
+The random actor caused **328** real simulator harms,
+and the biased actor **513**, totaling **841 harms in 2,880
+distinct actor actions**. The *forged* corpus is a transformed
+view of those same random actor events, **not another actor
+dataset**. Up to 60 damaging events per seed were rewritten
+to look productive, for **328 falsified observations across
+six seeds**; the counterfeit archive therefore reported
+**zero** harm in those events, hiding real simulator damage.
+Those reclassified events must not be counted as additional
+physical events or as true productive outcomes.
+
+Compared to the genuine random outcome learner's **4**
+harmful TEST actions, the fabricated-record learner performed
+**327** harmful TEST actions, an increase of **323** harmful
+actions on identical test tasks. Its performance dropped from
+**269/360** to **33/360** completed goals. **Coverage approval
+did not mitigate this attack at all.**
+
+The conservative coverage gate prevented the biased learner's
+66 harmful TEST actions by abstaining on all 360 tasks, but it
+also refused 13 tasks the raw biased learner completed.
+It did not fix selection bias or learn meaningful behavior.
+These are post-hoc results on engineered features and an
+intentionally strong synthetic attacker, not a validated
+real-world poisoning detection method.
+
+### Required next gate
+
+Require an independent, authenticated source or independently
+witnessed outcome before a consequential learner is
+authorized to act; even two agreeing unauthenticated sources
+can collude. Develop a separate precommitted experiment for
+cross-source consistency, independence assumptions, missing
+feature support and adversarial validation. Maintain
+truth/authorization as **unknown** in the current prototype;
+do not silently promote records merely because a hash or
+coverage score passes. No real-world action authority and no
+AthenZ/Synveil integration during the standalone phase.
+
+ The learner still sees engineered numeric
 action features in the known hand-coded third-rule simulator. It cannot
 prove the origin of human observations, independently discover physics,
 or grant new action permissions.
