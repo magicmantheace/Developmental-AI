@@ -5,21 +5,113 @@
   "freeze": "This file must be committed before learner or evaluation implementation. Once evaluated, both cohorts become inspected.",
   "environment": "ObservableWorld route (A) and route-reversed (B), existing hand-authored two-number action features and public before-action-after outcome.",
   "training": [
-    {"stage": "A", "split": "train", "indices": [40000, 40159], "domain": "route", "public_observations": 160},
-    {"stage": "B", "split": "train", "indices": [41000, 41159], "domain": "route-reversed", "public_observations": 160},
-    {"stage": "return_A", "split": "train", "indices": [42000, 42011], "domain": "route", "public_observations": 12}
+    {
+      "stage": "A",
+      "split": "train",
+      "indices": [
+        40000,
+        40159
+      ],
+      "domain": "route",
+      "public_observations": 160
+    },
+    {
+      "stage": "B",
+      "split": "train",
+      "indices": [
+        41000,
+        41159
+      ],
+      "domain": "route-reversed",
+      "public_observations": 160
+    },
+    {
+      "stage": "return_A",
+      "split": "train",
+      "indices": [
+        42000,
+        42011
+      ],
+      "domain": "route",
+      "public_observations": 12
+    }
   ],
-  "observation_actor": "An independent seeded random actor selects exactly one legal action in each disposable episode; archive the public outcome. The learning algorithm cannot choose training actions. Count harmful actor interventions separately.",
+  "observation_actor": "An independent seeded random actor selects exactly one legal action in each disposable episode; archive the public outcome. The learning algorithm cannot choose training actions. Count harmful actor interventions separately. The untrained random TEST baseline has a separate deterministic per-episode choice and uses no training evidence.",
   "evaluation": [
-    {"stage": "A", "split": "test", "indices": [50000, 50059], "domain": "route", "episodes": 60},
-    {"stage": "B", "split": "test", "indices": [51000, 51059], "domain": "route-reversed", "episodes": 60},
-    {"stage": "return_A", "split": "test", "indices": [52000, 52059], "domain": "route", "episodes": 60}
+    {
+      "stage": "A",
+      "split": "test",
+      "indices": [
+        50000,
+        50059
+      ],
+      "domain": "route",
+      "episodes": 60
+    },
+    {
+      "stage": "B",
+      "split": "test",
+      "indices": [
+        51000,
+        51059
+      ],
+      "domain": "route-reversed",
+      "episodes": 60
+    },
+    {
+      "stage": "return_A",
+      "split": "test",
+      "indices": [
+        52000,
+        52059
+      ],
+      "domain": "route",
+      "episodes": 60
+    }
   ],
-  "cohorts": {"development": [112003, 112021, 112039], "additional": [113001, 113017, 113041]},
-  "methods": ["retrieved_bank", "cumulative_knn", "recent_32_knn", "frozen_A_knn", "always_abstain", "privileged_oracle"],
-  "retrieval": {"chunk_size": 64, "scoring_tail": 12, "knn_neighbors": 5, "laplace_smoothing": 0.05, "tie_break": "earliest chunk index", "use_complete_chunks_only": true, "frozen_index_names": false},
+  "cohorts": {
+    "development": [
+      112003,
+      112021,
+      112039
+    ],
+    "additional": [
+      113001,
+      113017,
+      113041
+    ]
+  },
+  "methods": [
+    "retrieved_bank",
+    "cumulative_knn",
+    "recent_32_knn",
+    "frozen_A_knn",
+    "untrained_random",
+    "always_abstain",
+    "privileged_oracle"
+  ],
+  "retrieval": {
+    "chunk_size": 64,
+    "scoring_tail": 12,
+    "knn_neighbors": 5,
+    "laplace_smoothing": 0.05,
+    "tie_break": "earliest chunk index",
+    "use_complete_chunks_only": true,
+    "frozen_index_names": false,
+    "scoring_exclusion": "Candidate block must end at or before the start of the latest 12 training observations: never score a block on events used to train it."
+  },
   "checkpoint": "Exact event replay, SHA-256 integrity, no phase labels in learner records, immutable read-only evaluation, support restart midstream.",
-  "report": ["per_stage_successes", "harmful_test_actions", "test_abstentions", "actor_training_harm", "chunk_choices", "pre_and_post_training_scores", "restart_identity", "baseline_comparison", "failure_modes"],
+  "report": [
+    "per_stage_successes",
+    "harmful_test_actions",
+    "test_abstentions",
+    "actor_training_harm",
+    "chunk_choices",
+    "pre_and_post_training_scores",
+    "restart_identity",
+    "baseline_comparison",
+    "failure_modes"
+  ],
   "success_criteria": "Return-to-A success improves over both cumulative and recent-32 after only 12 new observations; B is not materially worse than recent-32; results reproducible in both frozen cohorts. No promotion if gates fail.",
   "caveats": [
     "Known route/reversed numeric feature rules in a single simulator, not genuinely new environment families",
