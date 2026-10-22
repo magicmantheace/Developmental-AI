@@ -887,3 +887,19 @@ and partitioning by feature-key signature is a handcrafted assumption, **not
 learned semantic alignment or zero-shot generalization**. Do not promote
 this optional experiment or merge the draft PR based on test passes alone.
 [Protocol, method, limitations and verification](docs/VARIABLE_AFFORDANCE.md).
+
+
+**Measured first result (October 22, focused CI):** all 45 focused
+tests and both frozen cohorts passed. Six now-inspected seeds, 240 TEST
+episodes/family: the same persistent memory completed **69/240** relay
+tasks with no relay observations, **233/240** after 16, and
+**240/240** after 48/160 while retaining **240/240** on *both* older
+quarry/coolant families at every checkpoint. Critically, a separate
+target-only learner **exactly matched** relay results, so previous
+family experience yielded **no proven semantic transfer**. Early
+zero-evidence relay behavior actually trailed random (69 vs 78).
+Training had significant source-side cost: **1,054 harmful simulator
+actions out of 3,120 independent observer actions**, although the
+learner had no training action authority. The key-set partition is
+engineered, the new rules all author-designed and new-family feedback
+required; D3 remains open. [Detailed scientific results](docs/VARIABLE_AFFORDANCE.md).
