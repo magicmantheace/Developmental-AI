@@ -1,3 +1,14 @@
+- [Two-window public-outcome confirmation](docs/TWO_WINDOW_CONFIRMATION.md):
+  after separately fitting two engineered numeric-feature outcome models,
+  compare the first and recent four observed calibration results.
+  Six inspected seeds showed **0 harmful test actions** when
+  conflicting histories triggered abstention, but **all 720
+  switched tasks were left incomplete**; recent-window selection
+  completed 660/720 switched tasks. Eight disposable probes
+  increased calibration harm to **58/192 actions**, versus
+  **32/96** for first-four selection. Simulation-only, not
+  autonomous discovery or permission for live probing.
+
 - [Outcome-only reversal calibration](docs/OBSERVABLE_REVERSAL_CALIBRATION.md):
   two already-trained numeric-feature models are chosen using
   the outcomes of 12 offline simulator probes. On six inspected seeds

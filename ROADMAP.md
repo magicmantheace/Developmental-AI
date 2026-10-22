@@ -862,3 +862,28 @@ See [plan repair](docs/PLAN_REPAIR.md) and [plan compaction](docs/PLAN_COMPACTIO
   AthenZ/Synveil integration. V2A before/overlapping V2B unchanged.
 
 Study: [observable reversal calibration](docs/OBSERVABLE_REVERSAL_CALIBRATION.md).
+
+
+## 2026-10-21 — Two-window rule-contradiction evidence (experimental)
+
+- [x] Precommit the protocol and preserve the earlier fixed-12
+  and first-four calibration studies without changing their results.
+- [x] Fit two separate outcome models, compare first4/recent4
+  public sensor evidence, and use strict agreement to abstain
+  when predicted rule assignments contradict.
+- [x] Publish both inspected seed cohorts including **false
+  abstentions**: agreement8 succeeded stationary normal 360/360,
+  reversed 300/360, switched 0/360 in each direction; recent8
+  recovered 300/360 and 360/360 switched tasks with no test
+  harm. First4 caused 720 damaging switched tests. Agreement8
+  failed every switched task by abstention. Eight probes incurred
+  58/192 damaging rehearsal actions versus first4's 32/96.
+- [ ] **Open:** learn how to detect further changes without harmful
+  experiments or stale assumptions, using a fresh independent
+  generator with uncertainty-calibrated abstention and
+  completed-task accounting. Do not tune already-inspected
+  cohorts into a claim of blind generalization.
+- [ ] D1/D3/D4 stay open, no policy auto-promotion or external
+  actuation, V2A before and overlapping V2B, cross-project
+  integration deferred. See
+  [two-window report](docs/TWO_WINDOW_CONFIRMATION.md).

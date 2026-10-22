@@ -1,3 +1,28 @@
+# Two-window confirmation evidence (2026-10-21)
+
+The optional `two_window_confirmation.py` experiment is
+simulation-only and cannot be promoted automatically. Preserve
+`benchmarks/two_window_confirmation_protocol.json`, its six
+already inspected seeds, and the original single/fixed-12 calibration
+benchmarks. The new public-observation-only test compares first4,
+two-window agreement, last4, pooled8, abstention and private oracle
+on stationary rules and both four-step rule-change directions.
+Full scores over 360 tasks per condition: first4 stationary
+360/360 each but switched 0/360 each with **720 test damages**;
+agreement8 stationary normal 360/360, reversed 300/360,
+switched 0/360 each with zero *test* damage; recent8 stationary
+normal 360/360, reversed 300/360, switched 300/360 and 360/360
+with zero *test* damage; pooled8 switched 0/360 and 240/360
+with **60** test damages. Across all six seeds and four worlds,
+four-probe strategy costs 96 disposable probes/**32 calibration harms**,
+all eight-probe strategies 192/**58** harms. Do not hide abstentions
+as completed tasks or simulator-only probe harms. Stable numerical
+features, engineered reversal and two candidate models do not
+demonstrate generic causal discovery or safe active exploration.
+Results are post-hoc and D1/D3/D4 remain OPEN; keep historic
+transfer, V2A/V2B and AthenZ/Synveil separation intact.
+See `docs/TWO_WINDOW_CONFIRMATION.md`.
+
 # Numeric consequence reversal calibration — 2026-10-21
 
 The optional `observable_reversal_calibration.py` experiment fits an
