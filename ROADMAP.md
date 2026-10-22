@@ -1133,3 +1133,28 @@ precommitted cohorts and 36 focused regressions passed. This is
 completion. Retain D1–D10 and V2A then overlapping V2B unchanged;
 do not integrate AthenZ/Synveil or promote controller.
 [Complete outcomes](docs/SAME_SCHEMA_SWITCH.md).
+
+
+#### October 22, 2026 — Fast same-schema surprise-triggered adaptation
+
+Partial **D4/D6 research**, not D3 completion. New optional
+`FastShockMemory` monitors how poorly the existing 192-event
+archive predicts the last 4/8 public outcomes, using a manually
+specified likelihood threshold to switch to a fitted recent-eight
+model. Two frozen three-seed cohorts and 35 focused/historical tests
+passed. In the reversed B regime after just eight external feedback
+observations it solved **180/180** held-out tasks versus **26/180**
+for the earlier disjoint-evidence selector; it also reacquired the
+returned-A rule at **180/180 after four** new observations.
+Crucial negatives: B performance was **identical to recent-eight**
+at every tested checkpoint; performance at B32 **136/180** versus
+prior selector **180/180**; 180 harmful TEST actions before new
+evidence at either switch, and **751 harmful simulated TRAIN actions
+out of 2,112** committed by an independent actor. Source range
+representation, archive boundary, and surprise test are engineered.
+The recent model trains on the triggering observations, unlike the
+previous strictly disjoint predictive gate. No guarantee of
+noise-robust selection, source truth, safe exploration, semantic
+generalization or autonomous learning goals. No default promotion,
+merge, or integrations with AthenZ/Synveil; D1–D10 and V2A/V2B
+roadmap ordering unchanged. [All evidence](docs/FAST_SHOCK.md).
