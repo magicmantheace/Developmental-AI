@@ -1039,3 +1039,20 @@ schema and original/reversed world rules and therefore DO NOT satisfy D3,
 independent goals or lifelong learning. See
 [FAST_REACQUISITION.md](docs/FAST_REACQUISITION.md). Preserve D1–D10
 and V2A then overlapping V2B unchanged. No AthenZ/Synveil integration.
+
+
+#### October 22, 2026 — Variable-schema adaptation experiment
+
+D1/D3 research extension: the current fixed-two-value outcome learner
+gained an **opt-in variable-feature** version that stores multiple learned
+experience schemas in one persistent replayable memory. A frozen first
+protocol evaluates rule changes and genuinely different feature vocabularies
+across quarry/coolant/relay simulation families, with separate held-out
+TEST episodes, target-feedback budgets, matched baselines, source-actor
+harm accounting and return visits to earlier skills. This is *not* D3
+completion: features and common outcome counters are engineer-supplied;
+the new schema can be recognized from its feature-key set; supervised
+target outcomes are required; task generators were not independently
+administered. Leave D1-D10 and V2A then partially overlapping V2B intact,
+and keep AthenZ/Synveil integration deferred. See
+[VARIABLE_AFFORDANCE.md](docs/VARIABLE_AFFORDANCE.md).
