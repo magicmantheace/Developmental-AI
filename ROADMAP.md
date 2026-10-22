@@ -1020,3 +1020,22 @@ lifelong development. Preserve the D1–D10 sequence, V2A before/overlapping
 V2B, draft-only validation, and separate AthenZ/Synveil project boundaries.
 See [REGIME_RETRIEVAL.md](docs/REGIME_RETRIEVAL.md) for frozen protocol,
 comparators, evaluation leakage checks and negative limitations.
+
+
+#### October 22, 2026 — Early change recovery and archive consistency (opt-in only)
+
+**Partial D4/D6 experimental advance; D3 still open.** Precommitted
+prequential A→B→A simulator study demonstrated faster re-use of old learned
+numeric outcomes, but exposed major B-48 failure of naïve fast retrieval
+(**88/180** compared with **179/180** for a recent-eight simple learner).
+A separately frozen six-seed study rejected internally contradictory
+old memory blocks and improved B-48 from **96/180** to **173/180**
+with 7 harmful TEST actions versus 84. Recent-32 still reached 180/180
+there, and recent-8 beat the filtered approach decisively at B-8.
+Collection was *not* harmless: **744 harmful / 2,208 independent simulated
+training actions** in that second study. The source is synthetic and can
+still lie consistently. Both studies use the same engineered feature
+schema and original/reversed world rules and therefore DO NOT satisfy D3,
+independent goals or lifelong learning. See
+[FAST_REACQUISITION.md](docs/FAST_REACQUISITION.md). Preserve D1–D10
+and V2A then overlapping V2B unchanged. No AthenZ/Synveil integration.
