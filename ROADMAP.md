@@ -1004,3 +1004,19 @@ See [absolute adequacy report](docs/ABSOLUTE_ADEQUACY.md).
 - [ ] D1/D3/D4 remain open, PR draft/unmerged, default and
   main unchanged; no Synveil/AthenZ integration.
   [Evidence report](docs/PAIRED_WITNESS.md).
+
+
+#### October 22, 2026 — Learning-first evidence update (no roadmap stage changes)
+
+**D4/D6 partial research evidence, not milestone completion:** A new opt-in
+numeric outcome retrieval experiment learned from sequential public simulator
+observations, chose earlier memories without stage labels, and replayed
+its checkpoint across A→B→A. Six inspected seeds reached 360/360 TEST
+completions per stage; source data collection itself caused 664 harmful
+simulated actions. Simple cumulative and recent-window baselines failed
+at one or more reversals. This remains one engineered two-number task
+family and cannot count as D3 genuine unseen-family transfer or prove
+lifelong development. Preserve the D1–D10 sequence, V2A before/overlapping
+V2B, draft-only validation, and separate AthenZ/Synveil project boundaries.
+See [REGIME_RETRIEVAL.md](docs/REGIME_RETRIEVAL.md) for frozen protocol,
+comparators, evaluation leakage checks and negative limitations.
