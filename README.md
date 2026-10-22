@@ -1,3 +1,12 @@
+- [Outcome-only reversal calibration](docs/OBSERVABLE_REVERSAL_CALIBRATION.md):
+  two already-trained numeric-feature models are chosen using
+  the outcomes of 12 offline simulator probes. On six inspected seeds
+  normal and reversed tasks scored **360/360** each, versus
+  **0/360** when using the wrong model. **56 of 144 rehearsal
+  actions caused damage**; deliberately wrong calibration fails
+  **720/720**, so this is not safe live exploration, zero-shot
+  rule learning or authorization to deploy a new model.
+
 # Developmental AI
 
 A local-first, inspectable **developmental learning research platform**. Its long-term role is the adaptive learning subsystem of AthenZ, with a planned integration into Synveil. It is **not** a copied fruit-fly brain, conscious entity, human mind upload, or human-level artificial intelligence.
