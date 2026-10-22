@@ -196,3 +196,109 @@ class NumericOutcomeMemory:
         if memory.record()!=record:
             raise ValueError("cannot replay numeric observation memory")
         return memory
+
+
+# Optional continual-learning extension. The original NumericOutcomeMemory and
+# its behavior stay unchanged, including all existing transfer regressions.
+REGIME_SCHEMA = "developmental-ai.regime-retrieval/v1"
+REGIME_CHUNK = 64
+REGIME_TAIL = 12
+REGIME_SMOOTHING = 0.05
+
+
+class RegimeRetrievalMemory:
+    """Retrieve earlier *experienced* action-outcome rules without regime labels.
+
+    Records contain only a sequential stream of public numeric outcomes; neither
+    environment names, phase boundaries, nor true simulator dynamics are supplied.
+    Complete disjoint 64-event chunks are candidate memories. The most recent
+    12 events *outside every candidate chunk* rank candidates by predictive
+    likelihood. This is not a drift detector, causal discovery or an authenticity
+    guarantee; fixed block and feedback budgets are hand-engineered priors.
+    """
+
+    def __init__(self):
+        self.events = []
+        self._cache = None
+
+    def observe(self, event):
+        if len(self.events) >= MAX_SAMPLES:
+            raise ValueError("continual memory exceeds bounded sample budget")
+        # Reuse the established public-outcome schema, including bool checks.
+        probe = NumericOutcomeMemory()
+        probe.add(event)
+        self.events.append(probe.examples[0])
+        self._cache = None
+
+    @staticmethod
+    def _category(event):
+        return 0 if event["progress"] else 1 if event["damage"] else 2
+
+    @staticmethod
+    def _likelihood(memory, event):
+        import math
+        estimate = memory.estimate(event["features"])
+        neutral = max(0.0, 1.0 - estimate["progress"] - estimate["damage"])
+        scores = (estimate["progress"] + REGIME_SMOOTHING,
+                  estimate["damage"] + REGIME_SMOOTHING,
+                  neutral + REGIME_SMOOTHING)
+        return math.log(scores[RegimeRetrievalMemory._category(event)]
+                        / sum(scores))
+
+    def selection(self):
+        """Return an evidence-ranked block index; no feedback is consumed."""
+        if len(self.events) < REGIME_CHUNK + REGIME_TAIL:
+            raise ValueError("insufficient independent retrieval evidence")
+        if self._cache is not None:
+            return dict(self._cache[0])
+        tail = self.events[-REGIME_TAIL:]
+        n = (len(self.events) - REGIME_TAIL) // REGIME_CHUNK
+        scores = []
+        for index in range(n):
+            memory = NumericOutcomeMemory()
+            for event in self.events[index * REGIME_CHUNK:(index + 1) * REGIME_CHUNK]:
+                memory.add(event)
+            scores.append((sum(self._likelihood(memory, e) for e in tail), index, memory))
+        # Exact ties favor earliest learned chunk; inspection of the scoring
+        # tail never leaks into the model being scored.
+        best = min(scores, key=lambda x: (-x[0], x[1]))
+        ranking = sorted((s, i) for s, i, _ in scores)
+        second = max((s for s, i in ranking if i != best[1]), default=best[0])
+        decision = {"chunk_index": best[1], "chunks_evaluated": n,
+                    "log_margin": round(best[0] - second, 6),
+                    "evidence_events": REGIME_TAIL}
+        self._cache = (decision, best[2])
+        return dict(decision)
+
+    def choose(self, frame):
+        check(frame)
+        if frame["done"]:
+            return None
+        self.selection()
+        return self._cache[1].choose(frame)
+
+    def record(self):
+        if not self.events:
+            raise ValueError("no experienced outcomes to checkpoint")
+        state = {"schema": REGIME_SCHEMA, "events": self.events}
+        return {"state": json.loads(canonical(state)), "sha256": digest(state)}
+
+    @classmethod
+    def restore(cls, record):
+        if (type(record) is not dict or set(record) != {"state", "sha256"}
+                or type(record["state"]) is not dict
+                or type(record["sha256"]) is not str
+                or digest(record["state"]) != record["sha256"]):
+            raise ValueError("invalid continual checkpoint integrity")
+        state = record["state"]
+        if (set(state) != {"schema", "events"}
+                or state["schema"] != REGIME_SCHEMA
+                or type(state["events"]) is not list
+                or not 1 <= len(state["events"]) <= MAX_SAMPLES):
+            raise ValueError("invalid continual checkpoint structure")
+        memory = cls()
+        for event in state["events"]:
+            memory.observe(event)
+        if memory.record() != record:
+            raise ValueError("unreplayable continual evidence")
+        return memory
