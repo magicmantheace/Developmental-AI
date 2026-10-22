@@ -1107,3 +1107,29 @@ Linux/Windows exact HEAD gate checked separately. Preserve other
 negative findings, all existing D1–D10 phases, V2A then partly
 overlapping V2B, and defer AthenZ/Synveil integration. See
 [RELATION_TRANSFER.md](docs/RELATION_TRANSFER.md).
+
+
+#### October 22, 2026 — Identical feature-schema A→B→A reversal (optional research)
+
+A precommitted study tested **unchanged public feature names** and
+action-frame structure across a hidden outcome rule reversal and
+return, avoiding the earlier engineered feature-signature novelty
+shortcut. An opt-in evidence-ranked old-vs-recent model completed
+**170/180** TEST tasks after 16 observations of reversed B
+versus **0/180** for frozen A/cumulative baselines, reached
+**180/180** after 48, and re-selected A after four return
+observations with **180/180** success. Important negatives:
+before each reversal the adaptive agent took **180 harmful
+TEST actions out of 180**; at B8 it scored **0/180**
+compared with a simple recent-eight policy's **167/180**.
+At B64 it regressed to 178/180 vs recent-32's 180/180.
+The actor collecting independent TRAIN observations caused **701
+harmful actions of 2,112**, separately counted from TEST harm.
+No phase labels or hidden mechanics were supplied to the learner,
+but the band rule, archival boundaries, feature statistic, scoring
+tail and confidence threshold were manually designed. Both
+precommitted cohorts and 36 focused regressions passed. This is
+**partial D4/D6 research**, not proof of safe learning or D3
+completion. Retain D1–D10 and V2A then overlapping V2B unchanged;
+do not integrate AthenZ/Synveil or promote controller.
+[Complete outcomes](docs/SAME_SCHEMA_SWITCH.md).
