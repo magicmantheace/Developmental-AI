@@ -1056,3 +1056,23 @@ target outcomes are required; task generators were not independently
 administered. Leave D1-D10 and V2A then partially overlapping V2B intact,
 and keep AthenZ/Synveil integration deferred. See
 [VARIABLE_AFFORDANCE.md](docs/VARIABLE_AFFORDANCE.md).
+
+
+#### October 22, 2026 — Cross-schema learning results (verified, NOT D3 completion)
+
+Frozen [variable schema protocol](benchmarks/variable_affordance_protocol.json)
+evaluated three engineered transition families and independent
+read-only tests. 45 focused tests and both 3-seed cohorts passed.
+One opt-in persistent learner improved unfamiliar relay
+**69/240 → 233/240** successes after 16 external first-action
+outcomes, **240/240** after 48, while retaining full performance
+(**240/240 each**) on older quarry/coolant test families after 160
+relay outcomes. However the **target-only baseline matched relay
+completions exactly** and zero-relay competence trailed random. The
+engineered key-set partition preserved old tasks but did not learn
+shared semantics. Independent simulation data acquisition generated
+**1,054 harmful actions / 3,120** TRAIN first actions.
+Do not claim safe causal exploration or successful zero-shot transfer.
+Evidence supports partial D1/D4/D6 architecture research, not D3
+generalization completion. Preserve D1–D10 and V2A/V2B order.
+[Full results](docs/VARIABLE_AFFORDANCE.md).
