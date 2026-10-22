@@ -971,3 +971,36 @@ See [absolute adequacy report](docs/ABSOLUTE_ADEQUACY.md).
 - [ ] D1/D3/D4 still open; experimental PR stays draft and
   main/default untouched. AthenZ/Synveil integration deferred.
   [Full report](docs/PASSIVE_QUALITY.md).
+
+
+## 2026-10-22 — Paired external outcome witnesses and collusion failure
+
+- [x] Precommit paired HMAC witness protocol and two new three-seed
+  cohorts BEFORE implementation; existing passive quality and
+  transfer benchmark histories remain unchanged.
+- [x] Bind complete public before/action/after records to separate
+  simulator-provided primary/witness fixture keys; quarantine on
+  missing witnesses, MAC failures or event mismatch. Do not grant
+  training action authority or automatic model promotion.
+- [x] Six now-inspected seeds: honest pair **286/360** held-out
+  goals with **4 test harms**; forged primary versus honest
+  witness rejected all six corpora, **0/360** goals by refusal,
+  no test harm. Missing/tampered witness also abstained.
+- [x] **Critical failing control:** both colluding, validly signed
+  forged streams PASS 6/6 while producing **22/360** goals and
+  **338 harmful TEST actions**. Single unchecked forged data
+  produces the same results. MAC authentication of fixture
+  key possession does **not** prove sensor truth, consent
+  or organizational independence.
+- [x] Separate actual observation cost: one actor, 1,440
+  simulated actions and **319 genuine harms**; counterfeit
+  signed views reuse those events and are NOT additional
+  source actions.
+- [ ] Require independent outcome grounding, audited external
+  source integrity, non-collusion assumptions and truly new
+  environment families before considering consequential
+  real-world decisions. Current demonstration has no
+  trusted human identity or physical truth attestation.
+- [ ] D1/D3/D4 remain open, PR draft/unmerged, default and
+  main unchanged; no Synveil/AthenZ integration.
+  [Evidence report](docs/PAIRED_WITNESS.md).

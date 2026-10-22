@@ -2,6 +2,68 @@
 
 **Sandbox-only research. No genuine observer identities or owner consent.**
 
+## Verified six-seed outcome — October 22, 2026
+
+[Focused CI run 39772852676](https://github.com/magicmantheace/Developmental-AI/actions/runs/39772852676)
+**passed 11/11 regression tests** and both precommitted three-seed
+cohorts. The reserved seeds are now **inspected** and should not be
+described as independent blind validation.
+
+Sixty read-only TEST tasks per seed, **360 per method**:
+
+| Evidence policy | Completed /360 | Harmful TEST actions | All six corpora accepted? |
+| --- | ---: | ---: | --- |
+| Both honest fixture signers | **286** | **4** | Yes |
+| Dishonest primary; honest witness | **0** | **0** | **No** (6/6 quarantined) |
+| Missing witness | 0 | 0 | No |
+| Signed witness changed after signing | 0 | 0 | No |
+| **Both signers colluding to certify false outcomes** | **22** | **338** | **Yes** |
+| Ungated single fabricated archive | **22** | **338** | No gate |
+| Ungated single honest archive | 286 | 4 | No gate |
+| Always abstain | 0 | 0 | N/A |
+| Private-effect oracle (unequal information) | 360 | 0 | N/A |
+
+The honest-witness rejection prevents harmful TEST actions only by
+declining to attempt **all 360 goals**. It is not a solution to the
+unfamiliar world or automatic data repair. Both honest signers
+produce identical raw-model outcomes because the attestations do
+not change the learner or its two-number engineered inputs.
+
+**Independent actor accounting:** One random simulated actor
+performed 240 actions per seed, a total of **1,440 actual source
+events** and **319 damaging actions**. The adversary relabeled
+those **319** harmful observations as favorable (up to the
+precommitted 60 per seed). These are counterfeit claims about
+the **same** actor actions, not another 1,440 interventions.
+Two compromised fixture signers certified the same fabricated
+archive, producing a perfectly valid set of 480 matching HMAC
+envelopes per seed; the verifier deliberately **accepted** the
+false dataset. That learner produced **338 harmful TEST actions**
+and only 22 completed tasks.
+
+The returned `fixture_signatures_verified=True` means the two
+HMACs match the distinct **fixture keys the harness supplied**.
+It emphatically does NOT mean the sensors were truthful, that
+the keyholders were institutionally independent, that real
+people consented, or that any real-world permission exists.
+`physical_truth_verified` remains false even when the gate
+approves training on a signed corpus. The benchmark itself
+can generate both signatures; the "independent observers" are
+mock roles, not external systems.
+
+**Negative result and next gate:** A second signing party
+is helpful only under an explicit assumption that its outcome
+observations and signing key are not compromised. If both
+parties share a bad physical measurement, conspire, or have
+their keys misused, signature agreement cannot discover the
+truth. The next meaningful scientific test needs a separately
+grounded sensor or audited source-custody evidence and
+independently generated dynamics, rather than more signers
+on the same simulator. No default policy promotion, PR merge,
+live action authorization or Synveil/AthenZ integration.
+
+
+
 The [previous passive-quality audit](PASSIVE_QUALITY.md) showed that
 coherently falsified public sensor records can pass SHA-256 replay
 and numeric coverage while substantially increasing later harmful

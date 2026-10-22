@@ -1,3 +1,15 @@
+- [Paired public-outcome witness signatures and collusion](docs/PAIRED_WITNESS.md):
+  reject an entire passive training archive when two
+  independently keyed *simulator fixture* attestations
+  disagree. In six inspected seeds honest pair retained
+  **286/360** task completions and 4 harmful actions;
+  honest witness caught false evidence, resulting in
+  **360/360 abstentions**. But two colluding fixture
+  signers approved the same fabricated outcomes, and the
+  learner then completed only **22/360** tasks while
+  causing **338 harmful TEST actions**. Real source
+  honesty, independence and authorization are NOT proven.
+
 - [Passive observation quality and forged-evidence audit](docs/PASSIVE_QUALITY.md):
   evaluates read-only feature-coverage from 60 independent public
   action menus, biased observational evidence and internally

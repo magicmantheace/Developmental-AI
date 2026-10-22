@@ -1,3 +1,32 @@
+# Paired public outcome witness verification — 2026-10-22
+
+Research-only `developmental_ai/paired_witness.py` requires
+two signed matching public event histories from **separate
+fixture HMAC-SHA256 keys** before admitting any observations.
+Protocol `benchmarks/paired_witness_protocol.json` frozen
+before implementation. Six now INSPECTED seeds, 60 TEST
+tasks each: paired honest signers **286/360 successes**,
+**4 harmful TEST actions**; forged primary plus honest
+witness **0/360 and 0 harm by 360 abstentions**; missing
+or changed-after-signing witness also all abstain.
+**Both colluding fixture signers** pass all matching MACs
+and achieve **22/360** with **338 damaging TEST actions**,
+the identical outcome of bypassing the gate and trusting a
+single forged corpus. Actor's **319 harmful /1,440 distinct
+training actions** were relabeled as productive; forged
+streams replay SAME actor actions, no double counting.
+Focused run **39772852676** passed 11/11 tests and both
+cohorts. These fixed fixture keys authenticate possession
+only, NOT truthful physical events, real identity,
+independence, consent or robust real-world safety. The
+benchmark can sign both streams by design; physical truth
+flag is always false for the candidate. Full Linux/Windows
+historical run is a separate gate. See
+`docs/PAIRED_WITNESS.md`. Maintain experimental draft PR,
+main/default policies unchanged, no outside actuation or
+AthenZ/Synveil integration, D1/D3/D4 still open; preserve
+V2A before/overlapping V2B ordering.
+
 # Passive evidence quality audit — 2026-10-22
 
 The optional `passive_quality.py` audit uses only public
