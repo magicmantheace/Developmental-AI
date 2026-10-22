@@ -837,3 +837,28 @@ See [plan repair](docs/PLAN_REPAIR.md) and [plan compaction](docs/PLAN_COMPACTIO
 > *before* harmful intervention, with genuinely new generated
 > rules, bounded uncertainty and safe abstention. See
 > [experimental evidence](docs/OBSERVABLE_AFFORDANCE_TRANSFER.md).
+
+
+## 2026-10-21 — Public-outcome reversed-consequence calibration (experimental)
+
+- [x] Freeze `benchmarks/observable_reversal_calibration_protocol.json` before
+  candidate implementation; preserve original reversed-rule catastrophic
+  failure benchmark as-is.
+- [x] Fit separate public outcome models from source normal and changed
+  consequence-rule training observations; allow **12 disposable calibration
+  interventions** to choose a model, with replay and abstention.
+- [x] Report **all six previously inspected seeds**, wrong-calibration,
+  fixed-model, random, abstention and privileged oracle controls. The
+  calibrated policy scored **360/360** on each of normal and reversed
+  target tasks with zero tested-episode damage, but caused **56/144
+  simulated calibration harms**. Wrong calibration failed and caused
+  harm in **720/720** evaluation episodes.
+- [ ] Reduce harmful exploratory interventions while maintaining selection
+  accuracy on fresh, independently designed dynamics. Reject stale
+  calibrations after unexpected reversals, and compare to safe abstention
+  with honest work-completion accounting.
+- [ ] D1 blind generalization and D3/D4 independent skill/memory milestones
+  remain open. No automatic promotion, real-world actuation or
+  AthenZ/Synveil integration. V2A before/overlapping V2B unchanged.
+
+Study: [observable reversal calibration](docs/OBSERVABLE_REVERSAL_CALIBRATION.md).
