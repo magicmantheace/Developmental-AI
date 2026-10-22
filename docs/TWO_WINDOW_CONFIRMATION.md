@@ -1,5 +1,58 @@
 # Two-window action-outcome confirmation (experimental)
 
+## Verified two-cohort outcomes — 2026-10-21
+
+[Focused GitHub Actions run 39716302649](https://github.com/magicmantheace/Developmental-AI/actions/runs/39716302649)
+passed all **8** dedicated tests and both **three-seed** benchmark
+cohorts. All six seeds were *previously inspected*; these results are
+post-hoc mechanics evidence, not blind generalization. Test evaluation
+used 60 independent tasks per seed and condition, totaling **360** for
+each test condition. Reported harm counts distinguish offline probe
+damage from later test damage.
+
+| Policy | Stationary normal | Stationary reversed | Normal→reversed | Reversed→normal |
+| --- | ---: | ---: | ---: | ---: |
+| `early4` (first 4) | 360/360 | 360/360 | **0/360** | **0/360** |
+| `confirmed8` (agree first/last 4) | 360/360 | **300/360** | **0/360** | **0/360** |
+| `recent8` (last 4) | 360/360 | **300/360** | **300/360** | 360/360 |
+| `cumulative8` (pool all 8) | 360/360 | 360/360 | **0/360** | **240/360** |
+| `always_abstain` | 0/360 | 0/360 | 0/360 | 0/360 |
+| `oracle` (private rule, unequal) | 360/360 | 360/360 | 360/360 | 360/360 |
+
+Test damage (successful harmful sensor changes) on rule-switch
+conditions only:
+- `early4`: **720 harmful test actions** (360 in each switch direction).
+- `confirmed8`: **zero test damage** but **720/720 task failures
+  by abstention** in switched conditions; one additional false
+  abstention (60/360) in stationary reversed tasks.
+- `recent8`: **zero test damage** on switched conditions, but
+  **60/720 task failures by abstention**.
+- `cumulative8`: **60 harmful test actions** under
+  normal→reversed, and 480/720 switched-condition completions;
+  pooling old and current evidence can retain obsolete conclusions.
+- `always_abstain`: no test damage but no completed tasks.
+
+Across the six seeds and **four** conditions, the `early4` policy
+used **96** disposable calibration actions and incurred **32**
+damaging calibration attempts. Every eight-probe policy
+(`confirmed8`, `recent8`, `cumulative8`) used **192**
+disposable actions and incurred **58** damaging attempts. Thus
+confirming a second time incurs **26 additional harmful simulator
+interventions** even before test actions are considered. These
+interventions are not considered safe because they occurred in a
+throwaway training simulator.
+
+**Scientific finding:** first/last public evidence contradiction
+can identify some changes between two already engineered outcome
+laws, at the cost of increased probing and loss of useful action.
+A recent-only selector exploits the known single change point,
+but its performance does not imply reliable detection of unannounced
+future switches or noisy/irreversible dynamics. The static feature
+semantics, consequence rules, and two candidate models remain
+human-engineered. **No version should be automatically deployed.**
+
+
+
 This is a **post-hoc, simulation-only** response to the earlier
 sequential-calibration finding: four public outcome probes reduced
 damaging *disposable* calibration actions from 56/72 to 19/24 across
