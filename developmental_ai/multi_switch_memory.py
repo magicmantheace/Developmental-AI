@@ -32,7 +32,17 @@ LONG_HORIZON = 32
 class MultiSwitchContrastMemory(FastShockMemory):
     """A stable archive, fast recent evidence and evidence-based return."""
 
+    def __init__(self):
+        super().__init__()
+        self._cached_selection = None
+
+    def observe(self, event):
+        super().observe(event)
+        self._cached_selection = None
+
     def selection(self):
+        if self._cached_selection is not None:
+            return self._cached_selection
         if len(self.events) < WARMUP:
             raise ValueError("fewer than 240 public source observations")
         anchor = self._model(self.events[:ANCHOR])
@@ -92,7 +102,8 @@ class MultiSwitchContrastMemory(FastShockMemory):
             "last_archive_support": archive_support,
             "recent_model_overlap_with_gate": used if state == "recent" else 0,
         }
-        return decision, model
+        self._cached_selection = (decision, model)
+        return self._cached_selection
 
     def record(self):
         if not self.events:
