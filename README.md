@@ -1120,3 +1120,40 @@ No stable general improvement, safe external actuation, or
 D3 independent new-physics generalization. Optional only,
 no promotion, no merge or AthenZ/Synveil work.
 [Complete preregistration, results and limitations](docs/REGRET_SWITCH.md).
+
+
+### October 23 — Selecting different causal feature laws (experimental)
+
+New optional `FeatureHypothesisMemory` compares **four developer-supplied
+numeric representations** by truly prequential prediction-before-update
+log-likelihood on observed public outcomes: frozen source span,
+recent24 span, checksum residue `(2*a+b)%5`, and ordered residue
+`(a+3*b)%7`. Unlike previous range-rule inversion experiments,
+the two target worlds use **different asymmetric arithmetic laws**,
+but every public task preserves `inlet/outlet` sensor keys and
+anonymous candidate actions. No hidden law labels are supplied to
+the learner. All retained public evidence is replay-validated.
+
+[**Precommitted focused CI passed, 34 tests and six seeds**](https://github.com/magicmantheace/Developmental-AI/actions/runs/39993563381).
+After checksum feedback 8/16/32, the selector solved
+**80/120, 120/120, 120/120** held-out simulator tasks;
+ordered 8/16/32 **49/120, 106/120, 120/120**;
+return of source after 8 **120/120**. All three preregistered
+goals passed. Recent span-only baselines continued failing on
+new rules; the selector matched a **privileged known-correct
+feature-transform model** after sufficient feedback.
+
+**Critical limits:** checksum, ordered and source-span feature
+formulas were **all explicitly embedded in the candidate
+library**. The learner chose a correct prewritten formula:
+it did **not** invent new causal features or infer arbitrary
+unknown physics. Candidate actions were artificially stratified
+five good/four harmful/three neutral. First encounter with
+checksum caused **110 harmful TEST actions / 120**; with
+ordered **108/120**. The independent random actor acquired
+**2,880** unique TRAIN feedback events, with **945 harmful
+simulated source actions**; the learner initiated zero training
+actions. These favorable deterministic later scores are not
+evidence of noise robustness, safe autonomy or completed D3.
+[Full controls and negative outcomes](docs/CROSS_RULE_HYPOTHESES.md).
+No default promotion or AthenZ/Synveil integration.
