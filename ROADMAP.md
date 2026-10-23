@@ -1249,3 +1249,34 @@ independent physics generalization or self-originating
 cognition proven. Remain unmerged/unpromoted, preserve D1-D10
 and V2A-before/overlapping-V2B ordering, no AthenZ/Synveil
 integration. [Study](docs/STOCHASTIC_PREQUENTIAL.md).
+
+
+#### October 23, 2026 — Prequential-regret hard source/recency selection
+
+A new optional `RegretSwitchMemory` compares **prediction-before-update**
+likelihoods for an immutable 192-event learned archive, recent8
+and recent32, and makes a *hard* selection when public outcomes
+contradict the archive. This is a developer-specified indicator,
+not autonomous causal regime discovery. The synthetic physics,
+numeric span statistic, recency sizes and cutoffs remain authored.
+[Focused CI and both frozen seed cohorts passed](https://github.com/magicmantheace/Developmental-AI/actions/runs/39991366213),
+33 regression tests. New TRUE stochastic same-schema A→B→A→B:
+B1-8 **48/96** and B2-8 **33/96** (earlier ensemble **9/96**
+at both), but naive recent8 **59/96** and **41/96**
+respectively. Four precommitted thresholds were missed:
+**B2-8 33/96 vs 35 required; return-A8 49/96 vs 50;
+B1-32 45/96 and B2-32 34/96 vs 50**. Late A-source
+false reselection caused **56 harmful TEST actions out of 96
+at both B1-64/B2-64**; recent32 substantially outperformed
+at B2-64 (67 vs 40 task successes). The independent
+simulator TRAIN actor executed **2,496** unique interventions
+with **881 truly harmful outcomes**, plus **98** deliberately
+incorrect public reports; learner-issued TRAIN actions zero.
+
+**Research implication:** faster adaptation currently costs
+stability and can cause harmful false reversions; not a safe
+or generally capable continual learner. Preserve partial
+D4/D6 experimental status and keep D3 independent-physics
+generalization open. No default controller promotion, PR
+merge, AthenZ/Synveil integration or D1–D10/V2A/V2B
+roadmap modifications. [Full evidence](docs/REGRET_SWITCH.md).
