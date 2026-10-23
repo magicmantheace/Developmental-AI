@@ -990,3 +990,34 @@ Recent model fit overlaps the observations used to trigger it, a
 predictive evaluation weakness, so this is neither a safe switch
 detector nor independently verified novel-physics generalization.
 [Precommitted protocol, full baselines and negative results](docs/FAST_SHOCK.md).
+
+
+### October 22 — Evidence-triggered short/long memory horizons (optional)
+
+A new optional `AdaptiveHorizonMemory` compares source-archive public
+outcome probabilities against recent evidence. When surprise recurs,
+it switches to a trained **recent-eight** horizon or a **recent-32**
+horizon based on how many of the last 32 observations contradict the
+archive; the source memory remains fully checkpointed and untouched.
+The feature relation, archive boundary, likelihood cutoffs and both
+time horizons are **hand-engineered**, not autonomously discovered.
+
+[The dedicated precommitted test passed](https://github.com/magicmantheace/Developmental-AI/actions/runs/39890296668):
+**34 related regression tests, two three-seed cohorts**. On the
+identical-schema reversed-B simulator it achieved **170/180 successes
+after eight** outcomes (identical to the fast/recent8 models),
+**165/180 after 24** (vs fast **121/180**), and **180/180 at
+32 and 48** (vs fast **128/180 and 119/180**).
+It recovered original A to **180/180** after four feedback outcomes.
+
+**Major precommitted failure:** at B64, it fell to **150/180 with
+30 harmful TEST actions**, despite recent32 scoring **180/180**,
+because one seed falsely chose the old A archive. The return-A
+transition also produced **150 harmful TEST actions** with zero
+or two new feedback outcomes; there is **no first-contact safety**.
+The external training actor generated **732 harmful simulated
+outcomes / 2,112 independent actions**, none initiated by the
+evaluated learner. Recent model fit and selection share evidence,
+so statistical overfit and false reversions remain unresolved.
+This is not novel physics/general cognition or D3 completion.
+[Full protocol, results and negative evidence](docs/ADAPTIVE_HORIZON.md).
