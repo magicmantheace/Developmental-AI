@@ -1353,3 +1353,37 @@ exploration remain unsolved. Do not promote or merge
 experimental code, alter D1–D10/V2A/V2B order, or
 integrate with AthenZ or Synveil.
 [Full evidence](docs/COMPOSED_FEATURE.md).
+
+
+#### October 23, 2026 — Conditional grammar expansion with absent-XOR control
+
+**Partial D3 evidence, NOT D3 completion.** The optional
+`GatedCompositionMemory` adds a manually specified comparison
+operator and learns distinct preexisting quadratic program
+representations for two public feature partitions, using
+prequential selection and retained source feedback. Frozen
+six-seed conditional A→conditional→A→XOR simulator study
+[focused CI PASSED, 24 tests](https://github.com/magicmantheace/Developmental-AI/actions/runs/40004315180).
+Conditional64 **96/96 TEST successes**, versus global-composed
+**36/96**, with all six seeds selecting correct two-arm programs.
+Old source rule was reacquired **96/96 after16**.
+
+**Important negatives:** after source-return8 only **19/96**
+tasks succeeded, versus the earlier fixed-library selector's
+**96/96**; no-feedback conditional first contact caused
+**88 harmful TEST actions out of 96**. XOR was not supplied
+as a grammar operation and learner failed to identify a
+suitable model: XOR128 **39/96 successes, 57 harmful actions**,
+versus benchmark-private correct-XOR predictor **96/96**.
+The external actor collected **3,360 unique first-action
+TRAIN examples, 1,117 harmful simulated interventions**;
+learner-initiated TRAIN actions zero. Model does NOT learn
+unknown operator types, calibrated ignorance, trustworthy
+source evidence or safe exploration; favorable candidate
+allocation and deterministic physics are manually authored.
+Next D3 gate must test explicit representation-adequacy
+detection, harmful-action risk and failed-by-abstention
+costs on fresh preregistered seeds. No default promotion,
+PR merge, external actuation, roadmap D1–D10/V2A/V2B
+reordering or AthenZ/Synveil integration.
+[Full report](docs/GATED_COMPOSITION.md).
