@@ -1052,3 +1052,35 @@ contradictory feedback; the numeric relation, windows, thresholds,
 rule inversion and report-noise mechanism are hand-designed.
 [Full protocol, benchmarks and adverse evidence](docs/MULTI_SWITCH.md).
 No default promotion, PR merge or AthenZ/Synveil integration.
+
+
+### October 23 — Stochastic prequential outcome-model ensemble (optional)
+
+New optional `PrequentialEnsembleMemory` mixes the inherited source
+relation learner with recent-eight and recent-32 models using each
+candidate's **out-of-sample prediction-before-update** log likelihood
+on the latest eight public feedback examples. The decision-time model
+uses all currently available examples, but no observation contributes
+to its own *prequential scoring model*. The source archive, range
+statistic, mixture priors and action utility remain handcrafted; no
+external permissions or default policy promotion.
+
+[**Frozen study: dedicated CI 39972387822 passed**](https://github.com/magicmantheace/Developmental-AI/actions/runs/39972387822):
+34 tests, two precommitted three-seed cohorts, fully stochastic
+1/8-flip actual progress/damage action outcomes, plus independent
+1/20-sampled corruption of non-neutral TRAIN reports. On B1-32,
+new ensemble **61/96 successes vs previous contrastive 31/96**;
+on B2-32 **58/96 vs 27/96**, and B2-64 **62/96 vs 28/96**.
+True return-A24 was **71/96 vs 58/96**. These are measured
+simulator-only later-feedback gains, **not universal superiority**.
+
+**Three registered early-change targets failed**: first B8
+**10/96** (recent8 baseline **47/96**), return A8 **65/96**
+(target >=75), and second B8 **15/96** (recent8 **57/96**).
+At B1-64 there were **44 harmful TEST actions /96**; at B2-64
+**34 harmful TEST actions /96**. Independent actor accumulated
+**2,496 TRAIN actions**, with **911 real harmful outcomes**
+and **85 flipped public feedback reports**. The learner did not
+initiate any data-acquisition actions. No calibrated safety,
+evidence attestation, new physics discovery or D3 completion.
+[Detailed methods, all baselines and negative results](docs/STOCHASTIC_PREQUENTIAL.md).
