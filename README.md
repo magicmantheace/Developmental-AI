@@ -1157,3 +1157,42 @@ actions. These favorable deterministic later scores are not
 evidence of noise robustness, safe autonomy or completed D3.
 [Full controls and negative outcomes](docs/CROSS_RULE_HYPOTHESES.md).
 No default promotion or AthenZ/Synveil integration.
+
+
+### October 23 — Generated nonlinear feature programs (optional research)
+
+New opt-in `ComposedFeatureMemory` synthesizes **48** candidate
+quadratic feature expressions by composing generic multiplication,
+addition, small integer coefficients and modulo operators. It
+selects models through **12 prediction-before-update** public
+outcomes, preserving a first-192-example source archive and
+SHA256-replayable public feedback. The simulator supplies *new
+nonlinear product and square laws* not present as finished names
+in the old fixed four-hypothesis library. The target formulas
+are, however, **expressible within the manually specified
+grammar**; this is bounded program composition, not unconstrained
+feature invention or independent causal discovery.
+
+[**Precommitted focused Actions study PASSED**](https://github.com/magicmantheace/Developmental-AI/actions/runs/39997552852):
+**24 tests and both frozen three-seed cohorts**. Product after
+8/16/32 public observations: **41/96,86/96,96/96**
+successful held-out TEST tasks (old fixed-library after32
+**39/96**). Square after 8/16/32: **19/96,79/96,96/96**
+(old fixed-library after32 **31/96**). On source
+return after16, **96/96** successes, but after8 only
+**40/96** compared with **96/96** for the prior
+fixed-library selector.
+
+**Critical negatives:** product and square first encounters
+caused **83 and 84 harmful TEST actions /96**, respectively.
+Returning-source zero feedback caused **85 harmful actions
+/96**, despite frozen source model 96/96 success.
+Independent random data-collection actor performed **3,360
+unique TRAIN actions causing 1,116 harmful simulated
+outcomes**; learner-issued TRAIN actions zero. The simulator
+guarantees an unrealistically favorable mix of productive
+actions and outcomes are deterministic/truthful in this
+isolated experiment. No first-contact safety, stochastic
+noise robustness, source authenticity or D3 completion.
+[Complete controls, precommit and adverse findings](docs/COMPOSED_FEATURE.md).
+No default promotion, PR merge or AthenZ/Synveil integration.
