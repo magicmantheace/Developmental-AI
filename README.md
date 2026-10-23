@@ -1196,3 +1196,41 @@ isolated experiment. No first-contact safety, stochastic
 noise robustness, source authenticity or D3 completion.
 [Complete controls, precommit and adverse findings](docs/COMPOSED_FEATURE.md).
 No default promotion, PR merge or AthenZ/Synveil integration.
+
+
+### October 23 — Conditional feature composition and XOR negative control (optional)
+
+A new `GatedCompositionMemory` combines the existing 48 generic
+quadratic expressions under a **new developer-provided comparison
+operator** `inlet>outlet`, learning separate public-outcome models
+for each branch. It compares the best global expression with the
+two-branch expression using **16 prediction-before-update** feedback
+scores and a hand-chosen complexity penalty. Its persistent
+append-only source memory and deterministic replay are preserved.
+The model cannot represent bitwise XOR, which remains deliberately
+absent from the grammar.
+
+[**Frozen two-cohort GitHub Actions study passed**](https://github.com/magicmantheace/Developmental-AI/actions/runs/40004315180):
+**24 related regressions**, all six preregistered seeds. On the
+conditional target it scored **57/96 tasks after32 feedback** and
+**96/96 after64**, compared with **36/96 after64** for the old
+global-composed learner. It correctly composed
+`(a*a+b)%5` for the lower branch and `(a*b+a)%7` for the
+higher branch, and recovered the source rule at **96/96 after16**.
+Both precommitted positive gates passed.
+
+**Negative results:** At conditional first contact it performed
+**88 harmful TEST actions/96**. Returned-source after eight
+outcomes **only 19/96 successes** versus the older fixed-library
+learner's **96/96**. On a bitwise XOR target outside the grammar,
+**39/96 successes after128** with **57 harmful TEST actions**,
+versus **96/96** for a benchmark model privately given XOR.
+No reliable model-adequacy detection or abstention occurred.
+An external random simulator actor produced **3,360 unique TRAIN
+observations, including 1,117 harmful actions**, learner-initiated
+TRAIN actions zero. All physical laws, conditional operator,
+grammar and artificially favorable action mixtures are human-designed.
+This is partial bounded D3 research, not independent causal invention,
+safe cognition or source-authenticating learning.
+[Full report and limitations](docs/GATED_COMPOSITION.md).
+No default promotion, PR merge, AthenZ/Synveil integration.
