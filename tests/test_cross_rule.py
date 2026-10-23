@@ -108,6 +108,7 @@ class CrossRuleTests(unittest.TestCase):
                        "progress":True,"damage":False})
         self.assertEqual(m.record(),saved)
         bad=copy.deepcopy(saved)
+        bad["state"]["events"][0]["progress"]=True
         bad["state"]["events"][0]["damage"]=True
         with self.assertRaises(ValueError):
             FeatureHypothesisMemory.restore(bad)
