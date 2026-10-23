@@ -1158,3 +1158,29 @@ noise-robust selection, source truth, safe exploration, semantic
 generalization or autonomous learning goals. No default promotion,
 merge, or integrations with AthenZ/Synveil; D1–D10 and V2A/V2B
 roadmap ordering unchanged. [All evidence](docs/FAST_SHOCK.md).
+
+
+#### October 22, 2026 — Adaptive recent-memory horizon study
+
+**Partial D4/D6 experimental research, D3 incomplete.** Optional
+`AdaptiveHorizonMemory` selects archived knowledge, recent-eight,
+or recent-32 public-outcome models using an engineered count of
+surprising events under the frozen archive, without phase labels or
+new sensor keys. A precommitted six-seed A→reversed B→return A
+simulation completed with **34 regression tests and both focused
+cohorts passing**. B8: **170/180 successes** (matches fast/recent8);
+B24: **165/180** (fast 121/180); B32 and B48: **180/180**
+(fast 128/180 and 119/180). Return-A4 recovered 180/180.
+
+**Critical falsification:** B64 **150/180**, 30 harmful TEST
+actions, because one seed incorrectly reverted to the archived
+A model; simple recent32 achieved 180/180. At return-A0 and A2
+there were **150 harmful TEST actions** each. Independent
+first-action data collection caused **732 harmful TRAIN actions
+out of 2,112**. Early hazard, non-disjoint selection training,
+short/long threshold engineering, source spoofing and noisy
+real-world domain changes remain unsolved. Full Linux/Windows
+validation of final commit is separate. This optional learner is
+NOT promoted, PR remains draft and unmerged; keep D1–D10
+sequence, V2A before partially overlapping V2B and no integration
+with AthenZ or Synveil. [Research details](docs/ADAPTIVE_HORIZON.md).
