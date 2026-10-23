@@ -1021,3 +1021,34 @@ evaluated learner. Recent model fit and selection share evidence,
 so statistical overfit and false reversions remain unresolved.
 This is not novel physics/general cognition or D3 completion.
 [Full protocol, results and negative evidence](docs/ADAPTIVE_HORIZON.md).
+
+
+### October 22 — Noisy reports and repeated same-schema A→B→A→B changes (opt-in)
+
+A frozen follow-up study tested a new `MultiSwitchContrastMemory`
+using **predictive evidence favoring the original archive**, rather
+than merely the absence of surprises, to decide when to return from
+recent learned models. Across a same-feature A→B→A→B synthetic
+sequence it received **186 intentionally flipped public training
+outcomes** out of 2,496 TRAIN observations; all 876 actual harmful
+data-acquisition actions by the independent actor were tracked
+separately. The learner acquired no TRAIN examples itself.
+
+[**Focused CI passed**](https://github.com/magicmantheace/Developmental-AI/actions/runs/39892309615):
+**34 tests and both precommitted three-seed cohorts**. On the first
+reversed rule it achieved **86/120** TEST successes after eight
+outcomes, **116/120** after 32 and **118/120** after 64, versus the
+previous adaptive horizon's **66/120, 76/120 and 79/120**. After
+the second reversal, it achieved **109/120** after 32 and
+**116/120** after 64 (old adaptive **72/120 and 78/120**).
+
+**Negative outcomes matter:** at B1-48 it still fell to **82/120**
+(vs fixed recent32 120/120); it recovered old A to only
+**60/120 after four** and **80/120 after eight** public examples
+(vs previous adaptive 120/120 at both), failing its precommitted
+A8 threshold. At first B2 contact it had **120 harmful TEST
+actions / 120**. No algorithm here is safe without observed
+contradictory feedback; the numeric relation, windows, thresholds,
+rule inversion and report-noise mechanism are hand-designed.
+[Full protocol, benchmarks and adverse evidence](docs/MULTI_SWITCH.md).
+No default promotion, PR merge or AthenZ/Synveil integration.
