@@ -1319,3 +1319,37 @@ frozen seeds, decoy hypotheses and harm/abstention controls.
 Preserve draft/unmerged PR, default policy, D1–D10,
 V2A-before-overlapping-V2B and AthenZ/Synveil separation.
 [Full study](docs/CROSS_RULE_HYPOTHESES.md).
+
+
+#### October 23, 2026 — Bounded compositional feature hypothesis research
+
+**Partial D3 research, not D3 completion.** New optional
+`ComposedFeatureMemory` composes a fixed 48-program family
+from multiplication, addition, coefficients and modulo,
+then selects by 12 prequential public outcome scores.
+The authored target nonlinear product and square laws are
+not prewritten as finished named hypotheses, though both
+are reachable within the **designer-provided grammar**.
+Six preregistered seeds (two cohorts), 24 regressions
+and all three registered outcome gates passed in
+[focused CI](https://github.com/magicmantheace/Developmental-AI/actions/runs/39997552852).
+Both new nonlinear targets reached **96/96 successes after
+32 observations**, while previous fixed-library models
+reached only **39/96 (product)** and **31/96 (square)**.
+The original source rule was reacquired **96/96 after 16**
+but only **40/96 after 8**, slower than the preceding
+fixed-hypothesis learner (96/96 at source return8).
+
+**Important safety limits:** at new-rule zero feedback
+the learner suffered **83/96 product and 84/96 square
+harmful TEST actions**. Independent source actor caused
+**1,116 harmful simulated TRAIN actions across 3,360
+unique observations**; learner action-acquisition zero.
+Fixed grammar cannot discover operators outside its
+enumeration, TEST actions are artificially stratified
+to include abundant productive choices, and noise,
+forged feedback, complex temporal rules and safe
+exploration remain unsolved. Do not promote or merge
+experimental code, alter D1–D10/V2A/V2B order, or
+integrate with AthenZ or Synveil.
+[Full evidence](docs/COMPOSED_FEATURE.md).
