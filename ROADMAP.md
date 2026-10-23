@@ -1216,3 +1216,36 @@ generalization completion**, safe autonomous exploration or
 source authenticity. No default controller promotion,
 GitHub PR merge, cross-project work or alteration to D1–D10
 and V2A/V2B. [Complete study](docs/MULTI_SWITCH.md).
+
+
+#### October 23, 2026 — Stochastic prequential model weighting
+
+**Experimental partial D4/D6 only; D3 independent new-physics
+generalization remains open.** A precommitted six-seed A→B→A→B
+simulator adds *actual probabilistic outcomes*, 1/8 flipped
+nonneutral physical effects, and an independent 1/20-sampled
+error rate in externally collected nonneutral public reports.
+New optional `PrequentialEnsembleMemory` weighs archived,
+recent-eight and recent-32 public-outcome predictions using
+eight genuine prediction-before-update evaluations per model,
+thus removing the candidate-in-sample evidence-selection
+shortcut of earlier variants, although the windows, source
+archive, priors, action utilities and numeric span features
+are still designer-specified.
+
+[Focused run passed, 34 tests and both cohorts](https://github.com/magicmantheace/Developmental-AI/actions/runs/39972387822).
+B1-32 **61/96** successful simulated TEST episodes versus
+old contrastive **31/96**, B2-32 **58/96 vs 27/96**, B2-64
+**62/96 vs 28/96**, and return A24 **71/96 vs 58/96**.
+**Major negatives:** preregistered B1-8 **10/96**, B2-8
+**15/96** and return-A8 **65/96** all **missed acceptance
+targets**. Simpler recent8 achieved B1-8 **47/96** and B2-8
+**57/96**. Even B2-64 the new ensemble incurred **34 harmful
+TEST actions/96**. The independent acquisition actor caused
+**911 actual harmful TRAIN actions among 2,496 observations**;
+85 TRAIN reports were deliberately false, learner-sourced TRAIN
+actions zero. No robust safe exploration, source truth,
+independent physics generalization or self-originating
+cognition proven. Remain unmerged/unpromoted, preserve D1-D10
+and V2A-before/overlapping-V2B ordering, no AthenZ/Synveil
+integration. [Study](docs/STOCHASTIC_PREQUENTIAL.md).
