@@ -1184,3 +1184,35 @@ validation of final commit is separate. This optional learner is
 NOT promoted, PR remains draft and unmerged; keep D1–D10
 sequence, V2A before partially overlapping V2B and no integration
 with AthenZ or Synveil. [Research details](docs/ADAPTIVE_HORIZON.md).
+
+
+#### October 22, 2026 — Repeated A→B→A→B with noisy reported evidence
+
+An opt-in `MultiSwitchContrastMemory` study was precommitted
+before implementation and run across two fresh three-seed cohorts
+on the unchanged-public-schema A→B→A→B simulator with
+10%-sampled progress/damage **report corruption**. A model
+must observe explicit predictive evidence for source A before
+reselecting archive, rather than merely not seeing archive
+surprise. [Focused CI PASS, 34 tests](https://github.com/magicmantheace/Developmental-AI/actions/runs/39892309615).
+B1 at 8/32/64 observations: **86/116/118 successes out of
+120** (prior adaptive **66/76/79**). B2 at 32/64: **109/116**
+(vs prior **72/78**). The memory remains replayable, old
+evidence retained and phase labels hidden.
+
+**Critical negative:** B1-48 **82/120** versus recent32
+**120/120**, and returned-A4 **60/120**, returned-A8 **80/120**
+versus previous adaptive **120/120** at both. The preregistered
+returned-A8 >=100/120 objective **failed**. At B2 onset
+the new model caused **120 harmful simulated TEST actions
+in 120 attempts**. The independent random actor needed
+**2,496 training interventions** with **876 actual harmful
+results**; 186 observed outcome labels were deliberately
+flipped and only those reports were supplied to the learner.
+The noisy labels, numerical relation, dynamics, predictive
+thresholds, horizons and comparative controls are still
+engineered. This is partial D4/D6 research, **not D3
+generalization completion**, safe autonomous exploration or
+source authenticity. No default controller promotion,
+GitHub PR merge, cross-project work or alteration to D1–D10
+and V2A/V2B. [Complete study](docs/MULTI_SWITCH.md).
