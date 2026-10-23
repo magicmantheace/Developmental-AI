@@ -1280,3 +1280,42 @@ D4/D6 experimental status and keep D3 independent-physics
 generalization open. No default controller promotion, PR
 merge, AthenZ/Synveil integration or D1–D10/V2A/V2B
 roadmap modifications. [Full evidence](docs/REGRET_SWITCH.md).
+
+
+#### October 23, 2026 — Distinct arithmetic causal-family hypothesis selection
+
+**Partial D3-related research only; D3 independent discovery
+remains unmet.** An opt-in `FeatureHypothesisMemory` compares
+a frozen source-span learner with three recent predictors
+(span, asymmetric checksum, asymmetric ordered), selecting
+by eight held-out prediction-before-update log-likelihoods.
+The two target rules are *different* from the historical
+source span relation, rather than merely its inverse,
+with exactly the same public feature names. All three
+representations are still manually supplied in the model's
+candidate library.
+
+[**Frozen GitHub Actions CI PASS: 34 tests and two three-seed cohorts**](https://github.com/magicmantheace/Developmental-AI/actions/runs/39993563381).
+Checksum8/16/32 **80/120, 120/120, 120/120**
+TEST successes, ordered8/16/32 **49/120, 106/120,
+120/120**, returned source after eight observations
+**120/120**. All three precommitted success thresholds
+were achieved. However first-encounter negative transfer
+was **110 harmful TEST actions/120** in checksum and
+**108/120** in ordered. The independent random actor
+performed **2,880 unique training interventions**,
+with **945 genuinely harmful outcomes**. No learner
+TRAIN actions were initiated. The action generator
+guarantees an unrealistically favorable fixed mix of
+productive and harmful choices, and the true target
+feature formulas are preauthored in the learner. This
+does not demonstrate emergent causal feature invention,
+robustness to unknown laws, trustworthy feedback, safe
+first-contact behavior, or independent general cognition.
+
+Next D3 gates: genuinely **unrepresented** causal rule,
+newly composed representations not in candidate library,
+frozen seeds, decoy hypotheses and harm/abstention controls.
+Preserve draft/unmerged PR, default policy, D1–D10,
+V2A-before-overlapping-V2B and AthenZ/Synveil separation.
+[Full study](docs/CROSS_RULE_HYPOTHESES.md).
