@@ -1084,3 +1084,39 @@ and **85 flipped public feedback reports**. The learner did not
 initiate any data-acquisition actions. No calibrated safety,
 evidence attestation, new physics discovery or D3 completion.
 [Detailed methods, all baselines and negative results](docs/STOCHASTIC_PREQUENTIAL.md).
+
+
+### October 23 — Hard prequential regret switching (optional research)
+
+New opt-in `RegretSwitchMemory` scores the first-192-event source
+archive, recent8 and recent32 on the latest eight public feedback
+outcomes, with *each scoring model fitted only on preceding data*.
+A manually fixed short-window source contradiction gate gives faster
+early switching than soft weighted-mixture models; separate fixed
+predictive-support and regret cutoffs determine archive recovery
+and whether a longer horizon is justified. Exact learner-visible
+sensor schema remains unchanged and no simulator rule marker
+is exposed. The numeric relation, windows and likelihood cutoffs
+are engineered, not discovered.
+
+[**Dedicated precommitted CI PASSED**](https://github.com/magicmantheace/Developmental-AI/actions/runs/39991366213):
+**33 related regressions and both frozen three-seed cohorts**.
+True stochastic A→B→A→B outcomes with independent mislabeled
+public feedback: B1 after eight observations **48/96** TEST
+successes (soft ensemble **9/96**, fixed recent8 **59/96**);
+B2-8 **33/96** (soft **9/96**, recent8 **41/96**).
+
+**Major failures:** B2-8 **33/96** missed threshold >=35,
+return-A8 **49/96** missed >=50, B1-32 **45/96** missed >=50,
+B2-32 **34/96** missed >=50. B1-64 **40/96** vs prior
+ensemble **65/96**; B2-64 **40/96** vs prior **63/96** and
+fixed recent32 **67/96**. Late false archive reselection
+and **56 harmful TEST actions at each B1-64 and B2-64 out
+of 96** remain unresolved. Separate independent random
+TRAIN actor incurred **881 real harmful simulated actions**
+from **2,496** episodes; **98** public feedback reports were
+intentionally false, learner-initiated TRAIN actions zero.
+No stable general improvement, safe external actuation, or
+D3 independent new-physics generalization. Optional only,
+no promotion, no merge or AthenZ/Synveil work.
+[Complete preregistration, results and limitations](docs/REGRET_SWITCH.md).
