@@ -1272,3 +1272,42 @@ discovers XOR nor attests feedback truth; abstention blocks
 damage by refusing potentially solvable tasks and is not
 calibrated deployment safety. No default promotion or merge.
 [Full study and controls](docs/VALIDATED_ABSTENTION.md).
+
+
+### October 23 — Independently supplied witness observations during abstention (optional)
+
+New `WitnessRecoveryMemory` introduces a **bounded external
+observation-request and transactional public batch acceptance API**
+when an existing `ValidatedAbstainingMemory` learner fails
+its **unchanged** disjoint predictive adequacy gate. In the
+sandbox only, a separately controlled random actor executes
+up to **32 additional source actions** in four batches of
+eight per seed/stage/checkpoint. The learner **never acquires
+the data itself**, and held-out TEST outcomes never trigger
+a witness request or enter model training. All actor
+interventions and harmful effects are counted, not treated
+as passive or free.
+
+[**Precommitted two-cohort focused study PASSED**](https://github.com/magicmantheace/Developmental-AI/actions/runs/40058451712):
+**23 tests plus all six frozen seeds**. Conditional-rule
+after eight public examples: **35/96 tasks succeeded
+with witnesses vs 0/96 without**, after32 **52/96
+vs 4/96**. Returning original source after eight:
+**61/96 vs 6/96**. Both registered productivity
+gates passed.
+
+**The registered XOR safety gate FAILED**: after 96
+public XOR examples, with witnesses caused **38 harmful
+TEST actions/96** versus **22/96 without**, exceeding
+the target maximum **20/96**. Recovering willingness
+to act from extra feedback can amplify errors when
+the necessary XOR representation is still absent.
+Across all study checkpoints the supplemental actor
+performed **1,112 unique simulated data-acquisition
+interventions, with 329 genuinely harmful outcomes**.
+Original external TRAIN acquisition added **3,360
+interventions and 1,105 harms**, for **4,472 source
+actions/1,434 harms** across distinct experimental
+scenarios. No learner-owned TRAIN actions, no default
+promotion, and no AthenZ/Synveil integration.
+[Full methods, cohort tables and negative results](docs/INDEPENDENT_WITNESS.md).
