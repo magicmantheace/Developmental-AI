@@ -1387,3 +1387,41 @@ costs on fresh preregistered seeds. No default promotion,
 PR merge, external actuation, roadmap D1–D10/V2A/V2B
 reordering or AthenZ/Synveil integration.
 [Full report](docs/GATED_COMPOSITION.md).
+
+
+#### October 23, 2026 — Out-of-grammar predictive adequacy and explicit abstention
+
+**Experimental risk/coverage capability, NOT safe autonomous
+exploration or D3 completion.** New optional
+`ValidatedAbstainingMemory` freezes a feature program on
+public observations excluding 16 validation outcomes,
+scores predictive log-likelihood versus a feature-blind null
+on those held-out events with per-event preceding-only fits,
+and declines actions if adequacy or a predicted damage/
+progress risk threshold fails. Candidate representation,
+null and all thresholds are manually specified.
+[**Frozen focused CI passed — 24 regressions and two
+three-seed cohorts**](https://github.com/magicmantheace/Developmental-AI/actions/runs/40043938342).
+On missing-operator XOR at feedback96: **0 task successes,
+0 harmful TEST actions, 96 failed-by-abstention tasks**.
+On known conditional at96: **96 successes, zero harm or
+abstention**; archived source return32: **96 successes**.
+All preregistered numeric gates passed.
+
+**Negative evidence:** XOR first contact still caused
+**67 damaging TEST actions/96**, XOR64 caused **six harms**
+from false model acceptance. Solvable conditional48:
+**14/96 successes**, 78 abstentions vs previous gated
+always-act **94/96 successes**; source return8 **0
+successes, 82 abstentions and 14 harms** despite frozen
+source 96/96. Independent external actor collected
+**3,360 unique TRAIN actions with 1,084 actually harmful
+outcomes**, learner-sourced TRAIN actions zero. No learned
+XOR operator, confidence calibration, passive evidence
+request protocol, reliable change detection, or verified
+real-world source honesty. Next preregistered research
+should evaluate the entire risk/coverage tradeoff and
+independently sourced passive observations while abstaining.
+No default controller promotion, PR merge, AthenZ/Synveil
+integration or D1–D10/V2A/V2B roadmap reorder.
+[Complete report](docs/VALIDATED_ABSTENTION.md).
