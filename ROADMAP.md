@@ -1425,3 +1425,34 @@ independently sourced passive observations while abstaining.
 No default controller promotion, PR merge, AthenZ/Synveil
 integration or D1–D10/V2A/V2B roadmap reorder.
 [Complete report](docs/VALIDATED_ABSTENTION.md).
+
+
+#### October 23, 2026 — Independently sourced, costed witness recovery
+
+Optional `WitnessRecoveryMemory` only requests additional
+simulator-origin public evidence when the earlier **disjoint
+adequacy gate rejects its model**, with at most four batches
+of eight observations. It cannot itself operate the independent
+data-acquisition actor. [Frozen CI passed, 23 tests and
+two three-seed cohorts](https://github.com/magicmantheace/Developmental-AI/actions/runs/40058451712).
+Conditional after32 examples: **52/96 task success with
+witnesses vs 4/96 without**; old-source return after8
+**61/96 vs 6/96**. Both registered productivity
+goals passed. But the **XOR harm gate FAILED**:
+at XOR96, supplemental evidence led to **38 harmful
+TEST actions vs 22 without**, above the intended cap
+of 20. The actor furnishing witness outcomes made
+**1,112 additional interventions, 329 harmful** on
+top of baseline **3,360 unique TRAIN interventions,
+1,105 harmful**. Total **4,472 actor interventions
+and 1,434 harmful outcomes** across distinct frozen
+checkpoint scenarios, learner-owned TRAIN actions zero.
+The witness actor is **not passive, harmless or free**.
+No missing XOR discovery, safe first-contact behavior,
+calibration, verified source honesty or independent
+real-world cognition. Prioritize net acquisition +
+TEST harm on fresh seeds and lawful non-intervention
+observational channels, not uncalibrated evidence
+accumulation. Remain experimental/unmerged and
+preserve D1–D10, V2A/V2B, AthenZ/Synveil separation.
+[Complete study](docs/INDEPENDENT_WITNESS.md).
