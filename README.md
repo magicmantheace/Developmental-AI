@@ -1234,3 +1234,41 @@ This is partial bounded D3 research, not independent causal invention,
 safe cognition or source-authenticating learning.
 [Full report and limitations](docs/GATED_COMPOSITION.md).
 No default promotion, PR merge, AthenZ/Synveil integration.
+
+
+### October 23 — Held-out predictive adequacy with costly abstention (optional)
+
+New optional `ValidatedAbstainingMemory` first selects a source,
+global or conditional arithmetic model on older public evidence.
+It then evaluates the **frozen model choice on 16 later public
+outcomes excluded from program selection**, with each validation
+predictor trained only on observations strictly preceding its
+scored event. A feature-blind outcome-frequency null plus two
+fixed adequacy gates (≥0.20 mean log gain, ≥10/16 class hits)
+decide whether to trust its representation. Every proposed action
+must also pass two fixed predicted risk thresholds; if not,
+the learner **abstains and fails that task**. Thresholds are
+human-authored and uncalibrated.
+
+[**Precommitted six-seed focused study PASS**](https://github.com/magicmantheace/Developmental-AI/actions/runs/40043938342):
+**24 related tests and both frozen cohorts**. XOR after 96
+feedback examples: **0/96 successes, 0 harmful TEST actions,
+96 abstentions** (old always-acting gated learner **52/96
+successes, 44 harmful actions**). On the solvable conditional
+rule after96 examples: **96/96 successes without harmful
+actions or abstentions**. Returned original source after32:
+**96/96 successes**. All three registered acceptance gates met.
+
+**Crucial negatives:** initial XOR contact **67 harmful TEST
+actions/96**, and XOR64 **six harmful actions** from a falsely
+accepted model. At conditional48 the selective policy completed
+**14/96** vs always-acting gated **94/96** (78 abstentions);
+on return-source8 **zero tasks completed, 14 harms and
+82 abstentions** despite an archived source model that could
+already solve 96/96. Independent actor data acquisition caused
+**1,084 harmful simulated TRAIN interventions out of 3,360**;
+the learner initiated zero TRAIN actions. The policy neither
+discovers XOR nor attests feedback truth; abstention blocks
+damage by refusing potentially solvable tasks and is not
+calibrated deployment safety. No default promotion or merge.
+[Full study and controls](docs/VALIDATED_ABSTENTION.md).
