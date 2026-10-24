@@ -1311,3 +1311,47 @@ actions/1,434 harms** across distinct experimental
 scenarios. No learner-owned TRAIN actions, no default
 promotion, and no AthenZ/Synveil integration.
 [Full methods, cohort tables and negative results](docs/INDEPENDENT_WITNESS.md).
+
+
+### October 24 — Shared public-evidence bank versus fresh witness interventions (research)
+
+A new counterfactual evaluation compares (a) the previous
+selective learner with no supplemental data, (b) **fresh**
+independent actor observations whenever adequacy fails, and
+(c) a **shared bank of 32 already-executed external actor
+observations per seed/stage**, consumed in the same eight-row
+batches. Shared evidence acquisition is paid **upfront** and
+counted once across checkpoint scenarios even if unused;
+fresh actor actions are costed each time they occur.
+The model, risk thresholds, prior causal rules and learning
+behavior remain unchanged. No evaluated learner is given
+data-acquisition authority or TEST feedback.
+
+[**Fresh six-seed precommitted study: focused CI PASS**](https://github.com/magicmantheace/Developmental-AI/actions/runs/40112953845),
+23 regressions and both frozen three-seed cohorts. Shared
+bank restored **58/96** conditional tasks after32 baseline
+outcomes versus **9/96** without extra evidence, and
+**40/96** old-source-return tasks after8 vs **8/96**.
+All three preregistered test gates passed. Reusing
+a shared bank required **576 unique external actor actions,
+210 truly harmful** versus **1,232/415** for new
+on-demand witnesses.
+
+**CRITICAL COST NEGATIVE:** over all 17 registered
+correlated checkpoint scenarios the authored weighted
+study loss (10 per harmful test or extra actor action,
+1 per failed-by-abstention task or extra actor action)
+was **3,710 no extra**, **6,821 shared**, **9,534 fresh**.
+The shared learner incurred **353 damaging TEST actions**
+versus **279** without extra evidence. At XOR96 shared
+caused **26 harmful TEST actions** versus **9** no extra:
+its available grammar still lacks XOR. Always-abstain
+lowest non-oracle study loss **1,632**, but completed
+**zero** tasks. Original external training actor actions
+were **3,360/1,123 harmful**, common to all policies.
+The bank is **NOT cost-free or passive**, because an
+independent actor really collected it. These pooled
+checkpoint episodes are correlated hypothetical workloads,
+not one lifetime or real-world safety claims.
+[Research report and complete cost ledger](docs/SHARED_EVIDENCE_ECONOMICS.md).
+No default controller promotion, PR merge or integration.
