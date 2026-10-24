@@ -1456,3 +1456,48 @@ observational channels, not uncalibrated evidence
 accumulation. Remain experimental/unmerged and
 preserve D1–D10, V2A/V2B, AthenZ/Synveil separation.
 [Complete study](docs/INDEPENDENT_WITNESS.md).
+
+
+#### October 24, 2026 — Shared-versus-new public outcome evidence cost audit
+
+**Experimental measurement, no claim of safer general
+learning.** The new `shared_evidence_economics_benchmark`
+preregisters fresh six-seed cohorts and compares
+unchanged selective learning with no new data, fresh
+independent first-action witness interventions, and a
+shared bank of 32 previously acquired actor reports
+per stage/seed that can be consumed across checkpoint
+scenarios. All source actor harms are counted once and
+all abstentions counted as failed tasks.
+[Focused frozen study PASSED, 23 regressions and
+both cohorts](https://github.com/magicmantheace/Developmental-AI/actions/runs/40112953845).
+Shared bank conditional32 **58/96 successful TEST**
+tasks versus no-extra **9/96**, returned source8
+**40/96 vs 8/96**. Shared bank sourced **576 actor
+actions, 210 harmful** vs fresh independent evidence
+**1,232 actions, 415 harmful**. All preregistered
+acceptance checks passed.
+
+**Critical limits:** the authored pooled study
+loss was **3,710 no extra evidence, 6,821 shared,
+9,534 fresh** because extra evidence also caused
+damaging action attempts. Shared TEST harms **353**
+vs no-extra **279**, and at XOR96 shared **26/96
+harmful TEST actions** vs no-extra **9/96**.
+Always-abstain was **1,632** weighted loss with
+**zero tasks completed** (not a good general
+learning outcome). Original random source actor
+collected **3,360 actions with 1,123 actual harmful**
+outcomes, common to all arms. Shared bank records
+are already acquired but NOT passively or freely
+created. Checkpoints repeat held-out TEST episode
+IDs, thus portfolio totals are NOT independent
+long-term trial statistics. The model still
+cannot represent XOR, verify source authenticity
+or guarantee harmless independent exploration.
+Prioritize a genuinely non-intervention observation
+channel, noisy evidence, lifetime event order and
+risk/coverage analysis with fresh frozen cohorts.
+Preserve D1–D10, V2A/V2B, draft PR #2, default
+controller and AthenZ/Synveil independence.
+[Complete study](docs/SHARED_EVIDENCE_ECONOMICS.md).
